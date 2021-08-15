@@ -1,0 +1,9 @@
+.figcaption__pseudo-like {
+  display: block;
+  width: 22px;
+  height: 19px;
+  background-image: url(../../../image/like.svg);
+}
+.figcaption__like:checked + .figcaption__pseudo-like {
+  background-image: url(../../../image/like-black.svg);
+}

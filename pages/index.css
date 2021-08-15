@@ -17,5 +17,8 @@
 @import url(../block/element/__img/element__img.css);
 @import url(../block/figcaption/figcaption.css);
 @import url(../block/figcaption/__title/figcaption__title.css);
+@import url(../block/figcaption/__label/figcaption__label.css);
+@import url(../block/figcaption/__pseudo-like/figcaption__pseudo-like.css);
 @import url(../block/figcaption/__like/figcaption__like.css);
+
 
