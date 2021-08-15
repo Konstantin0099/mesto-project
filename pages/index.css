@@ -29,5 +29,6 @@
 @import url(../block/input__container/input__container.css);
 @import url(../block/input__container/__submit/input-container__submit.css);
 @import url(../block/input__container/__item/input-container__item.css);
-
+@import url(../block/footer/footer.css);
+@import url(../block/footer/__titlte/footer__title.css);
 
