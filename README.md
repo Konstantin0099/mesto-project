@@ -16,4 +16,4 @@
  ## проект реализован на языках HTML и CSS
  ## все изображения оптимизировались с помощью [tinypng.com](https://tinypng.com/)
  ## к текстовым элементам применено св-во text-rendering: optimizeLegibility
-
+       * [Ссылка на макет в GitHab](https://konstantin0099.github.io/mesto-project/index.html)
