@@ -1,5 +1,22 @@
 .profile-info__vocation {
-    display: block;
-    color: white;
-    margin: 16px 0 auto 0;
+  display: block;
+  color: white;
+  margin: 16px 0 auto 0;
+  font-size: 18px;
+  line-height: 1.22;
+  font-family: "inter", "Arial", sans-serif;
+  font-style: normal;
+  font-weight: normal;
 }
+@media screen and (max-width: 1023px) {
+    .profile-info__vocation {
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .profile-info__vocation {
+      font-size: 14px;
+      margin: 0 auto;
+    }
+  }

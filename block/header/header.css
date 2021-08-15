@@ -4,10 +4,18 @@
   max-width: 68.75%;
   min-height: 74px;
 }
+
+@media screen and (max-width: 767px) {
+  .header{
+    margin-top: 37px;
+    max-width: 100%;
+    padding-left: 27px;
+  }
+}
+
 @media screen and (max-width: 425px) {
   .header {
     margin-top: 28px;
-    max-width: 100%;
-    padding-left: 27px;
+    min-height: 56px;
   }
 }

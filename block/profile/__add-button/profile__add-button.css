@@ -7,4 +7,22 @@
   box-sizing: border-box;
   border: 2px solid #ffffff;
   border-radius: 2px;
+  padding: 0;
+}
+.profile__add-button:hover {
+  opacity: 0.8;
+}
+
+
+@media screen and (max-width: 1023px) {
+  .profile__add-button{
+    width: 14.65%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile__add-button{
+     width: 100%;
+     margin: 36px auto;
+  }
 }

@@ -7,3 +7,6 @@
 .figcaption__like:checked + .figcaption__pseudo-like {
   background-image: url(../../../image/like-black.svg);
 }
+.figcaption__like:hover + .figcaption__pseudo-like {
+  opacity: 0.5;
+}
