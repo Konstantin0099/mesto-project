@@ -1,0 +1,21 @@
+/* нормалайз */
+@import url(../style.css);
+
+@import url(../vendors/fonts/inter.css);
+@import url(../block/root/root.css);
+@import url(../block/header/header.css);
+@import url(../block/header/__logo/header__logo.css);
+@import url(../block/profile/profile.css);
+@import url(../block/profile/__avatar/profile__avatar.css);
+@import url(../block/profile/__add-button/profile__add-button.css);
+@import url(../block/profile-info/profile-info.css);
+@import url(../block/profile-info/__vocation/profile-info__vocation.css);
+@import url(../block/profile-info/__name/profile-info__name.css);
+@import url(../block/profile-info/__edit-button/profile-info__edit-button.css);
+@import url(../block/elements/elements.css);
+@import url(../block/element/element.css);
+@import url(../block/element/__img/element__img.css);
+@import url(../block/figcaption/figcaption.css);
+@import url(../block/figcaption/__title/figcaption__title.css);
+@import url(../block/figcaption/__like/figcaption__like.css);
+

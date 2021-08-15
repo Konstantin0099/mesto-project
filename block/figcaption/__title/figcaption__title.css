@@ -1,0 +1,5 @@
+.figcaption__title {
+    text-overflow: ellipsis;
+    max-width: 90%;
+    overflow: hidden;
+}

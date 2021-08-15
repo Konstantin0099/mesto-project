@@ -1,0 +1,12 @@
+.profile-info {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 336px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  margin: auto 0;
+  color: #ffffff;
+}

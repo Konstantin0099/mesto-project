@@ -1,0 +1,16 @@
+.figcaption {
+    display: flex;
+    max-width: 87%;
+    max-height: 29px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    margin: 8.8652% 15px 11% 21px;
+    color: #000000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
