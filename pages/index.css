@@ -21,5 +21,13 @@
 @import url(../block/figcaption/__label/figcaption__label.css);
 @import url(../block/figcaption/__pseudo-like/figcaption__pseudo-like.css);
 @import url(../block/figcaption/__like/figcaption__like.css);
+@import url(../block/popap/popap.css);
+@import url(../block/popap/_opened/popap_opened.css);
+@import url(../block/popap/__heading/popap__heading.css);
+@import url(../block/popap/__container/popap__container.css);
+@import url(../block/popap/__click/popap__click.css);
+@import url(../block/input__container/input__container.css);
+@import url(../block/input__container/__submit/input-container__submit.css);
+@import url(../block/input__container/__item/input-container__item.css);
 
 

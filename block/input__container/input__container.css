@@ -1,0 +1,12 @@
+.input__container {
+  display: block;
+  max-width: 358px;
+  margin: 14px auto 0;
+  border: 0;
+  padding: 0;
+}
+@media screen and (max-width: 550px) {
+  .input__container {
+   max-width: 238px;
+  }
+}

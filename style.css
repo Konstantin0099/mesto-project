@@ -1,0 +1,95 @@
+/* .popap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(3, 3, 3, 0.5);
+} */
+
+/* .popap__container {
+  display: block;
+  position: absolute;
+  width: 430px;
+  height: 330px;
+  left: calc(50vw - 215px);
+  top: calc(50vh - 165px);
+  background: #ffffff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+} */
+/* .popap__click {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  position: absolute;
+  bottom: 338px;
+  left: 438px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  background-image: url(./image/click.svg);
+  width: 40px;
+  height: 40px;
+} */
+
+/* .input__container {
+  display: block;
+  width: 240px;
+  margin: 14px auto 0;
+  border: 0;
+  padding: 0;
+} */
+/* .popap__heading {
+  font-size: 24px;
+  width: 330px;
+  margin: 34px auto 0;
+  line-height: 29px;
+  text-align: center;
+  font-weight: 900;
+  color: #000000;
+} */
+
+/* .input-container__item {
+  border: 0;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0;
+  margin-top: 40px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+} */
+/* .input-container__item::placeholder {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+} */
+
+/* .input-container__submit {
+  width: 358px;
+  height: 50px;
+  border: 0;
+  padding: 0;
+  margin: 48px auto 34px;
+  cursor: pointer;
+  transition: opacity 0.4s;
+  font-family: "inter", "Arial", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #000;
+} */
+
+/* .input-container__submit:hover {
+  opacity: 0.7;
+  background-color: #000;
+} */

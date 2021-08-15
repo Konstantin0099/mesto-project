@@ -1,0 +1,17 @@
+.popap__heading {
+  font-family: Inter;
+  font-size: 24px;
+  margin: 34px auto 0;
+  line-height: 29px;
+  text-align: center;
+  font-weight: 900;
+  color: #000000;
+}
+
+@media screen and (max-width: 550px) {
+  .popap__heading {
+    margin-top: 25px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

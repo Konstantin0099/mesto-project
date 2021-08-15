@@ -1,0 +1,19 @@
+.popap__container {
+  display: block;
+  position: absolute;
+  width: 430px;
+  height: 330px;
+  left: calc(50vw - 215px);
+  top: calc(50vh - 165px);
+  background: #ffffff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+@media screen and (max-width: 550px) {
+  .popap__container {
+    width: 282px;
+    height: 322px;
+    left: calc(50vw - 141px);
+    top: calc(50vh - 161px);
+  }
+}
