@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
     <link rel="stylesheet" href="./pages/index.css" />
-    <link rel="stylesheet" href="./style.css" />
+    <!-- <link rel="stylesheet" href="./style.css" /> -->
   </head>
   <body class="root">
     <header class="header">
@@ -21,7 +21,7 @@
             class="profile-info__edit-button"
             name="edit-button"
           >
-            <img src="./image/stylus.svg" alt="/" />
+            <img class="img2" src="./image/stylus.svg" alt="X" />
           </button>
           <h2 class="profile-info__vocation">Исследователь океана</h2>
         </div>
@@ -31,85 +31,78 @@
       </section>
 
       <section class="elements">
-        <figure class="element">
+        <!-- начало -->
+        <div class="element">
           <img class="element__img" src="./image/dobay.jpg" alt="Домбай" />
-          <figcaption class="figcaption">
-            <span class="figcaption__title">Домбай</span>
-            <label class="figcaption__label">
-              <input type="checkbox" name="like" class="figcaption__like" />
-              <span class="figcaption__pseudo-like"></span>
-            </label>
-          </figcaption>
-        </figure>
-        <figure class="element">
+          <h2 class="element__figcaption">Домбай</h2>
+          <label class="like">
+            <input type="checkbox" name="like" class="like__element" />
+            <span class="like__pseudo-element"></span>
+          </label>
+        </div>
+        <!-- конец -->
+
+        <div class="element">
           <img class="element__img" src="./image/elbrus.jpg" alt="Эльбрус" />
-          <figcaption class="figcaption">
-            <span class="figcaption__title">Эльбрус</span>
-            <label class="figcaption__label">
-              <input type="checkbox" name="like" class="figcaption__like" />
-              <span class="figcaption__pseudo-like"></span>
-            </label>
-          </figcaption>
-        </figure>
-        <figure class="element">
+          <h2 class="element__figcaption">Эльбрус</h2>
+          <label class="like">
+            <input type="checkbox" name="like" class="like__element" />
+            <span class="like__pseudo-element"></span>
+          </label>
+        </div>
+        <div class="element">
           <img
             class="element__img"
             src="./image/sunset_phuket.jpg"
             alt="Пхукет закат"
           />
-          <figcaption class="figcaption">
-            <span class="figcaption__title">Пхукет закат</span>
-            <label class="figcaption__label">
-              <input type="checkbox" name="like" class="figcaption__like" />
-              <span class="figcaption__pseudo-like"></span>
-            </label>
-          </figcaption>
-        </figure>
-        <figure class="element">
+          <h2 class="element__figcaption">Пхукет закат</h2>
+          <label class="like">
+            <input type="checkbox" name="like" class="like__element" />
+            <span class="like__pseudo-element"></span>
+          </label>
+        </div>
+        <div class="element">
           <img
             class="element__img"
             src="./image/stolby.jpg"
             alt="'Красноярские Столбы', скала 'Перья'"
           />
-          <figcaption class="figcaption">
-            <span class="figcaption__title"
-              >'Красноярские Столбы', скала 'Перья'</span
-            >
-            <label class="figcaption__label">
-              <input type="checkbox" name="like" class="figcaption__like" />
-              <span class="figcaption__pseudo-like"></span>
-            </label>
-          </figcaption>
-        </figure>
-        <figure class="element">
+
+          <h2 class="element__figcaption">
+            'Красноярские Столбы', скала 'Перья'
+          </h2>
+          <label class="like">
+            <input type="checkbox" name="like" class="like__element" />
+            <span class="like__pseudo-element"></span>
+          </label>
+        </div>
+        <div class="element">
           <img
             class="element__img"
             src="./image/taiga_flowers.jpg"
             alt="жарки тайга"
           />
-          <figcaption class="figcaption">
-            <span class="figcaption__title">Тайга Саяны</span>
-            <label class="figcaption__label">
-              <input type="checkbox" name="like" class="figcaption__like" />
-              <span class="figcaption__pseudo-like"></span>
-            </label>
-          </figcaption>
-        </figure>
-        <figure class="element">
+
+          <h2 class="element__figcaption">Тайга Саяны</h2>
+          <label class="like">
+            <input type="checkbox" name="like" class="like__element" />
+            <span class="like__pseudo-element"></span>
+          </label>
+        </div>
+        <div class="element">
           <img
             class="element__img"
             src="./image/kyzyl.jpg"
             alt="Кызыл 'Царская охота'"
           />
 
-          <figcaption class="figcaption">
-            <span class="figcaption__title">Кызыл 'Царская охота'</span>
-            <label class="figcaption__label">
-              <input type="checkbox" name="like" class="figcaption__like" />
-              <span class="figcaption__pseudo-like"></span>
-            </label>
-          </figcaption>
-        </figure>
+          <h2 class="element__figcaption">Кызыл 'Царская охота'</h2>
+          <label class="like">
+            <input type="checkbox" name="like" class="like__element" />
+            <span class="like__pseudo-element"></span>
+          </label>
+        </div>
       </section>
 
       <form class="popap popap_opened">
@@ -122,15 +115,19 @@
               class="input-container__item"
               placeholder="Жак&#8209;Ив&nbsp;Кусто"
             />
-            <input type="text" class="input-container__item" placeholder="Исследователь океана"/>
+            <input
+              type="text"
+              class="input-container__item"
+              placeholder="Исследователь океана"
+            />
             <input
               type="submit"
               class="input-container__submit"
               value="Cохранить"
             />
           </fieldset>
-        </div>     
-      </form>     
+        </div>
+      </form>
     </main>
 
     <footer class="footer">

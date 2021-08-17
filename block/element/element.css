@@ -1,5 +1,13 @@
+
 .element {
-  display: block;
+  display: grid;
+  grid-template-columns: 1fr 44px;
+  grid-template-rows: auto 23%;
+  gap: 0;
+  grid-template-areas: 
+  "img img"
+  "figcaption like";
+  align-items: center;
   background-color: white;
   border-radius: 10px 10px 10px 10px;
   overflow: hidden;

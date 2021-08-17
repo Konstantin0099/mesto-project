@@ -1,12 +1,12 @@
-.figcaption__pseudo-like {
+.like__pseudo-element {
   display: block;
   width: 22px;
   height: 19px;
   background-image: url(../../../image/like.svg);
 }
-.figcaption__like:checked + .figcaption__pseudo-like {
+.like__element:checked + .like__pseudo-element {
   background-image: url(../../../image/like-black.svg);
 }
-.figcaption__like:hover + .figcaption__pseudo-like {
+.like__element:hover + .like__pseudo-element {
   opacity: 0.5;
 }
