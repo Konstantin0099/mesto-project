@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
     <link rel="stylesheet" href="./pages/index.css" />
-    <!-- <link rel="stylesheet" href="./style.css" /> -->
+  
   </head>
   <body class="root">
     <header class="header">
@@ -106,7 +106,9 @@
       </section>
 
       <form class="popap popap_opened">
-        <div class="popap__container">
+        <div class="popap__container" data-info="для закрытия окна необходимо изменить в классе '.popap' свойство display: block;
+        на display: none;
+        ">
           <button class="popap__click"></button>
           <h2 class="popap__heading">Редактировать профиль</h2>
           <fieldset class="input__container">
@@ -114,6 +116,7 @@
               type="text"
               class="input-container__item"
               placeholder="Жак&#8209;Ив&nbsp;Кусто"
+              
             />
             <input
               type="text"
