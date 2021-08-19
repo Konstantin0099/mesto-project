@@ -27,9 +27,9 @@
 @import url(../block/popap/__heading/popap__heading.css);
 @import url(../block/popap/__container/popap__container.css);
 @import url(../block/popap/__click/popap__click.css);
-@import url(../block/input__container/input__container.css);
-@import url(../block/input__container/__submit/input-container__submit.css);
-@import url(../block/input__container/__item/input-container__item.css);
+@import url(../block/input-container/input-container.css);
+@import url(../block/input-container/__submit/input-container__submit.css);
+@import url(../block/input-container/__item/input-container__item.css);
 @import url(../block/footer/footer.css);
-@import url(../block/footer/__titlte/footer__title.css);
+@import url(../block/footer/__title/footer__title.css);
 

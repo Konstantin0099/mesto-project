@@ -1,6 +1,7 @@
 .like__pseudo-element {
   display: block;
   width: 22px;
+  cursor: pointer;
   height: 19px;
   background-image: url(../../../image/like.svg);
 }

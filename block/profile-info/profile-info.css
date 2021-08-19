@@ -1,12 +1,16 @@
 .profile-info {
+  max-width: 80%;
   display: flex;
   flex-wrap: wrap;
   max-width: 336px;
   margin: auto 0;
   color: #ffffff;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 690px) {
   .profile-info {
+    display: flex;
+    justify-content: center;
     margin: 0 auto;
+    max-width: 88%;
   }
 }

@@ -1,4 +1,5 @@
 .profile-info__vocation {
+  max-width: 100%;
   display: block;
   color: white;
   margin: 16px 0 auto 0;
@@ -7,16 +8,19 @@
   font-family: "inter", "Arial", sans-serif;
   font-style: normal;
   font-weight: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 @media screen and (max-width: 1023px) {
-    .profile-info__vocation {
-      font-size: 16px;
-    }
+  .profile-info__vocation {
+    font-size: 16px;
   }
+}
 
-  @media screen and (max-width: 767px) {
-    .profile-info__vocation {
-      font-size: 14px;
-      margin: 0 auto;
-    }
+@media screen and (max-width: 690px) {
+  .profile-info__vocation {
+    font-size: 14px;
+    margin: 0 auto;
   }
+}

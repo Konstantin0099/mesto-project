@@ -3,7 +3,7 @@
   height: 50px;
   border: 0;
   padding: 0;
-  margin: 48px auto 34px;
+  margin: 48px auto 37px;
   cursor: pointer;
   transition: opacity 0.4s;
   font-family: "inter", "Arial", sans-serif;
@@ -16,7 +16,7 @@
 }
 
 .input-container__submit:hover {
-  opacity: 0.7;
+  opacity: 0.8;
   background-color: #000;
 }
 @media screen and (max-width: 550px) {
