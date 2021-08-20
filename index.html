@@ -78,30 +78,34 @@
         </div>
       </section>
       <section class="popap popap_opened">
-        <form class="popap__container" name="popap-container">
+        <div class="popap__container">
+        
           <button class="popap__click" type="button"></button>
           <h2 class="popap__heading">Редактировать профиль</h2>
-          <fieldset class="input-container">
+          <form class="input-container" name="input-container">
+          <fieldset class="input-fieldset">
             <input
               type="text"
-              class="input-container__item"
+              class="input-fieldset__item"
               name="name"
               placeholder="Жак&#8209;Ив&nbsp;Кусто"
             />
             <input
               type="text"
-              class="input-container__item"
+              class="input-fieldset__item"
               name="profession"
               placeholder="Исследователь океана"
             />
+          </fieldset>
+          <fieldset class="submit">
             <input
               type="submit"
               name="submit"
-              class="input-container__submit"
+              class="submit__item"
               value="Cохранить"
             />
           </fieldset>
-        </form>
+        </form></div>
       </section>
 
       <!-- <form class="popap popap_opened">

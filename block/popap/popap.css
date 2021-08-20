@@ -1,10 +1,9 @@
 .popap {
-  /* position: absolute; */
   width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  padding-top: 27%;
+  padding-top: 27vh;
 }

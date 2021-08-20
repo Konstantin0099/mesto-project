@@ -1,11 +1,9 @@
-.input-container__submit {
-  width: 358px;
+.submit__item {
+  width: 100%;
   height: 50px;
   border: 0;
   padding: 0;
-  margin: 48px auto 37px;
   cursor: pointer;
-  transition: opacity 0.4s;
   font-family: "inter", "Arial", sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -15,16 +13,12 @@
   background-color: #000;
 }
 
-.input-container__submit:hover {
+.submit__item:hover {
   opacity: 0.8;
-  background-color: #000;
 }
 @media screen and (max-width: 570px) {
-  .input-container__submit {
-    width: 238px;
+  .submit__item {
     height: 46px;
-    margin-top: 45px;
-    margin-bottom: 25px;
     font-size: 14px;
     line-height: 17px;
   }
