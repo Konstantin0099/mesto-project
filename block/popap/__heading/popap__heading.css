@@ -7,7 +7,7 @@
   color: #000000;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 570px) {
   .popap__heading {
     font-size: 18px;
     line-height: 22px;

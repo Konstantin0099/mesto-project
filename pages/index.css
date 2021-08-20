@@ -19,8 +19,7 @@
 @import url(../block/element/__figcaption/element__figcaption.css);
 
 @import url(../block/like/like.css);
-@import url(../block/like/__element/like__element.css);
-@import url(../block/like/__pseudo-element/like__pseudo-element.css);
+@import url(../block/like/_click/like_click.css);
 
 @import url(../block/popap/popap.css);
 @import url(../block/popap/_opened/popap_opened.css);

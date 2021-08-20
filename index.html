@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
     <link rel="stylesheet" href="./pages/index.css" />
-  
   </head>
   <body class="root">
     <header class="header">
@@ -15,40 +14,27 @@
       <section class="profile">
         <img class="profile__avatar" src="./image/foto_kusto.png" alt="Кусто" />
         <div class="profile-info">
-          <h1 class="profile-info__name">Жffffffffffffffffак&#8209;Ив&nbsp;Кусто</h1>
-          <button
-            type="button"
-            class="profile-info__edit-button"
-            name="edit-button"
-          >
+          <h1 class="profile-info__name">Жак&#8209;Ив&nbsp;Кусто</h1>
+          <button type="button" class="profile-info__edit-button">
             <img class="img2" src="./image/stylus.svg" alt="X" />
           </button>
-          <h2 class="profile-info__vocation">Исffffffvvvvvvvvvvvvvvvffffffffследователь океана</h2>
+          <h2 class="profile-info__vocation">Исследователь океана</h2>
         </div>
-        <button class="profile__add-button" name="add-button">
+        <button class="profile__add-button" type="button">
           <img src="./image/+.svg" alt="++++" />
         </button>
       </section>
 
       <section class="elements">
-        <!-- начало -->
         <div class="element">
           <img class="element__img" src="./image/dobay.jpg" alt="Домбай" />
           <h2 class="element__figcaption">Домбай</h2>
-          <label class="like">
-            <input type="checkbox" name="like" class="like__element" />
-            <span class="like__pseudo-element"></span>
-          </label>
+          <button class="like like_click" type="button"></button>
         </div>
-        <!-- конец -->
-
         <div class="element">
           <img class="element__img" src="./image/elbrus.jpg" alt="Эльбрус" />
           <h2 class="element__figcaption">Эльбрус</h2>
-          <label class="like">
-            <input type="checkbox" name="like" class="like__element" />
-            <span class="like__pseudo-element"></span>
-          </label>
+          <button class="like like_click" type="button"></button>
         </div>
         <div class="element">
           <img
@@ -57,10 +43,7 @@
             alt="Пхукет закат"
           />
           <h2 class="element__figcaption">Пхукет закат</h2>
-          <label class="like">
-            <input type="checkbox" name="like" class="like__element" />
-            <span class="like__pseudo-element"></span>
-          </label>
+          <button class="like like_click" type="button"></button>
         </div>
         <div class="element">
           <img
@@ -68,14 +51,10 @@
             src="./image/stolby.jpg"
             alt="'Красноярские Столбы', скала 'Перья'"
           />
-
           <h2 class="element__figcaption">
             'Красноярские Столбы', скала 'Перья'
           </h2>
-          <label class="like">
-            <input type="checkbox" name="like" class="like__element" />
-            <span class="like__pseudo-element"></span>
-          </label>
+          <button class="like like_click" type="button"></button>
         </div>
         <div class="element">
           <img
@@ -83,52 +62,74 @@
             src="./image/taiga_flowers.jpg"
             alt="жарки тайга"
           />
-
           <h2 class="element__figcaption">Тайга Саяны</h2>
-          <label class="like">
-            <input type="checkbox" name="like" class="like__element" />
-            <span class="like__pseudo-element"></span>
-          </label>
+          <button class="like like_click" type="button"></button>
         </div>
         <div class="element">
           <img
             class="element__img"
             src="./image/kyzyl.jpg"
-            alt="Кызыл 'Царская охота'"
+            alt="'Царская охота' г.Кызыл, скульптор Даши Намдаков"
           />
-
-          <h2 class="element__figcaption">Кызыл 'Царская охота'</h2>
-          <label class="like">
-            <input type="checkbox" name="like" class="like__element" />
-            <span class="like__pseudo-element"></span>
-          </label>
+          <h2 class="element__figcaption">
+            'Царская охота' г.Кызыл, скульптор Даши Намдаков
+          </h2>
+          <button class="like like_click" type="button"></button>
         </div>
       </section>
-
-      <form class="popap popap_opened">
-        <div class="popap__container">
-          <button class="popap__click"></button>
+      <section class="popap popap_opened">
+        <form class="popap__container" name="popap-container">
+          <button class="popap__click" type="button"></button>
           <h2 class="popap__heading">Редактировать профиль</h2>
           <fieldset class="input-container">
             <input
               type="text"
               class="input-container__item"
+              name="name"
               placeholder="Жак&#8209;Ив&nbsp;Кусто"
-              
             />
             <input
               type="text"
               class="input-container__item"
+              name="profession"
               placeholder="Исследователь океана"
             />
             <input
               type="submit"
+              name="submit"
+              class="input-container__submit"
+              value="Cохранить"
+            />
+          </fieldset>
+        </form>
+      </section>
+
+      <!-- <form class="popap popap_opened">
+        <div class="popap__container">
+          <button class="popap__click" type="button"></button>
+          <h2 class="popap__heading">Редактировать профиль</h2>
+          <fieldset class="input-container">
+            <input
+              type="text"
+              class="input-container__item"
+              name="name"
+              placeholder="Жак&#8209;Ив&nbsp;Кусто"
+            />
+            <input
+              type="text"
+              class="input-container__item"
+              name="profession"
+              placeholder="Исследователь океана"
+            />
+            <input
+              type="submit"
+              name="submit"
               class="input-container__submit"
               value="Cохранить"
             />
           </fieldset>
         </div>
-      </form>
+      </form> -->
     </main>
 
     <footer class="footer">

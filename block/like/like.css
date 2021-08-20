@@ -3,4 +3,11 @@
   grid-area: like;
   width: 22px;
   height: 19px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url(../../image/like.svg);
+}
+.like:hover {
+  opacity: 0.5;
 }

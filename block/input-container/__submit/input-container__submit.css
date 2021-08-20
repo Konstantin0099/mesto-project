@@ -19,7 +19,7 @@
   opacity: 0.8;
   background-color: #000;
 }
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 570px) {
   .input-container__submit {
     width: 238px;
     height: 46px;
