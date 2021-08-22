@@ -29,7 +29,7 @@
 @import url(../block/input-container/input-container.css);
 @import url(../block/submit/__item/submit__item.css);
 @import url(../block/submit/submit.css);
-@import url(../block/input-fieldset/input-fieldset.css);
-@import url(../block/input-fieldset/__item/input-fieldset__item.css);
+@import url(../block/input-container/__fieldset/input-container__fieldset.css);
+@import url(../block/input-container/__item/input-container__item.css);
 @import url(../block/footer/footer.css);
 @import url(../block/footer/__title/footer__title.css);
