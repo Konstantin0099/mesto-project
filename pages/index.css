@@ -3,8 +3,10 @@
 @import url(../vendors/fonts/inter.css);
 @import url(../block/content/content.css);
 @import url(../block/root/root.css);
+
 @import url(../block/header/header.css);
 @import url(../block/header/__logo/header__logo.css);
+
 @import url(../block/profile/profile.css);
 @import url(../block/profile/__avatar/profile__avatar.css);
 @import url(../block/profile/__add-button/profile__add-button.css);
@@ -13,6 +15,7 @@
 @import url(../block/profile-info/__name/profile-info__name.css);
 @import url(../block/profile-info/__edit-button/profile-info__edit-button.css);
 @import url(../block/profile-info/__img/profile-info__img.css);
+
 @import url(../block/elements/elements.css);
 @import url(../block/element/element.css);
 @import url(../block/element/__img/element__img.css);
@@ -26,10 +29,12 @@
 @import url(../block/popap/__heading/popap__heading.css);
 @import url(../block/popap/__container/popap__container.css);
 @import url(../block/popap/__click/popap__click.css);
+
 @import url(../block/input-container/input-container.css);
-@import url(../block/submit/__item/submit__item.css);
-@import url(../block/submit/submit.css);
+@import url(../block/input-container/__submit-item/input-container__submit-item.css);
+@import url(../block/input-container/__submit/input-container__submit.css);
 @import url(../block/input-container/__fieldset/input-container__fieldset.css);
 @import url(../block/input-container/__item/input-container__item.css);
+
 @import url(../block/footer/footer.css);
 @import url(../block/footer/__title/footer__title.css);

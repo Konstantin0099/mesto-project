@@ -1,4 +1,4 @@
-.submit__item {
+.input-container__submit-item {
   width: 100%;
   height: 50px;
   border: 0;
@@ -13,11 +13,11 @@
   background-color: #000;
 }
 
-.submit__item:hover {
+.input-container__submit-item:hover {
   opacity: 0.8;
 }
 @media screen and (max-width: 570px) {
-  .submit__item {
+  .input-container__submit-item {
     height: 46px;
     font-size: 14px;
     line-height: 17px;
