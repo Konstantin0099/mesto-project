@@ -3,14 +3,14 @@ const profile = document.querySelector(".profile");
 const profileInfoEditButton = profile.querySelector(
   ".profile-info__edit-button"
 );
-const inputContainerSubmitItem = profile.querySelector(
-  ".input-container__submit-item"
+const profileAddButton = profile.querySelector(
+  ".profile__add-button"
 );
 
 const popap = document.querySelector(".popap");
 const popapClick = popap.querySelector(".popap__click");
-const popapProfileInfo = popap.querySelector(".popap", ".popap-profile-info");
-const popapProfileInfo = popap.querySelector(".popap", ".popap-profile-info");
+const popapProfileInfo = popap.querySelector("#popap-profile-info");
+const popapElement = popap.querySelector("#popap-element");
 const inputContainerSubmitItem = popap.querySelector(
   ".input-container__submit-item"
 );
@@ -22,16 +22,17 @@ profileInfoEditButton.addEventListener("click", function (evt) {
   popap.classList.add("popap_opened");
   popapProfileInfo.classList.add(".popap-profile-info");
 });
-inputContainerSubmitItem.addEventListener("click", function (evt) {
+profileAddButton.addEventListener("click", function (evt) {
     evt.preventDefault();
     popap.classList.add("popap_opened");
-    popapProfileInfo.classList.add(".popap-element");
+    popapElement.classList.add(".popap-element");
   });
 
 popapClick.addEventListener("click", function (evt) {
   evt.preventDefault();
   popap.classList.remove("popap_opened");
   popapProfileInfo.classList.remove(".popap-profile-info");
+  popapElement.classList.remove(".popap-element");
 });
 
 inputContainerSubmitItem.addEventListener("click", function (evt) {
@@ -72,7 +73,7 @@ const initialCards = [
   },
 ];
 
-for (let i = 0; i < initialCards.length - 2; i++) {
+for (let i = 0; i < initialCards.length; i++) {
   const elementsSectionTemplate =
     document.querySelector("#elementsSection").content;
   const elementSection = elementsSectionTemplate
