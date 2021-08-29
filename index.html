@@ -26,17 +26,17 @@
       </section>
 
       <section class="elements">
-        <div class="element">
+        <!-- <div class="element">
           <img class="element__img" src="./image/dobay.jpg" alt="Домбай" />
           <h2 class="element__figcaption">Домбай</h2>
           <button class="like like_click" type="button"></button>
-        </div>
-        <div class="element">
+        </div> -->
+        <!-- <div class="element">
           <img class="element__img" src="./image/elbrus.jpg" alt="Эльбрус" />
           <h2 class="element__figcaption">Эльбрус</h2>
           <button class="like like_click" type="button"></button>
-        </div>
-        <div class="element">
+        </div> -->
+        <!-- <div class="element">
           <img
             class="element__img"
             src="./image/sunset_phuket.jpg"
@@ -44,8 +44,8 @@
           />
           <h2 class="element__figcaption">Пхукет закат</h2>
           <button class="like like_click" type="button"></button>
-        </div>
-        <div class="element">
+        </div> -->
+        <!-- <div class="element">
           <img
             class="element__img"
             src="./image/stolby.jpg"
@@ -55,9 +55,9 @@
             'Красноярские Столбы', скала 'Перья'
           </h2>
           <button class="like like_click" type="button"></button>
-        </div>
-        <div class="element">
-          <img
+        </div> -->
+        <!--<div class="element">
+           <img
             class="element__img"
             src="./image/taiga_flowers.jpg"
             alt="жарки тайга"
@@ -75,9 +75,10 @@
             'Царская охота' г.Кызыл, скульптор Даши Намдаков
           </h2>
           <button class="like like_click" type="button"></button>
-        </div>
+        </div> -->
       </section>
-      <section class="popap popap_opened">
+      <!-- <section class="popap popap_opened"> -->
+      <section class="popap">
         <div class="popap__container">
           <button class="popap__click" type="button"></button>
           <h2 class="popap__heading">Редактировать профиль</h2>
@@ -88,12 +89,43 @@
                 class="input-container__item"
                 name="name"
                 placeholder="Жак&#8209;Ив&nbsp;Кусто"
+                value="Жак&#8209;Ив&nbsp;Кусто"
               />
               <input
                 type="text"
                 class="input-container__item"
                 name="profession"
                 placeholder="Исследователь океана"
+                value="Исследователь океана"
+              />
+            </fieldset>
+            <fieldset class="input-container__submit">
+              <input
+                type="submit"
+                name="submit"
+                class="input-container__submit-item"
+                value="Cохранить"
+              />
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="popap__container">
+          <button class="popap__click" type="button"></button>
+          <h2 class="popap__heading">Новое место</h2>
+          <form class="input-container" name="input-container">
+            <fieldset class="input-container__fieldset">
+              <input
+                type="text"
+                class="input-container__item"
+                name="name"
+                placeholder="Название"
+              />
+              <input
+                type="text"
+                class="input-container__item"
+                name="profession"
+                placeholder="Ссылка на картинку"
               />
             </fieldset>
             <fieldset class="input-container__submit">
@@ -112,5 +144,15 @@
     <footer class="footer">
       <h2 class="footer__title">&copy;2020 Mesto Russia</h2>
     </footer>
+
+    <template id="elementsSection">
+      <div class="element">
+        <img class="element__img" src="" alt="" />
+        <h2 class="element__figcaption"></h2>
+        <button class="like like_click" type="button"></button>
+      </div>
+    </template>
+
+    <script src="script.js"></script>
   </body>
 </html>
