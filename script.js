@@ -3,15 +3,15 @@ const profile = document.querySelector(".profile");
 const profileInfoEditButton = profile.querySelector(
   ".profile-info__edit-button"
 );
-const profileAddButton = profile.querySelector(
-  ".profile__add-button"
-);
+const profileAddButton = profile.querySelector(".profile__add-button");
 
 const popap = document.querySelector(".popap");
-const popapClick = popap.querySelector(".popap__click");
 const popapProfileInfo = popap.querySelector("#popap-profile-info");
 const popapElement = popap.querySelector("#popap-element");
-const inputContainerSubmitItem = popap.querySelector(
+const inputSubmitItemProfileInfo = popapProfileInfo.querySelector(
+  ".input-container__submit-item"
+);
+const inputSubmitItemElement = popapElement.querySelector(
   ".input-container__submit-item"
 );
 
@@ -20,30 +20,67 @@ const elements = document.querySelector(".elements");
 profileInfoEditButton.addEventListener("click", function (evt) {
   evt.preventDefault();
   popap.classList.add("popap_opened");
-  popapProfileInfo.classList.add(".popap-profile-info");
+  popapProfileInfo.classList.add("popap-profile-info");
+  const popapClick = popapProfileInfo.querySelector(".popap__click");
+  Click(popapClick);
 });
+
 profileAddButton.addEventListener("click", function (evt) {
-    evt.preventDefault();
-    popap.classList.add("popap_opened");
-    popapElement.classList.add(".popap-element");
-  });
-
-popapClick.addEventListener("click", function (evt) {
   evt.preventDefault();
-  popap.classList.remove("popap_opened");
-  popapProfileInfo.classList.remove(".popap-profile-info");
-  popapElement.classList.remove(".popap-element");
+  popap.classList.add("popap_opened");
+  popapElement.classList.add("popap-element");
+  console.log(popapElement);
+  const popapClick = popapElement.querySelector(".popap__click");
+  Click(popapClick);
 });
 
-inputContainerSubmitItem.addEventListener("click", function (evt) {
+function Click(popapClick) {
+  popapClick.addEventListener("click", function (evt) {
+    evt.preventDefault();
+    popap.classList.remove("popap_opened");
+    console.log(evt.target);
+    popapProfileInfo.classList.remove("popap-profile-info");
+    popapElement.classList.remove("popap-element");
+  });
+}
+
+inputSubmitItemProfileInfo.addEventListener("click", function (evt) {
   evt.preventDefault();
-  const inputContainerItems = popap.querySelectorAll(".input-container__item");
+  const inputContainerItems = popapProfileInfo.querySelectorAll(
+    ".input-container__item"
+  );
   profile.querySelector(".profile-info__name").textContent =
     inputContainerItems[0].value;
   profile.querySelector(".profile-info__vocation").textContent =
     inputContainerItems[1].value;
   popap.classList.remove("popap_opened");
-  popapProfileInfo.classList.add(".popap-profile-info");
+  popapProfileInfo.classList.remove("popap-profile-info");
+});
+
+inputSubmitItemElement.addEventListener("click", function (evt) {
+  evt.preventDefault();
+  const inputContainerItems = popapElement.querySelectorAll(
+    ".input-container__item"
+  );
+  const elementsSectionTemplate =
+    document.querySelector("#elementsSection").content;
+  const elementSection = elementsSectionTemplate
+    .querySelector(".element")
+    .cloneNode(true);
+  elementSection
+    .querySelector(".element__img")
+    .setAttribute("src", inputContainerItems[1].value);
+  elementSection.querySelector(".element__figcaption").textContent =
+    inputContainerItems[0].value;
+  elementSection
+    .querySelector(".like")
+    .addEventListener("click", function (evt) {
+      evt.target.classList.toggle("like_click");
+    });
+  elements.prepend(elementSection);
+
+  popap.classList.remove("popap_opened");
+  popapProfileInfo.classList.remove("popap-element");
 });
 
 const initialCards = [
@@ -89,6 +126,5 @@ for (let i = 0; i < initialCards.length; i++) {
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("like_click");
     });
-
   elements.prepend(elementSection);
 }
