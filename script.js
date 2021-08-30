@@ -38,7 +38,6 @@ function Click(popapClick) {
   popapClick.addEventListener("click", function (evt) {
     evt.preventDefault();
     popap.classList.remove("popap_opened");
-    console.log(evt.target);
     popapProfileInfo.classList.remove("popap-profile-info");
     popapElement.classList.remove("popap-element");
   });
@@ -125,6 +124,11 @@ for (let i = 0; i < initialCards.length; i++) {
     .querySelector(".like")
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("like_click");
+    });
+    elementSection
+    .querySelector(".trash")
+    .addEventListener("click", function (evt) {
+      evt.target.parentElement.remove();
     });
   elements.prepend(elementSection);
 }

@@ -24,6 +24,8 @@
 @import url(../block/like/like.css);
 @import url(../block/like/_click/like_click.css);
 
+@import url(../block/trash/trash.css);
+
 @import url(../block/popap/popap.css);
 @import url(../block/popap/_opened/popap_opened.css);
 @import url(../block/popap/__heading/popap__heading.css);
