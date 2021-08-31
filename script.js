@@ -8,12 +8,14 @@ const profileAddButton = profile.querySelector(".profile__add-button");
 const popap = document.querySelector(".popap");
 const popapProfileInfo = popap.querySelector("#popap-profile-info");
 const popapElement = popap.querySelector("#popap-element");
+const popapImg = popap.querySelector("#popap-img");
 const inputSubmitItemProfileInfo = popapProfileInfo.querySelector(
   ".input-container__submit-item"
 );
 const inputSubmitItemElement = popapElement.querySelector(
   ".input-container__submit-item"
 );
+// const clickImg = 
 
 const elements = document.querySelector(".elements");
 
@@ -76,6 +78,11 @@ inputSubmitItemElement.addEventListener("click", function (evt) {
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("like_click");
     });
+    elementSection
+    .querySelector(".trash")
+    .addEventListener("click", function (evt) {
+      evt.target.parentElement.remove();
+    });
   elements.prepend(elementSection);
 
   popap.classList.remove("popap_opened");
@@ -120,11 +127,22 @@ for (let i = 0; i < initialCards.length; i++) {
     .setAttribute("src", initialCards[i].link);
   elementSection.querySelector(".element__figcaption").textContent =
     initialCards[i].name;
-  elementSection
+    elementSection
+    .querySelector(".element__img").addEventListener("click", function (evt) {
+        popap.classList.add("popap_opened");
+        console.log("popapImg" + popapImg);
+        console.log("popapImg.querySelector('.img-popap')" + popapImg.querySelector(".img-popap"));
+        // popapImg.style.backgroundImage = 'url('+initialCards[i].link+')';
+         popapImg.querySelector(".img-popap").setAttribute("src", initialCards[i].link);
+        // console.log("popapImg.style.backgroundImage" + popapImg.style.backgroundImage);
+        popapImg.classList.add("popap-img_opened");
+    
+      });
+    elementSection
     .querySelector(".like")
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("like_click");
-    });
+    }); 
     elementSection
     .querySelector(".trash")
     .addEventListener("click", function (evt) {
