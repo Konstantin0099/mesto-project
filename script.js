@@ -55,7 +55,7 @@ inputSubmitItemProfileInfo.addEventListener("click", function (evt) {
     inputContainerItems[0].value;
   profile.querySelector(".profile-info__vocation").textContent =
     inputContainerItems[1].value;
-  popap.classList.remove("popap_opened");
+  popap.classList.remove("popap_opened", "popap_black");
   popapProfileInfo.classList.remove("popap-profile-info");
 });
 
@@ -74,6 +74,22 @@ inputSubmitItemElement.addEventListener("click", function (evt) {
     .setAttribute("src", inputContainerItems[1].value);
   elementSection.querySelector(".element__figcaption").textContent =
     inputContainerItems[0].value;
+    elementSection // вызов модального окна нажатием на картинку
+    .querySelector(".element__img")
+    .addEventListener("click", function (evt) {
+      popap.classList.add("popap_opened", "popap_black");
+      console.log("включили блек попап")
+      console.log('popapImg.querySelector(".img-popap")', popapImg.querySelector(".img-popap"));
+      popapImg.querySelector(".img-popap")
+        .setAttribute("src", inputContainerItems[1].value);
+        console.log('popapImg.querySelector(".img-popap")', popapImg.querySelector(".img-popap"));
+      popapImg
+        .querySelector(".img-popap")
+        .setAttribute("alt", inputContainerItems[0].value);
+      popapImg.querySelector(".popap-figcaption").textContent =
+      inputContainerItems[0].value;
+      popapImg.classList.add("popap-img_opened");
+    });
   elementSection
     .querySelector(".like")
     .addEventListener("click", function (evt) {
@@ -87,7 +103,10 @@ inputSubmitItemElement.addEventListener("click", function (evt) {
   elements.prepend(elementSection);
 
   popap.classList.remove("popap_opened");
-  popapProfileInfo.classList.remove("popap-element");
+//   popapProfileInfo.classList.remove("popap-element");
+  popapProfileInfo.classList.remove("popap-profile-info");
+  popapElement.classList.remove("popap-element");
+  popapImg.classList. remove("popap-img_opened");
 });
 
 const initialCards = [
@@ -105,8 +124,7 @@ const initialCards = [
   },
   {
     name: "Камчатка",
-    link: "./image/isaac-martin.jpg",
-    // link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
   },
   {
     name: "Холмогорский район",
