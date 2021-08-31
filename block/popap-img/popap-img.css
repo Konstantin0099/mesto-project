@@ -1,21 +1,20 @@
 .popap-img {
-
-    z-index: 2;
-    max-height: 75vh;
-    display: none;
-    position: relative;
-    
-    margin: 0 auto;
-   
-    border-radius: 10px;
-
+  z-index: 2;
+  max-height: 75vh;
+  display: none;
+  position: relative;
+  max-width: 75vw;
+  margin: 0 auto;
+  border-radius: 10px;
   text-align: left;
+}
+
+@media screen and (max-width: 570px) {
+  .popap-img {
+    max-height: 75vh;
+    max-width: 75vw;
+    height: 299px;
+    width: 240px;
+    margin: 0 40px;
   }
-/*   
-  @media screen and (max-width: 570px) {
-    .popap-img {
-      width: 282px;
-      padding: 25px 22px;
-    }
-  }
-  
+}

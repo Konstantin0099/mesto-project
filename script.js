@@ -15,7 +15,7 @@ const inputSubmitItemProfileInfo = popapProfileInfo.querySelector(
 const inputSubmitItemElement = popapElement.querySelector(
   ".input-container__submit-item"
 );
-// const clickImg = 
+// const clickImg =
 
 const elements = document.querySelector(".elements");
 
@@ -42,6 +42,7 @@ function Click(popapClick) {
     popap.classList.remove("popap_opened");
     popapProfileInfo.classList.remove("popap-profile-info");
     popapElement.classList.remove("popap-element");
+    popapImg.classList. remove("popap-img_opened");
   });
 }
 
@@ -78,7 +79,7 @@ inputSubmitItemElement.addEventListener("click", function (evt) {
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("like_click");
     });
-    elementSection
+  elementSection
     .querySelector(".trash")
     .addEventListener("click", function (evt) {
       evt.target.parentElement.remove();
@@ -104,7 +105,8 @@ const initialCards = [
   },
   {
     name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+    link: "./image/isaac-martin.jpg",
+    // link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
   },
   {
     name: "Холмогорский район",
@@ -122,31 +124,39 @@ for (let i = 0; i < initialCards.length; i++) {
   const elementSection = elementsSectionTemplate
     .querySelector(".element")
     .cloneNode(true);
+
   elementSection
     .querySelector(".element__img")
     .setAttribute("src", initialCards[i].link);
   elementSection.querySelector(".element__figcaption").textContent =
     initialCards[i].name;
-    elementSection
-    .querySelector(".element__img").addEventListener("click", function (evt) {
-        popap.classList.add("popap_opened");
-        console.log("popapImg" + popapImg);
-        console.log("popapImg.querySelector('.img-popap')" + popapImg.querySelector(".img-popap"));
-        // popapImg.style.backgroundImage = 'url('+initialCards[i].link+')';
-         popapImg.querySelector(".img-popap").setAttribute("src", initialCards[i].link);
-        // console.log("popapImg.style.backgroundImage" + popapImg.style.backgroundImage);
-        popapImg.classList.add("popap-img_opened");
-    
-      });
-    elementSection
+
+  elementSection // вызов модального окна нажатием на картинку
+    .querySelector(".element__img")
+    .addEventListener("click", function (evt) {
+      popap.classList.add("popap_opened", "popap_black");
+      popapImg
+        .querySelector(".img-popap")
+        .setAttribute("src", initialCards[i].link);
+      popapImg
+        .querySelector(".img-popap")
+        .setAttribute("alt", initialCards[i].name);
+      popapImg.querySelector(".popap-figcaption").textContent =
+        initialCards[i].name;
+      popapImg.classList.add("popap-img_opened");
+    });
+
+  elementSection // логика кнопки "лайк"
     .querySelector(".like")
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("like_click");
-    }); 
-    elementSection
+    });
+  elementSection // логика кнопки "удалить"
     .querySelector(".trash")
     .addEventListener("click", function (evt) {
       evt.target.parentElement.remove();
     });
-  elements.prepend(elementSection);
+  elements.prepend(elementSection); //добавляем собранный элемент из массива
+  const popapClick = popapImg.querySelector(".popap__click");
+  Click(popapClick);
 }

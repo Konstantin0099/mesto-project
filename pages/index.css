@@ -36,6 +36,8 @@
 @import url(../block/popap-img/popap-img.css);
 @import url(../block/popap-img/_opened/popap-img_opened.css);
 @import url(../block/img-popap/img-popap.css);
+@import url(../block/popap-figcaption/popap-figcaption.css);
+@import url(../block/popap/_black/popap_black.css);
 
 @import url(../block/input-container/input-container.css);
 @import url(../block/input-container/__submit-item/input-container__submit-item.css);
