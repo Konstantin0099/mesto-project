@@ -1,4 +1,6 @@
 .popap_opened {
   display: block;
-  /* display: flex; */
+  visibility: visible;
+  opacity: 1;
+  transition: all .5s ease-in-out;
 }

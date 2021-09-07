@@ -1,5 +1,5 @@
 .popap-img {
-  z-index: 2;
+  z-index: 1;
   max-height: 75vh;
   display: none;
   position: relative;
