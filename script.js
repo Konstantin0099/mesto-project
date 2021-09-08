@@ -32,10 +32,9 @@ function popapClick(popapClick) {
     .querySelector(".popap__click")
     .addEventListener("click", function (evt) {
       evt.preventDefault();
-      closePopap(popapClick);
-      popapClick
+      closePopap(popapClick
         .querySelector(".popap__click")
-        .parentElement.classList.remove("popap_opened");
+        .parentElement);
     });
 }
 function elementLike(elementLike) {
@@ -62,6 +61,7 @@ function openPopupImage(elementSection, initialCards, initialname) {
   elementSection // вызов модального окна нажатием на картинку
     .querySelector(".element__img")
     .addEventListener("click", function (evt) {
+      popapClick(popapImg);
       popapImg.querySelector(".img-popap").setAttribute("src", initialCards);
       popapImg.querySelector(".img-popap").setAttribute("alt", initialname);
       popapImg.querySelector(".popap-figcaption").textContent = initialname;
@@ -109,7 +109,6 @@ inputSubmitItemElement.addEventListener("click", function (evt) {
   elementLike(elementSection);
   elementtrash(elementSection);
   closePopap(popapElement);
-  popapClick(popapImg);
 });
 
 const initialCards = [
@@ -138,13 +137,12 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
-for (let i = 0; i < initialCards.length; i++) {
+initialCards.forEach( arrayCard => {
   const itemOfBox = elementsSectionTemplate
     .querySelector(".element")
     .cloneNode(true);
-  addElementSection(itemOfBox, initialCards[i].link, initialCards[i].name);
-  openPopupImage(itemOfBox, initialCards[i].link, initialCards[i].name);
-  elementLike(itemOfBox);
-  elementtrash(itemOfBox);
-  popapClick(popapImg);
-}
+    addElementSection(itemOfBox, arrayCard.link, arrayCard.name);
+    openPopupImage(itemOfBox, arrayCard.link, arrayCard.name);
+    elementLike(itemOfBox);
+    elementtrash(itemOfBox);
+});
