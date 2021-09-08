@@ -17,7 +17,6 @@
     font-size: 34px;
   }
 }
-
 @media screen and (max-width: 890px) {
   .profile-info__name {
     font-size: 27px;

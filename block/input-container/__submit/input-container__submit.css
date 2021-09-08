@@ -3,7 +3,6 @@
   margin: 48px 0 0;
   padding: 0;
 }
-
 @media screen and (max-width: 570px) {
   .input-container__submit {
     margin-top: 45px;

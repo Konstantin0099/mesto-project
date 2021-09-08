@@ -3,7 +3,6 @@
   display: none;
   opacity: 0;
   transition: all .3s ease-in-out;
-
   position: relative;
   width: 430px;
   margin: 0 auto;
@@ -13,7 +12,6 @@
   border-radius: 10px;
   padding: 34px 36px 37px 36px;
 }
-
 @media screen and (max-width: 570px) {
   .popap__container {
     width: 282px;

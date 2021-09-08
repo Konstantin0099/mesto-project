@@ -9,7 +9,6 @@
     max-width: 703px;
   }
 }
-
 @media screen and (max-width: 767px) {
   .header {
     margin-top: 37px;
@@ -17,7 +16,6 @@
     padding-left: 27px;
   }
 }
-
 @media screen and (max-width: 425px) {
   .header {
     margin-top: 28px;

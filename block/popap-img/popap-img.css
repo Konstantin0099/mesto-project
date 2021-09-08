@@ -8,7 +8,6 @@
   border-radius: 10px;
   text-align: left;
 }
-
 @media screen and (max-width: 570px) {
   .popap-img {
     max-height: 75vh;

@@ -70,12 +70,12 @@ function openPopupImage(elementSection, initialCards, initialname) {
     });
 }
 profileInfoEditButton.addEventListener("click", function (evt) {
-  evt.preventDefault();
+  evt.preventDefault(); //  нажатие кнопки корр фио
   addPopap(popapProfileInfo);
   popapClick(popapProfileInfo);
 });
 profileAddButton.addEventListener("click", function (evt) {
-  evt.preventDefault();
+  evt.preventDefault(); // нажатие конпки добавления картинки
   addPopap(popapElement);
   popapClick(popapElement);
 });
