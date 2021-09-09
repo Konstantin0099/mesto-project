@@ -25,7 +25,7 @@
         </button>
       </section>
       <section class="elements"></section>
-      <section class="popap">
+      <section class="popap popup_profile-info"> <!--добавлен новый класс-модификатор popap_profile-info-->
         <div id="popap-profile-info" class="popap__container">
           <button class="popap__click" type="button"></button>
           <h3 class="popap__heading">Редактировать профиль</h3>
@@ -33,26 +33,28 @@
             <fieldset class="input-container__fieldset">
               <input
                 type="text"
-                class="input-container__item"
+                class="input-container__item input-container__item_name"
                 name="name"
                 placeholder="Жак&#8209;Ив&nbsp;Кусто"
                 value="Жак&#8209;Ив&nbsp;Кусто"
               />
               <input
                 type="text"
-                class="input-container__item"
+                class="input-container__item input-container__item_profession"
                 name="profession"
                 placeholder="Исследователь океана"
                 value="Исследователь океана"
               />
             </fieldset>
             <fieldset class="input-container__submit">
-              <button class="input-container__submit-item" type="button">
+              <button class="input-container__submit-item" type="submit">
                 Сохранить
               </button>
             </fieldset>
           </form>
         </div>
+      </section>
+      <section class="popap popup_card-add"> <!--добавлен новый класс-модификатор popup_card-add-->
         <div id="popap-element" class="popap__container">
           <button class="popap__click" type="button"></button>
           <h3 class="popap__heading">Новое место</h3>
@@ -60,24 +62,26 @@
             <fieldset class="input-container__fieldset">
               <input
                 type="text"
-                class="input-container__item"
+                class="input-container__item input-container__item_nameMesto"
                 name="nameMesto"
                 placeholder="Название"
               />
               <input
                 type="url"
-                class="input-container__item"
+                class="input-container__item input-container__item_url"
                 name="url"
                 placeholder="Ссылка на картинку"
               />
             </fieldset>
             <fieldset class="input-container__submit">
-              <button class="input-container__submit-item" type="button">
+              <button class="input-container__submit-item" type="submit">
                 Сохранить
               </button>
             </fieldset>
           </form>
         </div>
+      </section>
+      <section class="popap popup_picture"> <!--добавлен новый класс-модификатор popup_picture-->
         <div id="popap-img" class="popap-img">
           <button class="popap__click" type="button"></button>
           <img class="img-popap" src="#" alt="картинка" />

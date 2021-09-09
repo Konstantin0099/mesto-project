@@ -4,26 +4,34 @@ const profileInfoEditButton = profile.querySelector(
   ".profile-info__edit-button"
 );
 const profileAddButton = profile.querySelector(".profile__add-button");
-const popap = document.querySelector(".popap");
-const popapProfileInfo = popap.querySelector("#popap-profile-info");
-const popapElement = popap.querySelector("#popap-element");
-const popapImg = popap.querySelector("#popap-img");
+
+const popapProfile = document.querySelector(".popup_profile-info"); 
+const popapProfileInfo = popapProfile.querySelector(".popap__container");
+
+const popapCardAdd = document.querySelector(".popup_card-add");
+const popapElement = popapCardAdd.querySelector(".popap__container");
+
+const popupPicture = document.querySelector(".popup_picture");
+const popapImg = popupPicture.querySelector(".popap-img");
+popapClick(popapImg);
 const inputSubmitItemProfileInfo = popapProfileInfo.querySelector(
-  ".input-container__submit-item"
+  ".input-container"
 );
 const inputSubmitItemElement = popapElement.querySelector(
-  ".input-container__submit-item"
+  ".input-container"
 );
 const elements = document.querySelector(".elements");
 const elementsSectionTemplate =
   document.querySelector("#elementsSection").content;
+
 function addPopap(addPopap) {
-  popap.classList.add("popap_opened");
   addPopap.classList.add("popap_opened");
+  addPopap.parentElement.classList.add("popap_opened")
 }
+
 function closePopap(closePopap) {
-  popap.classList.remove("popap_opened");
-  popap.classList.remove("popap_black");
+  closePopap.parentElement.classList.remove("popap_opened");
+  closePopap.parentElement.classList.remove("popap_black");
   closePopap.classList.remove("popap_opened");
   closePopap.classList.remove("popap-img_opened");
 }
@@ -51,64 +59,62 @@ function elementtrash(elementtrash) {
       evt.target.parentElement.remove();
     });
 }
-function addElementSection(elementAdd, link, name) {
-  elementAdd.querySelector(".element__img").setAttribute("src", link);
-  elementAdd.querySelector(".element__figcaption").textContent = name;
-  elements.prepend(elementAdd);
+function addElementSection(link, name) { // функция возвращает карточку 
+  const card = elementsSectionTemplate
+    .querySelector(".element")
+    .cloneNode(true);
+  card.querySelector(".element__img").setAttribute("src", link);
+  card.querySelector(".element__figcaption").textContent = name;
+  return card;
 }
+
+// document.querySelector(".element__img").addEventListener("click", function () {console.log("работает")});
 
 function openPopupImage(elementSection, initialCards, initialname) {
   elementSection // вызов модального окна нажатием на картинку
     .querySelector(".element__img")
-    .addEventListener("click", function (evt) {
-      popapClick(popapImg);
+    .addEventListener("click", function () {
       popapImg.querySelector(".img-popap").setAttribute("src", initialCards);
       popapImg.querySelector(".img-popap").setAttribute("alt", initialname);
       popapImg.querySelector(".popap-figcaption").textContent = initialname;
       popapImg.classList.add("popap-img_opened");
-      popap.classList.add("popap_opened", "popap_black");
+      addPopap(popapImg);
+      // popap.classList.add("popap_opened", "popap_black");
     });
 }
-profileInfoEditButton.addEventListener("click", function (evt) {
-  evt.preventDefault(); //  нажатие кнопки корр фио
+popapClick(popapProfileInfo); 
+popapClick(popapElement);
+profileInfoEditButton.addEventListener("click", function () {
   addPopap(popapProfileInfo);
-  popapClick(popapProfileInfo);
 });
-profileAddButton.addEventListener("click", function (evt) {
-  evt.preventDefault(); // нажатие конпки добавления картинки
+profileAddButton.addEventListener("click", function () {
   addPopap(popapElement);
-  popapClick(popapElement);
 });
 
-inputSubmitItemProfileInfo.addEventListener("click", function (evt) {
+inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  const inputContainerItems = popapProfileInfo.querySelectorAll(
-    ".input-container__item"
-  );
-  profile.querySelector(".profile-info__name").textContent =
-    inputContainerItems[0].value;
-  profile.querySelector(".profile-info__vocation").textContent =
-    inputContainerItems[1].value;
-  closePopap(popapProfileInfo);
-  popap.classList.remove("popap_opened", "popap_black");
-});
-inputSubmitItemElement.addEventListener("click", function (evt) {
+    profile.querySelector(".profile-info__name").textContent =
+    popapProfileInfo.querySelector(
+      ".input-container__item_name").value;
+    profile.querySelector(".profile-info__vocation").textContent =
+    popapProfileInfo.querySelector(
+      ".input-container__item_profession").value;
+    closePopap(popapProfileInfo);
+    evt.target.reset(); // очистка формы
+  });
+inputSubmitItemElement.addEventListener('submit', function (evt) {
   evt.preventDefault();
-  const inputContainerItems = popapElement.querySelectorAll(
-    ".input-container__item"
-  );
-  const elementSection = elementsSectionTemplate
-    .querySelector(".element")
-    .cloneNode(true);
-  addElementSection(
-    elementSection,
-    inputContainerItems[1].value,
-    inputContainerItems[0].value
-  );
-  openPopupImage(elementSection, inputContainerItems[1].value, inputContainerItems[0].value);
-  elementLike(elementSection);
-  elementtrash(elementSection);
+  const link = popapElement.querySelector(
+        ".input-container__item_url").value;
+  const name = popapElement.querySelector(
+          ".input-container__item_nameMesto").value;
+  const newcard = addElementSection(link, name);
+  elements.prepend(newcard);// добавляем карточку на страницу
+  openPopupImage(newcard, link, name);
+  elementLike(newcard);
+  elementtrash(newcard);
   closePopap(popapElement);
+  evt.target.reset(); // очистка формы
 });
 
 const initialCards = [
@@ -137,12 +143,14 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
+
+
 initialCards.forEach( arrayCard => {
-  const itemOfBox = elementsSectionTemplate
-    .querySelector(".element")
-    .cloneNode(true);
-    addElementSection(itemOfBox, arrayCard.link, arrayCard.name);
+  let itemOfBox = addElementSection(arrayCard.link, arrayCard.name);
+
     openPopupImage(itemOfBox, arrayCard.link, arrayCard.name);
     elementLike(itemOfBox);
     elementtrash(itemOfBox);
-});
+    elements.prepend(itemOfBox);
+}
+)
