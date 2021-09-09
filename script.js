@@ -4,13 +4,10 @@ const profileInfoEditButton = profile.querySelector(
   ".profile-info__edit-button"
 );
 const profileAddButton = profile.querySelector(".profile__add-button");
-
 const popapProfile = document.querySelector(".popup_profile-info"); 
 const popapProfileInfo = popapProfile.querySelector(".popap__container");
-
 const popapCardAdd = document.querySelector(".popup_card-add");
 const popapElement = popapCardAdd.querySelector(".popap__container");
-
 const popupPicture = document.querySelector(".popup_picture");
 const popapImg = popupPicture.querySelector(".popap-img");
 popapClick(popapImg);
@@ -67,9 +64,6 @@ function addElementSection(link, name) { // функция возвращает 
   card.querySelector(".element__figcaption").textContent = name;
   return card;
 }
-
-// document.querySelector(".element__img").addEventListener("click", function () {console.log("работает")});
-
 function openPopupImage(elementSection, initialCards, initialname) {
   elementSection // вызов модального окна нажатием на картинку
     .querySelector(".element__img")
@@ -143,7 +137,6 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
-
 
 initialCards.forEach( arrayCard => {
   let itemOfBox = addElementSection(arrayCard.link, arrayCard.name);
