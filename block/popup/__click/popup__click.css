@@ -1,4 +1,4 @@
-.popap__click {
+.popup__click {
   background-repeat: no-repeat;
   background-position: 50% 50%;
   position: absolute;
@@ -13,12 +13,12 @@
   width: 32px;
   height: 32px;
 }
-.popap__click:hover {
+.popup__click:hover {
   opacity: 0.6;
 }
 
 @media screen and (max-width: 570px) {
-  .popap__click {
+  .popup__click {
     top: -34px;
     right: 0px;
     height: 20px;

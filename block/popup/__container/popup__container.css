@@ -1,8 +1,8 @@
-.popap__container {
-  visibility: hidden;
-  display: none;
-  opacity: 0;
-  transition: all .3s ease-in-out;
+.popup__container {
+  display: block;
+  /* visibility: hidden;
+  opacity: 0; */
+  transition: all .1s;
   position: relative;
   width: 430px;
   margin: 0 auto;
@@ -13,7 +13,7 @@
   padding: 34px 36px 37px 36px;
 }
 @media screen and (max-width: 570px) {
-  .popap__container {
+  .popup__container {
     width: 282px;
     padding: 25px 22px;
   }

@@ -1,6 +1,6 @@
-.popap_opened {
+.popup_opened {
   display: block;
   visibility: visible;
   opacity: 1;
-  transition: all .5s ease-in-out;
+  transition: all .6s ease-in-out;
 }

@@ -4,41 +4,42 @@ const profileInfoEditButton = profile.querySelector(
   ".profile-info__edit-button"
 );
 const profileAddButton = profile.querySelector(".profile__add-button");
-const popapProfile = document.querySelector(".popup_profile-info"); 
-const popapProfileInfo = popapProfile.querySelector(".popap__container");
-const popapCardAdd = document.querySelector(".popup_card-add");
-const popapElement = popapCardAdd.querySelector(".popap__container");
+const popupProfile = document.querySelector(".popup_profile-info"); 
+const popupProfileInfo = popupProfile.querySelector(".popup__container");
+const popupCardAdd = document.querySelector(".popup_card-add");
+const popupElement = popupCardAdd.querySelector(".popup__container");
 const popupPicture = document.querySelector(".popup_picture");
-const popapImg = popupPicture.querySelector(".popap-img");
-popapClick(popapImg);
-const inputSubmitItemProfileInfo = popapProfileInfo.querySelector(
+const popupImg = popupPicture.querySelector(".popup-img");
+
+const inputSubmitItemProfileInfo = popupProfileInfo.querySelector(
   ".input-container"
 );
-const inputSubmitItemElement = popapElement.querySelector(
+const inputSubmitItemElement = popupElement.querySelector(
   ".input-container"
 );
 const elements = document.querySelector(".elements");
 const elementsSectionTemplate =
   document.querySelector("#elementsSection").content;
-
-function addPopap(addPopap) {
-  addPopap.classList.add("popap_opened");
-  addPopap.parentElement.classList.add("popap_opened")
+popupClick(popupImg);
+popupClick(popupProfileInfo); 
+popupClick(popupElement);
+function addPopup(addPopup) {
+  addPopup.classList.add("popup_opened");
+  addPopup.parentElement.classList.add("popup_opened")
 }
 
-function closePopap(closePopap) {
-  closePopap.parentElement.classList.remove("popap_opened");
-  closePopap.parentElement.classList.remove("popap_black");
-  closePopap.classList.remove("popap_opened");
-  closePopap.classList.remove("popap-img_opened");
+function closePopup(closePopup) {
+  closePopup.parentElement.classList.add("popup_closed");
+  closePopup.parentElement.classList.remove("popup_opened");
+  closePopup.classList.remove("popup_opened")
 }
-function popapClick(popapClick) {
-  popapClick
-    .querySelector(".popap__click")
+function popupClick(popupClick) {
+  popupClick
+    .querySelector(".popup__click")
     .addEventListener("click", function (evt) {
       evt.preventDefault();
-      closePopap(popapClick
-        .querySelector(".popap__click")
+      closePopup(popupClick
+        .querySelector(".popup__click")
         .parentElement);
     });
 }
@@ -62,52 +63,48 @@ function addElementSection(link, name) { // функция возвращает 
     .cloneNode(true);
   card.querySelector(".element__img").setAttribute("src", link);
   card.querySelector(".element__figcaption").textContent = name;
+  elementLike(card);
+  elementtrash(card);
   return card;
 }
-function openPopupImage(elementSection, initialCards, initialname) {
+function openPopupImage(elementSection, link, name) {
   elementSection // вызов модального окна нажатием на картинку
     .querySelector(".element__img")
     .addEventListener("click", function () {
-      popapImg.querySelector(".img-popap").setAttribute("src", initialCards);
-      popapImg.querySelector(".img-popap").setAttribute("alt", initialname);
-      popapImg.querySelector(".popap-figcaption").textContent = initialname;
-      popapImg.classList.add("popap-img_opened");
-      addPopap(popapImg);
-      // popap.classList.add("popap_opened", "popap_black");
+      popupImg.querySelector(".img-popup").setAttribute("src", link);
+      popupImg.querySelector(".img-popup").setAttribute("alt", name);
+      popupImg.querySelector(".popup-figcaption").textContent = name;
+      addPopup(popupImg);
     });
 }
-popapClick(popapProfileInfo); 
-popapClick(popapElement);
 profileInfoEditButton.addEventListener("click", function () {
-  addPopap(popapProfileInfo);
+  addPopup(popupProfileInfo);
 });
 profileAddButton.addEventListener("click", function () {
-  addPopap(popapElement);
+  addPopup(popupElement);
 });
 
 inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
   evt.preventDefault();
     profile.querySelector(".profile-info__name").textContent =
-    popapProfileInfo.querySelector(
+    popupProfileInfo.querySelector(
       ".input-container__item_name").value;
     profile.querySelector(".profile-info__vocation").textContent =
-    popapProfileInfo.querySelector(
+    popupProfileInfo.querySelector(
       ".input-container__item_profession").value;
-    closePopap(popapProfileInfo);
+    closePopup(popupProfileInfo);
     evt.target.reset(); // очистка формы
   });
 inputSubmitItemElement.addEventListener('submit', function (evt) {
   evt.preventDefault();
-  const link = popapElement.querySelector(
+  const link = popupElement.querySelector(
         ".input-container__item_url").value;
-  const name = popapElement.querySelector(
+  const name = popupElement.querySelector(
           ".input-container__item_nameMesto").value;
   const newcard = addElementSection(link, name);
   elements.prepend(newcard);// добавляем карточку на страницу
   openPopupImage(newcard, link, name);
-  elementLike(newcard);
-  elementtrash(newcard);
-  closePopap(popapElement);
+  closePopup(popupElement);
   evt.target.reset(); // очистка формы
 });
 
@@ -140,10 +137,7 @@ const initialCards = [
 
 initialCards.forEach( arrayCard => {
   let itemOfBox = addElementSection(arrayCard.link, arrayCard.name);
-
     openPopupImage(itemOfBox, arrayCard.link, arrayCard.name);
-    elementLike(itemOfBox);
-    elementtrash(itemOfBox);
     elements.prepend(itemOfBox);
 }
 )

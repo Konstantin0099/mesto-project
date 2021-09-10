@@ -1,7 +1,8 @@
-.popap-img {
+.popup-img {
+  display: inline-block;
+    transition: all 1s ease-in-out;
   z-index: 1;
   max-height: 75vh;
-  display: none;
   position: relative;
   max-width: 75vw;
   margin: 0 auto;
@@ -9,7 +10,7 @@
   text-align: left;
 }
 @media screen and (max-width: 570px) {
-  .popap-img {
+  .popup-img {
     max-height: 75vh;
     max-width: 75vw;
     height: 299px;

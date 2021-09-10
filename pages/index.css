@@ -25,17 +25,20 @@
 @import url(../block/like/_click/like_click.css);
 
 @import url(../block/trash/trash.css);
-@import url(../block/popap/__container/popap__container.css);
-@import url(../block/popap/popap.css);
-@import url(../block/popap/_opened/popap_opened.css);
-@import url(../block/popap/__heading/popap__heading.css);
+@import url(../block/popup/__container/popup__container.css);
+@import url(../block/popup/_profile-info/popup_profile-info.css);
+@import url(../block/popup/popup.css);
+@import url(../block/popup/_opened/popup_opened.css);
+@import url(../block/popup/_closed/popap_closed.css);
+@import url(../block/popup/__heading/popup__heading.css);
 
-@import url(../block/popap/__click/popap__click.css);
-@import url(../block/popap-img/popap-img.css);
-@import url(../block/popap-img/_opened/popap-img_opened.css);
-@import url(../block/img-popap/img-popap.css);
-@import url(../block/popap-figcaption/popap-figcaption.css);
-@import url(../block/popap/_black/popap_black.css);
+@import url(../block/popup/__click/popup__click.css);
+@import url(../block/popup-img/popup-img.css);
+
+@import url(../block/img-popup/img-popup.css);
+@import url(../block/popup-figcaption/popup-figcaption.css);
+
+@import url(../block/popup/_picture/popup_picture.css);
 
 @import url(../block/input-container/input-container.css);
 @import url(../block/input-container/__submit-item/input-container__submit-item.css);
