@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="root">
+    <div class="page">
     <header class="header">
       <img class="header__logo" src="./image/mesto_logo_w.svg" alt="место" />
     </header>
@@ -81,7 +82,7 @@
           </form>
         </div>
       </section>
-      <section class="popup popup_picture"> <!--добавлен новый класс-модификатор popup_picture-->
+      <section class="popup popup_picture">
         <div class="popup-img">
           <button class="popup__click" type="button"></button>
           <img class="img-popup" src="#" alt="картинка" />
@@ -97,9 +98,10 @@
         <button class="trash" type="button"></button>
         <img class="element__img" src="" alt="" />
         <h2 class="element__figcaption"></h2>
-        <button class="like like_click" type="button"></button>
+        <button class="like" type="button"></button>
       </div>
     </template>
+  </div>
     <script src="script.js"></script>
   </body>
 </html>
