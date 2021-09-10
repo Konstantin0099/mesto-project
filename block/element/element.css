@@ -1,8 +1,9 @@
 .element {
+  height: 361px;
   position: relative;
   display: grid;
   grid-template-columns: 1fr 44px;
-  grid-template-rows: auto 23%;
+  grid-template-rows: 77% 23%;
   gap: 0;
   grid-template-areas:
     "img img"

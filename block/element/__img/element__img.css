@@ -1,7 +1,6 @@
 .element__img {
   width: 100%;
-  min-height: 77%;
-  height: 100%;
+  height: 282px;
   object-position: 25% bottom;
   object-fit: cover;
   grid-area: img;

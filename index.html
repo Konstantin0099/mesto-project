@@ -8,100 +8,104 @@
   </head>
   <body class="root">
     <div class="page">
-    <header class="header">
-      <img class="header__logo" src="./image/mesto_logo_w.svg" alt="место" />
-    </header>
-    <main class="content">
-      <section class="profile">
-        <img class="profile__avatar" src="./image/foto_kusto.png" alt="Кусто" />
-        <div class="profile-info">
-          <h1 class="profile-info__name">Жак&#8209;Ив&nbsp;Кусто</h1>
-          <button type="button" class="profile-info__edit-button">
-            <img class="profile-info__img" src="./image/stylus.svg" alt="X" />
+      <header class="header">
+        <img class="header__logo" src="./image/mesto_logo_w.svg" alt="место" />
+      </header>
+      <main class="content">
+        <section class="profile">
+          <img
+            class="profile__avatar"
+            src="./image/foto_kusto.png"
+            alt="Кусто"
+          />
+          <div class="profile-info">
+            <h1 class="profile-info__name">Жак&#8209;Ив&nbsp;Кусто</h1>
+            <button type="button" class="profile-info__edit-button">
+              <img class="profile-info__img" src="./image/stylus.svg" alt="X" />
+            </button>
+            <h2 class="profile-info__vocation">Исследователь океана</h2>
+          </div>
+          <button class="profile__add-button" type="button">
+            <img src="./image/+.svg" alt="++++" />
           </button>
-          <h2 class="profile-info__vocation">Исследователь океана</h2>
+        </section>
+        <section class="elements"></section>
+        <section class="popup popup_profile-info">
+          <div id="popup-profile-info" class="popup__container">
+            <button class="popup__click" type="button"></button>
+            <h3 class="popup__heading">Редактировать профиль</h3>
+            <form class="input-container" name="input-container">
+              <fieldset class="input-container__fieldset">
+                <input
+                  type="text"
+                  class="input-container__item input-container__item_name"
+                  name="name"
+                  placeholder="Жак&#8209;Ив&nbsp;Кусто"
+                  value="Жак&#8209;Ив&nbsp;Кусто"
+                />
+                <input
+                  type="text"
+                  class="input-container__item input-container__item_profession"
+                  name="profession"
+                  placeholder="Исследователь океана"
+                  value="Исследователь океана"
+                />
+              </fieldset>
+              <fieldset class="input-container__submit">
+                <button class="input-container__submit-item" type="submit">
+                  Сохранить
+                </button>
+              </fieldset>
+            </form>
+          </div>
+        </section>
+        <section class="popup popup_card-add">
+          <div id="popup-element" class="popup__container">
+            <button class="popup__click" type="button"></button>
+            <h3 class="popup__heading">Новое место</h3>
+            <form class="input-container" name="input-container">
+              <fieldset class="input-container__fieldset">
+                <input
+                  type="text"
+                  class="input-container__item input-container__item_nameMesto"
+                  name="nameMesto"
+                  placeholder="Название"
+                />
+                <input
+                  type="url"
+                  class="input-container__item input-container__item_url"
+                  name="url"
+                  placeholder="Ссылка на картинку"
+                />
+              </fieldset>
+              <fieldset class="input-container__submit">
+                <button class="input-container__submit-item" type="submit">
+                  Сохранить
+                </button>
+              </fieldset>
+            </form>
+          </div>
+        </section>
+        <section class="popup popup_picture">
+          <div class="popup-img">
+            <button class="popup__click" type="button"></button>
+            <img class="img-popup" src="#" alt="картинка" />
+            <p class="popup-figcaption"></p>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <h3 class="footer__title">&copy;2020 Mesto Russia</h3>
+      </footer>
+      <template id="elementsSection">
+        <div class="element">
+          <button class="trash" type="button"></button>
+          <img class="element__img" src="" alt="" />
+          <h2 class="element__figcaption"></h2>
+          <button class="like" type="button"></button>
         </div>
-        <button class="profile__add-button" type="button">
-          <img src="./image/+.svg" alt="++++" />
-        </button>
-      </section>
-      <section class="elements"></section>
-      <section class="popup popup_profile-info"> <!--добавлен новый класс-модификатор popup_profile-info-->
-        <div id="popup-profile-info" class="popup__container">
-          <button class="popup__click" type="button"></button>
-          <h3 class="popup__heading">Редактировать профиль</h3>
-          <form class="input-container" name="input-container">
-            <fieldset class="input-container__fieldset">
-              <input
-                type="text"
-                class="input-container__item input-container__item_name"
-                name="name"
-                placeholder="Жак&#8209;Ив&nbsp;Кусто"
-                value="Жак&#8209;Ив&nbsp;Кусто"
-              />
-              <input
-                type="text"
-                class="input-container__item input-container__item_profession"
-                name="profession"
-                placeholder="Исследователь океана"
-                value="Исследователь океана"
-              />
-            </fieldset>
-            <fieldset class="input-container__submit">
-              <button class="input-container__submit-item" type="submit">
-                Сохранить
-              </button>
-            </fieldset>
-          </form>
-        </div>
-      </section>
-      <section class="popup popup_card-add"> <!--добавлен новый класс-модификатор popup_card-add-->
-        <div id="popup-element" class="popup__container">
-          <button class="popup__click" type="button"></button>
-          <h3 class="popup__heading">Новое место</h3>
-          <form class="input-container" name="input-container">
-            <fieldset class="input-container__fieldset">
-              <input
-                type="text"
-                class="input-container__item input-container__item_nameMesto"
-                name="nameMesto"
-                placeholder="Название"
-              />
-              <input
-                type="url"
-                class="input-container__item input-container__item_url"
-                name="url"
-                placeholder="Ссылка на картинку"
-              />
-            </fieldset>
-            <fieldset class="input-container__submit">
-              <button class="input-container__submit-item" type="submit">
-                Сохранить
-              </button>
-            </fieldset>
-          </form>
-        </div>
-      </section>
-      <section class="popup popup_picture">
-        <div class="popup-img">
-          <button class="popup__click" type="button"></button>
-          <img class="img-popup" src="#" alt="картинка" />
-          <p class="popup-figcaption"></p>
-        </div>
-      </section>
-    </main>
-    <footer class="footer">
-      <h3 class="footer__title">&copy;2020 Mesto Russia</h3>
-    </footer>
-    <template id="elementsSection">
-      <div class="element">
-        <button class="trash" type="button"></button>
-        <img class="element__img" src="" alt="" />
-        <h2 class="element__figcaption"></h2>
-        <button class="like" type="button"></button>
-      </div>
-    </template>
-  </div>
+      </template>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
