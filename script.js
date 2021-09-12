@@ -12,6 +12,9 @@ const popupImg = popupPicture.querySelector(".popup-img");
 
 const inputSubmitItemProfileInfo =
   popupProfileInfo.querySelector(".input-container");
+  const namePopupProfileInfo = popupProfileInfo.querySelector(".input-container__item_name");
+  const professionPopupProfileInfo = popupProfileInfo.querySelector(".input-container__item_profession");
+
 const inputSubmitItemElement = newCardPopup.querySelector(".input-container");
 const elements = document.querySelector(".elements");
 const elementSectionTemplate =
@@ -29,9 +32,11 @@ function closePopup(closePopup) {
   closePopup.classList.remove("popup_opened");
 }
 function setPopupCloseButtonEventListener(popup) {
-  popup.querySelector(".popup__click").addEventListener("click", function (evt) {
-    closePopup(popup);
-  });
+  popup
+    .querySelector(".popup__click")
+    .addEventListener("click", function (evt) {
+      closePopup(popup);
+    });
 }
 function setLikeButtonEventListener(card) {
   card // логика кнопки "лайк"
@@ -41,10 +46,10 @@ function setLikeButtonEventListener(card) {
     });
 }
 function setRemoveCardEventListener(card) {
-  card // логика кнопки "удалить"
+    card // логика кнопки "удалить"
     .querySelector(".trash")
     .addEventListener("click", function (evt) {
-      evt.target.parentElement.remove();
+      evt.target.closest(".element").remove();
     });
 }
 function createElementSection(card) {
@@ -71,17 +76,15 @@ function setImageClickEventListener(elementSection, card) {
     });
 }
 profileInfoEditButton.addEventListener("click", function () {
-  popupProfileInfo.querySelector(".input-container__item_name").value =
-  profile.querySelector(".profile-info__name").textContent;
-  popupProfileInfo.querySelector(".input-container__item_profession").value = 
-  profile.querySelector(".profile-info__vocation").textContent;
+  namePopupProfileInfo.value =
+    profile.querySelector(".profile-info__name").textContent;
+    professionPopupProfileInfo.value =
+    profile.querySelector(".profile-info__vocation").textContent;
   openPopup(popupProfileInfo);
 });
 profileAddButton.addEventListener("click", function () {
-  newCardPopup.querySelector(".input-container__item_url").value = '';
-  newCardPopup.querySelector(
-    ".input-container__item_nameMesto"
-  ).value = '';
+  newCardPopup.querySelector(".input-container__item_url").value = "";
+  newCardPopup.querySelector(".input-container__item_nameMesto").value = "";
   openPopup(newCardPopup);
 });
 inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
@@ -95,11 +98,9 @@ inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
 inputSubmitItemElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
   const newCard = {
-      link: newCardPopup.querySelector(".input-container__item_url").value,
-      name: newCardPopup.querySelector(
-        ".input-container__item_nameMesto"
-      ).value
-    }
+    link: newCardPopup.querySelector(".input-container__item_url").value,
+    name: newCardPopup.querySelector(".input-container__item_nameMesto").value,
+  };
   elements.prepend(createElementSection(newCard)); // добавляем карточку на страницу
   closePopup(newCardPopup);
   evt.target.reset(); // очистка формы
@@ -107,4 +108,4 @@ inputSubmitItemElement.addEventListener("submit", function (evt) {
 
 initialCards.forEach((card) => {
   elements.append(createElementSection(card));
-})
+});

@@ -1,6 +1,7 @@
 .profile-info__name {
   color: white;
   max-width: 87%;
+  min-width: 55%;
   font-family: "inter", "Arial", sans-serif;
   font-style: normal;
   font-weight: 500;
