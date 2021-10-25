@@ -17,3 +17,27 @@
  ## все изображения оптимизировались с помощью [tinypng.com](https://tinypng.com/)
  ## к текстовым элементам применено св-во text-rendering: optimizeLegibility
        * [Ссылка на макет в GitHab](https://konstantin0099.github.io/mesto-project/index.html)
+   
+
+   Wrote to /Users/konstantinseremetov/Desktop/praktikumЯ/ПРОЕКТЫ/mesto/mesto-project/package.json:
+
+{
+  "name": "mesto-project",
+  "version": "1.0.0",
+  "description": "###  обложка сайта для Яндекс практикума",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Konstantin0099/mesto-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Konstantin0099/mesto-project/issues"
+  },
+  "homepage": "https://github.com/Konstantin0099/mesto-project#readme"
+}
