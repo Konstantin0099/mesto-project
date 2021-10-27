@@ -1,0 +1,11 @@
+.input-container__item_error {
+  display: inline-block;
+  color: #ff0000;
+  text-align: left;
+  width: 100%;
+  font-family: "inter", "Arial", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+}

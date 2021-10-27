@@ -22,3 +22,9 @@
     line-height: 17px;
   }
 }
+.input-container__submit-item:disabled {
+  background-color: #E5E5E5;
+  color: #C4C4C4;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.2)
+}

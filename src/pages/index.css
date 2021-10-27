@@ -1,6 +1,7 @@
-@import url(../vendors/normalize.css);
 
-@import url(../vendors/fonts/inter.css);
+@import url(../../vendors/normalize.css);
+
+@import url(../../vendors/fonts/inter.css);
 @import url(../block/content/content.css);
 @import url(../block/root/root.css);
 @import url(../block/page/page.css);
@@ -46,6 +47,7 @@
 @import url(../block/input-container/__submit/input-container__submit.css);
 @import url(../block/input-container/__fieldset/input-container__fieldset.css);
 @import url(../block/input-container/__item/input-container__item.css);
+@import url(../block/input-container/__item_error/input-container__item_error.css);
 
 @import url(../block/footer/footer.css);
 @import url(../block/footer/__title/footer__title.css);
