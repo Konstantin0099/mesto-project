@@ -40,6 +40,7 @@ function setPopupCloseEventListener(overlay, popup) {
   if ((evt.target === evt.currentTarget) || (evt.target === popup.querySelector(".popup__click"))) {
     closePopup(overlay, popup)}
   });
+}
 
 function setLikeButtonEventListener(card) {
   card // логика кнопки "лайк"
