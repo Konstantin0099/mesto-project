@@ -1,4 +1,4 @@
-
+import './styles/index.css'; 
 const enableValidation = {
   formSelector: ".input-container",
   inputSelector: ".input-container__item",

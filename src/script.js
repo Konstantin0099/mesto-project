@@ -22,10 +22,9 @@ const inputSubmitItemElement = newCardPopup.querySelector(".input-container");
 const elements = document.querySelector(".elements");
 const elementSectionTemplate =
   document.querySelector("#elementsSection").content;
-setPopupCloseEventListener(popupPicture, popupImg);
-setPopupCloseEventListener(popupProfile, popupProfileInfo);
-setPopupCloseEventListener(popupCardAdd, newCardPopup);
+
 function openPopup(overlay, popup) {
+  setPopupCloseEventListener(overlay, popup);
   popup.classList.add("popup_opened");
   overlay.classList.add("popup_opened");
 }
@@ -34,12 +33,28 @@ function closePopup(overlay, popup) {
   overlay.classList.remove("popup_opened");
   popup.classList.remove("popup_opened");
 }
-function setPopupCloseEventListener(overlay, popup) {
+const keyDownEscape = (overlay, popup) => {
+  const closed = (evt) =>{ 
+    if(evt.key === "Escape") { 
+      closePopup(overlay, popup);
+      document.removeEventListener("keydown", closed);
+    }}
+    document.addEventListener("keydown", closed);
+}
+const clickOverlay = (overlay, popup) => { 
   overlay.addEventListener("click", function (evt) {
+  if (
+    evt.target === evt.currentTarget ||
+    evt.target === popup.querySelector(".popup__click")
+  ) {
+    closePopup(overlay, popup);
+  }
+});
 
-  if ((evt.target === evt.currentTarget) || (evt.target === popup.querySelector(".popup__click"))) {
-    closePopup(overlay, popup)}
-  });
+}
+function setPopupCloseEventListener(overlay, popup) {
+  clickOverlay(overlay, popup);
+  keyDownEscape(overlay, popup);
 }
 
 function setLikeButtonEventListener(card) {
@@ -99,7 +114,7 @@ inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
     popupProfileInfo.querySelector(".input-container__item_name").value;
   profile.querySelector(".profile-info__vocation").textContent =
     popupProfileInfo.querySelector(".input-container__item_profession").value;
-  closePopup(popupProfile, popupProfileInfo);// //////////////////////////// закрытие попапа
+  closePopup(popupProfile, popupProfileInfo); // //////////////////////////// закрытие попапа
 });
 inputSubmitItemElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
@@ -108,7 +123,7 @@ inputSubmitItemElement.addEventListener("submit", function (evt) {
     name: newCardPopup.querySelector(".input-container__item_nameMesto").value,
   };
   elements.prepend(createElementSection(newCard)); // добавляем карточку на страницу
-  closePopup(popupCardAdd, newCardPopup);// //////////////////////////// закрытие попапа
+  closePopup(popupCardAdd, newCardPopup); // //////////////////////////// закрытие попапа
   evt.target.reset(); // очистка формы
 });
 
