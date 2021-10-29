@@ -1,14 +1,12 @@
 
-@import url(../../vendors/normalize.css);
+@import url(../../src/vendors/normalize.css);
 
-@import url(../../vendors/fonts/inter.css);
+@import url(../../src/vendors/fonts/inter.css);
 @import url(../block/content/content.css);
 @import url(../block/root/root.css);
 @import url(../block/page/page.css);
-
 @import url(../block/header/header.css);
 @import url(../block/header/__logo/header__logo.css);
-
 @import url(../block/profile/profile.css);
 @import url(../block/profile/__avatar/profile__avatar.css);
 @import url(../block/profile/__add-button/profile__add-button.css);
@@ -17,15 +15,12 @@
 @import url(../block/profile-info/__name/profile-info__name.css);
 @import url(../block/profile-info/__edit-button/profile-info__edit-button.css);
 @import url(../block/profile-info/__img/profile-info__img.css);
-
 @import url(../block/elements/elements.css);
 @import url(../block/element/element.css);
 @import url(../block/element/__img/element__img.css);
 @import url(../block/element/__figcaption/element__figcaption.css);
-
 @import url(../block/like/like.css);
 @import url(../block/like/_click/like_click.css);
-
 @import url(../block/trash/trash.css);
 @import url(../block/popup/__container/popup__container.css);
 @import url(../block/popup/_profile-info/popup_profile-info.css);
@@ -33,21 +28,16 @@
 @import url(../block/popup/_opened/popup_opened.css);
 @import url(../block/popup/_closed/popup_closed.css);
 @import url(../block/popup/__heading/popup__heading.css);
-
 @import url(../block/popup/__click/popup__click.css);
 @import url(../block/popup-img/popup-img.css);
-
 @import url(../block/img-popup/img-popup.css);
 @import url(../block/popup-figcaption/popup-figcaption.css);
-
 @import url(../block/popup/_picture/popup_picture.css);
-
 @import url(../block/input-container/input-container.css);
 @import url(../block/input-container/__submit-item/input-container__submit-item.css);
 @import url(../block/input-container/__submit/input-container__submit.css);
 @import url(../block/input-container/__fieldset/input-container__fieldset.css);
 @import url(../block/input-container/__item/input-container__item.css);
 @import url(../block/input-container/__item_error/input-container__item_error.css);
-
 @import url(../block/footer/footer.css);
 @import url(../block/footer/__title/footer__title.css);

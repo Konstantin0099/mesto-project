@@ -25,7 +25,7 @@
   color: #C4C4C4;
 }
 .input-container__item:invalid {
-  /* border-bottom: solid #FF0000 1px; */
+  border-bottom: solid #FF0000 1px;
 }
 .input-container__item:focus:invalid{
   /* border: solid #668cc5 1px;
