@@ -1,4 +1,4 @@
-
+import './index.css';
 import { enableValidation } from "../components/validate";
 import { arrayCards } from "../components/initial-cards";
 import { initialCards } from "../components/card";
@@ -16,8 +16,6 @@ enableValidation({
   inputErrorClass: "input-container__item_error",
   errorClass: "popup__error_visible",
 });
-
-// const profile = document.querySelector(".profile");
 const profileInfoEditButton = profile.querySelector(
   ".profile-info__edit-button"
 );
@@ -26,5 +24,3 @@ const profileAddButton = profile.querySelector(".profile__add-button");
 profileInfoEditButton.addEventListener("click", openPopupProfileInfo);
 profileAddButton.addEventListener("click", openPopupAddCard);
 initialCards(arrayCards);
-
-// export {profile}
