@@ -9,24 +9,24 @@
   <body class="root">
     <div class="page">
       <header class="header">
-        <img class="header__logo" src="./../src/image/mesto_logo_w.svg" alt="место" />
+        <img class="header__logo" src="<%=require('./../src/image/mesto_logo_w.svg')%>" alt="место" />
       </header>
       <main class="content">
         <section class="profile">
           <img
-            class="profile__avatar"
-            src="./../src/image/foto_kusto.png"
-            alt="Кусто"
+          class="profile__avatar"
+          src="<%=require('./../src/image/foto_kusto.png')%>"
+          alt="Кусто"
           />
           <div class="profile-info">
             <h1 class="profile-info__name">Жак&#8209;Ив&nbsp;Кусто</h1>
             <button type="button" class="profile-info__edit-button">
-              <img class="profile-info__img" src="./../src/image/stylus.svg" alt="X" />
+              <img class="profile-info__img" src="<%=require('./../src/image/stylus.svg')%>" alt="X" />
             </button>
             <h2 class="profile-info__vocation">Исследователь океана</h2>
           </div>
           <button class="profile__add-button" type="button">
-            <img src="./../src/image/+.svg" alt="++++" />
+            <img src="<%=require('./../src/image/+.svg')%>" alt="++++" />
           </button>
         </section>
         <section class="elements"></section>

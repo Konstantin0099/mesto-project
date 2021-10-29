@@ -1,4 +1,4 @@
-
+import './styles/index.css';
 import { enableValidation } from "../components/validate";
 import { arrayCards } from "../components/initial-cards";
 import { initialCards } from "../components/card";
