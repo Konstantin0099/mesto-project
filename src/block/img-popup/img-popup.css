@@ -3,6 +3,6 @@
     max-width: 100%;
     object-position: 50% 50%;
     object-fit: contain;
-    margin: 0 auto;
-    align-self: center;
+    margin: 0;
+    /* align-self: center; */
   }

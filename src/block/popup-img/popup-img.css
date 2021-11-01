@@ -1,13 +1,13 @@
 .popup-img {
-  /* display: inline-block; */
-  transition: all 1s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  transition: all 400ms ease-in-out;
   z-index: 1;
   max-height: 75vh;
   position: relative;
   max-width: 75vw;
   margin: 0 auto;
   border-radius: 10px;
-  text-align: left;
 }
 @media screen and (max-width: 570px) {
   .popup-img {

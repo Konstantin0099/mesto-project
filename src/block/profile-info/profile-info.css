@@ -3,11 +3,13 @@
   flex-wrap: wrap;
   margin: auto 0;
   color: #ffffff;
-  max-width: 336px;
+  max-width: 556px;
+  min-width: 300px;
 }
 @media screen and (max-width: 690px) {
   .profile-info {
     margin: 0 auto;
     max-width: 282px;
+    min-width: 269px;
   }
 }

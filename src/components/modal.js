@@ -1,5 +1,5 @@
+import { createElementSection } from "../components/card";
 
-import {createElementSection} from '../components/card';
 const profile = document.querySelector(".profile");
 const elements = document.querySelector(".elements");
 
@@ -18,6 +18,20 @@ const inputSubmitItemProfileInfo =
   popupProfileInfo.querySelector(".input-container");
 const inputSubmitItemElement = newCardPopup.querySelector(".input-container");
 
+
+const popupList = Array.from(document.querySelectorAll(".popup"));
+
+popupList.forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+  if (
+    evt.target === evt.currentTarget ||
+    evt.target === popup.querySelector(".popup__click")
+    ) {
+      closePopup(popup);
+    }
+  });
+});
+
 const openPopupProfileInfo = () => {
   namePopupProfileInfo.value = profile.querySelector(
     ".profile-info__name"
@@ -25,56 +39,36 @@ const openPopupProfileInfo = () => {
   professionPopupProfileInfo.value = profile.querySelector(
     ".profile-info__vocation"
   ).textContent;
-
-console.log("openPopupProfileInfo(profile)", profile);
-  openPopup(popupProfile, popupProfileInfo);
+  openPopup(popupProfile);
 };
 const openPopupAddCard = () => {
   newCardPopup.querySelector(".input-container__item_url").value = "";
   newCardPopup.querySelector(".input-container__item_nameMesto").value = "";
-  openPopup(popupCardAdd, newCardPopup);
+  openPopup(popupCardAdd);
 };
 
-function openPopup(overlay, popup) {
-  setPopupCloseEventListener(overlay, popup);
-  popup.classList.add("popup_opened");
+function openPopup(overlay) {
   overlay.classList.add("popup_opened");
+  document.addEventListener("keydown", keyDownEscape);
 }
-function closePopup(overlay, popup) {
-  overlay.classList.add("popup_closed");
+const closePopup = (overlay) => {
   overlay.classList.remove("popup_opened");
-  popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", keyDownEscape); 
 }
-const keyDownEscape = (overlay, popup) => {
-  const closed = (evt) => {
+const keyDownEscape = (evt) => {
     if (evt.key === "Escape") {
-      closePopup(overlay, popup);
-      document.removeEventListener("keydown", closed);
+  const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
     }
   };
-  document.addEventListener("keydown", closed);
-};
-const clickOverlay = (overlay, popup) => {
-  overlay.addEventListener("click", function (evt) {
-    if (
-      evt.target === evt.currentTarget ||
-      evt.target === popup.querySelector(".popup__click")
-    ) {
-      closePopup(overlay, popup);
-    }
-  });
-};
-function setPopupCloseEventListener(overlay, popup) {
-  clickOverlay(overlay, popup);
-  keyDownEscape(overlay, popup);
-}
+
 inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
   evt.preventDefault();
   profile.querySelector(".profile-info__name").textContent =
     popupProfileInfo.querySelector(".input-container__item_name").value;
   profile.querySelector(".profile-info__vocation").textContent =
     popupProfileInfo.querySelector(".input-container__item_profession").value;
-  closePopup(popupProfile, popupProfileInfo); ////////////////////////////// закрытие попапа
+  closePopup(popupProfile);
 });
 inputSubmitItemElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
@@ -82,8 +76,11 @@ inputSubmitItemElement.addEventListener("submit", function (evt) {
     link: newCardPopup.querySelector(".input-container__item_url").value,
     name: newCardPopup.querySelector(".input-container__item_nameMesto").value,
   };
-  elements.prepend(createElementSection(newCard)); // добавляем карточку на страницу
-  closePopup(popupCardAdd, newCardPopup); ////////////////////////////// закрытие попапа
-  evt.target.reset(); // очистка формы
+  elements.prepend(createElementSection(newCard));
+  closePopup(popupCardAdd); 
+  evt.target.reset(); 
+  popupCardAdd.querySelector(
+    `.input-container__submit-item`).disabled = true;
 });
-export { openPopupProfileInfo, openPopupAddCard, openPopup, profile, elements };
+
+export { openPopupProfileInfo, openPopupAddCard, openPopup, profile, elements};
