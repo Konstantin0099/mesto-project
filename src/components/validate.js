@@ -1,14 +1,14 @@
 import { clickOverlay} from "../components/modal";
-export function enableValidation(enableValidation) {
+export function enableValidation(dataValidation) {
   const addErrorInput = (form) => {
-    form.form.classList.add(`${enableValidation.errorClass}`);
-    form.error.classList.add(`${enableValidation.inputErrorClass}`);
+    form.form.classList.add(`${dataValidation.errorClass}`);
+    form.error.classList.add(`${dataValidation.inputErrorClass}`);
     form.error.textContent = form.messageError;
-    form.buttonSubmit.classList.add(`${enableValidation.inactiveButtonClass}`);
-    disableButton;
+    form.buttonSubmit.classList.add(`${dataValidation.inactiveButtonClass}`);
+    disableButton(form);
   };
   const deleteErrorInput = (form) => {
-    form.error.classList.remove(`${enableValidation.inputErrorClass}`);
+    form.error.classList.remove(`${dataValidation.inputErrorClass}`);
     form.error.textContent = "";
   };
   const disableButton = (form) => {
@@ -18,7 +18,7 @@ export function enableValidation(enableValidation) {
     form.buttonSubmit.disabled = false;
   };
   const hasValidForm = (form) => {
-    const inputList = Array.from(form.form.querySelectorAll(`${enableValidation.inputSelector}`));
+    const inputList = Array.from(form.form.querySelectorAll(`${dataValidation.inputSelector}`));
     return inputList.every((input) => {
       return input.validity.valid;
     });
@@ -40,7 +40,7 @@ export function enableValidation(enableValidation) {
       error: evt.currentTarget.querySelector(`.${evt.target.id}-error`),
       messageError: evt.target.validationMessage,
       buttonSubmit: evt.currentTarget.querySelector(
-        `.input-container__submit-item`
+        `${dataValidation.submitButtonSelector}`
       ),
     };
     if (hasValidinput(form)) {
@@ -57,10 +57,7 @@ export function enableValidation(enableValidation) {
   const formList = Array.from(document.forms);
   formList.forEach((form) => {
     form.querySelector(
-      `.input-container__submit-item`).disabled = true;
+      `${dataValidation.submitButtonSelector}`).disabled = true;
       form.addEventListener("input", hasValid);
-      // form.addEventListener("submit", (evt) => {
-      //   evt.preventDefault();
-    // });
   });
  }; 
