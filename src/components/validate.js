@@ -1,3 +1,4 @@
+import { clickOverlay} from "../components/modal";
 export function enableValidation(enableValidation) {
   const addErrorInput = (form) => {
     form.form.classList.add(`${enableValidation.errorClass}`);
@@ -46,12 +47,10 @@ export function enableValidation(enableValidation) {
       if (hasValidForm(form)) {
         activateButton(form);
       } else {
-        console.log("if (hasValidForm(form)) { disableButton; }");
-        disableButton;
+        disableButton(form);
       }
     }
     else {
-        console.log("if (hasValidinput(form)) { disableButton; }");
       disableButton(form);
     }
   };
@@ -59,9 +58,9 @@ export function enableValidation(enableValidation) {
   formList.forEach((form) => {
     form.querySelector(
       `.input-container__submit-item`).disabled = true;
-    form.addEventListener("input", hasValid);
-    form.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-    });
+      form.addEventListener("input", hasValid);
+      // form.addEventListener("submit", (evt) => {
+      //   evt.preventDefault();
+    // });
   });
- }
+ }; 

@@ -1,11 +1,7 @@
 .content {
+  width: 100%;
   margin: 0;
   padding: 0;
   display: block;
 }
 
-@media screen and (max-width: 767px) {
-  .content {
-    padding: 0 16px;
-  }
-}

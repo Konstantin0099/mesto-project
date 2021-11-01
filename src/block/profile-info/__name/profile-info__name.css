@@ -1,6 +1,6 @@
 .profile-info__name {
   color: white;
-  max-width: 87%;
+  max-width: 75%;
   min-width: 55%;
   font-family: "inter", "Arial", sans-serif;
   font-style: normal;
@@ -26,5 +26,6 @@
 @media screen and (max-width: 690px) {
   .profile-info__name {
     margin: auto 10px auto auto;
+    text-align: center;
   }
 }

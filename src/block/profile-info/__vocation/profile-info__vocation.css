@@ -1,5 +1,6 @@
 .profile-info__vocation {
-  max-width: 100%;
+  max-width: 87%;
+  min-width: 75%;
   display: block;
   color: white;
   margin: 16px 0 auto 0;
@@ -22,5 +23,6 @@
   .profile-info__vocation {
     font-size: 14px;
     margin: 0 auto;
+    text-align: center;
   }
 }

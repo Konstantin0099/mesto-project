@@ -1,5 +1,9 @@
 .element {
-  height: 361px;
+  height: 100%;
+  width: 100%;
+  max-height: 361px;
+  max-width: 282px;
+  
   position: relative;
   display: grid;
   grid-template-columns: 1fr 44px;
@@ -12,6 +16,19 @@
   background-color: white;
   border-radius: 10px 10px 10px 10px;
   overflow: hidden;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
 }
+/* @media screen and (max-width: 620px) {
+  .element {
+    max-height: 48vw;
+    max-width: 38vw;
+  }
+}  */
+/* @media screen and (max-width: 425px) {
+  .elements {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 361px;
+    gap: 20px;
+  }
+}  */
