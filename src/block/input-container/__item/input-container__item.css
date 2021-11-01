@@ -24,13 +24,8 @@
   line-height: 17px;
   color: #C4C4C4;
 }
-.input-container__item:invalid {
-  border-bottom: solid #FF0000 1px;
-}
 .input-container__item:focus:invalid{
-  /* border: solid #668cc5 1px;
-  box-shadow: 0px 0px 1px 1px  #668cc5 inset, 0px 0px 2px 1px  #668cc5;
-  border-radius: 3px; */
+
   border-bottom: solid #FF0000 1px;
 } 
 .input-container__item:focus {

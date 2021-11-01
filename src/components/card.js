@@ -1,7 +1,8 @@
 import { openPopup, elements } from "./modal";
 const popupPicture = document.querySelector(".popup_picture");
 const popupImg = popupPicture.querySelector(".popup-img");
-
+const imgPopup = popupImg.querySelector(".img-popup");
+const popupFigcaption = popupImg.querySelector(".popup-figcaption");
 const elementSectionTemplate =
   document.querySelector("#elementsSection").content;
 
@@ -36,9 +37,9 @@ function setImageClickEventListener(elementSection, card) {
   elementSection // вызов модального окна нажатием на картинку
     .querySelector(".element__img")
     .addEventListener("click", function () {
-      popupImg.querySelector(".img-popup").src = card.link;
-      popupImg.querySelector(".img-popup").alt = card.name;
-      popupImg.querySelector(".popup-figcaption").textContent = card.name;
+      imgPopup.src = card.link;
+      imgPopup.alt = card.name;
+      popupFigcaption.textContent = card.name;
       openPopup(popupPicture);
     });
 }
