@@ -20,7 +20,6 @@ const inputSubmitItemElement = newCardPopup.querySelector(".input-container");
 
 
 const popupList = Array.from(document.querySelectorAll(".popup"));
-
 popupList.forEach((popup) => {
   popup.addEventListener("click", (evt) => {
   if (
