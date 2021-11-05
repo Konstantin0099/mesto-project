@@ -1,11 +1,12 @@
 import './index.css';
 import { enableValidation } from "../components/validate";
-import { arrayCards } from "../components/initial-cards";
+import { getInitialProfile, getInitialCards, resOk} from "../components/api";
 import { initialCards } from "../components/card";
 import {
   openPopupProfileInfo,
   openPopupAddCard,
   profile,
+  addProfileInfo,
 } from "../components/modal";
 
 enableValidation({
@@ -23,4 +24,17 @@ const profileAddButton = profile.querySelector(".profile__add-button");
 
 profileInfoEditButton.addEventListener("click", openPopupProfileInfo);
 profileAddButton.addEventListener("click", openPopupAddCard);
-initialCards(arrayCards);
+
+resOk(getInitialCards())
+  .then((arrayCards) => {
+    initialCards(arrayCards);
+  })
+  .catch((err) => { console.log(err);
+  });
+
+resOk(getInitialProfile())
+  .then((profile) => {
+    addProfileInfo(profile.name ,profile.about)
+  })
+  .catch((err) => { console.log(err);
+  }); 

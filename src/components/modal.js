@@ -1,8 +1,10 @@
 import { createElementSection } from "../components/card";
+import { editDataProfile, resOk } from "../components/api";
 
 const profile = document.querySelector(".profile");
 const profileInfoName = profile.querySelector(".profile-info__name");
 const profileInfoVocation = profile.querySelector(".profile-info__vocation");
+const profileAvatar = profile.querySelector(".profile__avatar");
 const elements = document.querySelector(".elements");
 const popupProfile = document.querySelector(".popup_profile-info");
 const popupProfileInfo = popupProfile.querySelector(".popup__container");
@@ -60,11 +62,23 @@ const keyDownEscape = (evt) => {
     const openedPopup = document.querySelector(".popup_opened");
     closePopup(openedPopup);
   }
+};   
+// function addProfileInfo(name, vocation, avatar = "https://pictures.s3.yandex.net/frontend-developer/common/ava.jpg") {
+function addProfileInfo(name, vocation) {
+  profileInfoName.textContent = name;
+  profileInfoVocation.textContent = vocation;
+  // profileAvatar.src = avatar;
+  // profileAvatar.alt = name + ", " + vocation;
 };
 inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  profileInfoName.textContent = namePopupProfileInfo.value;
-  profileInfoVocation.textContent = professionPopupProfileInfo.value;
+  resOk(editDataProfile(namePopupProfileInfo.value, professionPopupProfileInfo.value))
+  .then((profile) => {
+    addProfileInfo(profile.name ,profile.about)
+  })
+  .catch((err) => { console.log(err);
+  }); 
+  ;
   closePopup(popupProfile);
 });
 inputSubmitItemElement.addEventListener("submit", function (evt) {
@@ -79,4 +93,4 @@ inputSubmitItemElement.addEventListener("submit", function (evt) {
   inputContainerSubmitItem.disabled = true;
 });
 
-export { openPopupProfileInfo, openPopupAddCard, openPopup, profile, elements };
+export { openPopupProfileInfo, openPopupAddCard, openPopup, addProfileInfo, profile, elements };
