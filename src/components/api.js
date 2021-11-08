@@ -5,8 +5,6 @@ const config = {
       'Content-Type': 'application/json'
     }
   }
-
-console.log("api start");
 const resOk = (requestServer) =>{
     return requestServer.then((res) => {
         if (res.ok) {
@@ -31,11 +29,38 @@ const getInitialCards = () => {
       method: 'PATCH',
       body: JSON.stringify({
            name: name,
-           about: about
+           about: about,
       })
+    })
+  }
+  const addNewCard = (name, link) => {
+    return fetch(`${config.baseUrl}/cards`, {
+      headers: config.headers,
+      method: 'POST',
+      body: JSON.stringify({
+          name: name,
+           link: link
+      })
+    })
+  }
+  const deleteCard = (id) => {
+    return fetch(`${config.baseUrl}/cards/${id}`, {
+      headers: config.headers,
+      method: 'DELETE',
+    })
+  }
+  const likeCard = (id) => {
+    return fetch(`${config.baseUrl}/cards/likes/${id}`, {
+      headers: config.headers,
+      method: 'PUT',
+    })
+  }
+  const deleteLikeCard = (id) => {
+    return fetch(`${config.baseUrl}/cards/likes/${id}`, {
+      headers: config.headers,
+      method: 'DELETE',
     })
   }
 
 
-
-export {getInitialProfile, getInitialCards, editDataProfile, resOk};
+export {getInitialProfile, getInitialCards, editDataProfile, addNewCard, deleteCard, likeCard, deleteLikeCard, resOk};

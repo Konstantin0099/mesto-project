@@ -1,14 +1,12 @@
 .page {
-
-    display: block;
-    margin: 0;
-    min-width: 320px;
-    max-width: 1280px;
-    box-sizing: border-box;
+  display: block;
+  margin: 0;
+  min-width: 320px;
+  max-width: 1280px;
+  box-sizing: border-box;
 }
 @media screen and (max-width: 930px) {
-    .page {
-      padding: 0 16px;
-    }
+  .page {
+    padding: 0 16px;
   }
-  
+}
