@@ -1,6 +1,6 @@
 import { createElementSection } from "../components/card";
-import { editDataProfile, resOk } from "../components/api";
-
+import { editDataProfile, resOk, addNewCard} from "../components/api";
+let ownerId = 0;
 const profile = document.querySelector(".profile");
 const profileInfoName = profile.querySelector(".profile-info__name");
 const profileInfoVocation = profile.querySelector(".profile-info__vocation");
@@ -63,18 +63,21 @@ const keyDownEscape = (evt) => {
     closePopup(openedPopup);
   }
 };   
-// function addProfileInfo(name, vocation, avatar = "https://pictures.s3.yandex.net/frontend-developer/common/ava.jpg") {
-function addProfileInfo(name, vocation) {
-  profileInfoName.textContent = name;
-  profileInfoVocation.textContent = vocation;
-  // profileAvatar.src = avatar;
-  // profileAvatar.alt = name + ", " + vocation;
+// function addProfileInfo(name, vocation, avatar) {.name ,profile.about, profile.avatar e20ca8435ebf0d83d771fc9d
+function addProfileInfo(profile) {
+  ownerId = profile._id;
+  profileInfoName.textContent = profile.name;
+  profileInfoVocation.textContent = profile.about;
+  profileAvatar.src = "https://cdn.pixabay.com/photo/2019/05/16/16/50/man-4207514_960_720.jpg";
+  // profileAvatar.src = profile.avatar;
+  profileAvatar.alt = profile.name + ", " + profile.about;
+  console.log("-------ID");
 };
 inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
   evt.preventDefault();
   resOk(editDataProfile(namePopupProfileInfo.value, professionPopupProfileInfo.value))
   .then((profile) => {
-    addProfileInfo(profile.name ,profile.about)
+    addProfileInfo(profile)
   })
   .catch((err) => { console.log(err);
   }); 
@@ -87,10 +90,15 @@ inputSubmitItemElement.addEventListener("submit", function (evt) {
     link: inputContainerItemUrl.value,
     name: inputContainerItemNameMesto.value,
   };
-  elements.prepend(createElementSection(newCard));
-  closePopup(popupCardAdd);
-  evt.target.reset();
-  inputContainerSubmitItem.disabled = true;
+resOk(addNewCard(newCard.name, newCard.link))
+   .then((card) => {
+      elements.prepend(createElementSection(card));
+   })
+   .catch((err) => { console.log(err);
+   }); 
+   closePopup(popupCardAdd);
+   evt.target.reset();
+   inputContainerSubmitItem.disabled = true;
 });
 
-export { openPopupProfileInfo, openPopupAddCard, openPopup, addProfileInfo, profile, elements };
+export { openPopupProfileInfo, openPopupAddCard, openPopup, addProfileInfo, profile, elements, ownerId};

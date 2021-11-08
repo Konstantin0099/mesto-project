@@ -6,7 +6,7 @@
   
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 44px;
+  grid-template-columns: 1fr 64px;
   grid-template-rows: 77% 23%;
   gap: 0;
   grid-template-areas:

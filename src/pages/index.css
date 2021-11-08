@@ -21,7 +21,9 @@
 @import url(../block/element/__figcaption/element__figcaption.css);
 @import url(../block/like/like.css);
 @import url(../block/like/_click/like_click.css);
+@import url(../block/like/__numbers/like__numbers.css);
 @import url(../block/trash/trash.css);
+@import url(../block/trash/_include/trash_include.css);
 @import url(../block/popup/__container/popup__container.css);
 @import url(../block/popup/_profile-info/popup_profile-info.css);
 @import url(../block/popup/popup.css);

@@ -1,5 +1,9 @@
 
 .like {
+  padding: 0;
+  margin: 25px auto auto;
+  position: relative;
+  display: flex;
   grid-area: like;
   width: 22px;
   height: 19px;

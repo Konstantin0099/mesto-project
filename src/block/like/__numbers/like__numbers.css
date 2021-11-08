@@ -1,0 +1,10 @@
+.like__numbers {
+    margin: 48px auto auto;
+    grid-area: like;
+    font-family: "inter", "Arial", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+  }
+  

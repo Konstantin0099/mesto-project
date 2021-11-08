@@ -21,20 +21,18 @@ const profileInfoEditButton = profile.querySelector(
   ".profile-info__edit-button"
 );
 const profileAddButton = profile.querySelector(".profile__add-button");
-
 profileInfoEditButton.addEventListener("click", openPopupProfileInfo);
 profileAddButton.addEventListener("click", openPopupAddCard);
-
 resOk(getInitialCards())
   .then((arrayCards) => {
     initialCards(arrayCards);
   })
-  .catch((err) => { console.log(err);
+  .catch((err) => { console.log("ошибка---InitialCards----", err);
   });
 
 resOk(getInitialProfile())
   .then((profile) => {
-    addProfileInfo(profile.name ,profile.about)
+    addProfileInfo(profile)
   })
-  .catch((err) => { console.log(err);
+  .catch((err) => { console.log("ошибка---InitialProfile----", err);
   }); 
