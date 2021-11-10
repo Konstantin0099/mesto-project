@@ -27,5 +27,7 @@
   .profile-info__name {
     margin: auto 10px auto auto;
     text-align: center;
+    max-width: 85%;
+    min-width: 65%;
   }
 }

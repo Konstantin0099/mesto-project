@@ -1,20 +1,20 @@
 .profile__avatar-click {
-  visibility: visible;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  background-size: 22% 22%;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
 }
 .profile__avatar-click:hover {
   background-color: rgba(0, 0, 0, 0.8);
+  background-size: 22% 22%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
   background-image: url("../../../../src/image/stylus.svg");
 }
 
 @media screen and (max-width: 690px) {
-    .profile__avatar-click {
+  .profile__avatar-click {
     margin: 60px auto 30px auto;
-
   }
 }

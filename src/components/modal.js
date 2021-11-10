@@ -1,6 +1,7 @@
 import { createElementSection } from "../components/card";
 import {
-  editDataProfile, editAvatarProfile,
+  editDataProfile,
+  editAvatarProfile,
   resOk,
   addNewCard,
   deleteCard,
@@ -14,7 +15,8 @@ const profileAvatar = profile.querySelector(".profile__avatar");
 const elements = document.querySelector(".elements");
 
 const popupUpdateAvatar = document.querySelector(".popup_update-avatar");
-const inputSubmitUpdateAvatar = popupUpdateAvatar.querySelector(".input-container");
+const inputSubmitUpdateAvatar =
+  popupUpdateAvatar.querySelector(".input-container");
 const urlUpdateAvatar = popupUpdateAvatar.querySelector(
   ".input-container__item_avatar"
 );
@@ -70,14 +72,13 @@ const openPopupAddCard = () => {
 const openPopupEditAvatar = () => {
   urlUpdateAvatar.value = "";
   openPopup(popupUpdateAvatar);
-}
+};
 
 const openPopupDeleteCard = (card) => {
   openPopup(popupCardDelete);
   const confirmDelete = () => {
     resOk(deleteCard(card.id))
       .then(() => {
-        // сard.removeEventListener("click", clickCard);
         card.closest(".element").remove();
       })
       .catch((err) => {
@@ -97,6 +98,7 @@ const closePopup = (overlay) => {
   overlay.classList.remove("popup_opened");
   document.removeEventListener("keydown", keyDownEscape);
 };
+
 const keyDownEscape = (evt) => {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".popup_opened");
@@ -111,19 +113,18 @@ function addProfileInfo(profile) {
   profileAvatar.src = profile.avatar;
   profileAvatar.alt = profile.name + ", " + profile.about;
 }
-
+function buttonSavingData(form, text){
+  form.querySelector(
+      ".input-container__submit-item"
+    ).textContent = text ;
+  }
 function addAvatar(avatar) {
   profileAvatar.src = avatar.avatar;
-    // "https://cdn.pixabay.com/photo/2019/05/16/16/50/man-4207514_960_720.jpg";
 }
 
 inputSubmitUpdateAvatar.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  resOk(
-    editAvatarProfile(
-      urlUpdateAvatar.value
-    )
-  )
+  resOk(editAvatarProfile(urlUpdateAvatar.value))
     .then((avatar) => {
       addAvatar(avatar);
     })
@@ -134,6 +135,7 @@ inputSubmitUpdateAvatar.addEventListener("submit", function (evt) {
 });
 
 inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
+  buttonSavingData(inputSubmitItemProfileInfo, "Сохранение....")
   evt.preventDefault();
   resOk(
     editDataProfile(
@@ -147,10 +149,13 @@ inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
     .catch((err) => {
       console.log("ОШИБКА_ProfileInfo__", err);
     });
-  closePopup(popupProfile);
+    closePopup(popupProfile);
+    buttonSavingData(inputSubmitItemProfileInfo, "Сохранить")
 });
 
+
 inputSubmitItemElement.addEventListener("submit", function (evt) {
+  buttonSavingData(inputSubmitItemElement, "Сохранение....")
   evt.preventDefault();
   const newCard = {
     link: inputContainerItemUrl.value,
@@ -166,6 +171,7 @@ inputSubmitItemElement.addEventListener("submit", function (evt) {
   closePopup(popupCardAdd);
   evt.target.reset();
   inputContainerSubmitItem.disabled = true;
+  buttonSavingData(inputSubmitItemElement, "Сохранить")
 });
 
 export {

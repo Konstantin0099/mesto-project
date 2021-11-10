@@ -1,7 +1,6 @@
 .profile__avatar {
-  z-index: -3;
+  z-index: -1;
   object-fit: cover;
-  visibility: visible;
   border-radius: 50%;
   width: 120px;
   height: 120px;
@@ -10,6 +9,5 @@
 @media screen and (max-width: 690px) {
   .profile__avatar {
     margin: 0;
-    /* margin: 69.85px auto 0; */
   }
 }
