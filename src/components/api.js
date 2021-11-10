@@ -18,11 +18,13 @@ const getInitialProfile = () => {
         headers: config.headers
      })
   } 
+
 const getInitialCards = () => {
     return fetch(`${config.baseUrl}/cards`, {
         headers: config.headers
     })
   } 
+
   const editDataProfile = (name, about) => {
     return fetch(`${config.baseUrl}/users/me`, {
       headers: config.headers,
@@ -33,6 +35,20 @@ const getInitialCards = () => {
       })
     })
   }
+
+  const editAvatarProfile = (avatar) => {
+    return fetch(`${config.baseUrl}/users/me/avatar`, {
+      headers: config.headers,
+      method: 'PATCH',
+      body: JSON.stringify({
+           avatar: avatar
+      })
+    })
+  }
+
+
+
+
   const addNewCard = (name, link) => {
     return fetch(`${config.baseUrl}/cards`, {
       headers: config.headers,
@@ -63,4 +79,4 @@ const getInitialCards = () => {
   }
 
 
-export {getInitialProfile, getInitialCards, editDataProfile, addNewCard, deleteCard, likeCard, deleteLikeCard, resOk};
+export {getInitialProfile, getInitialCards, editDataProfile, editAvatarProfile, addNewCard, deleteCard, likeCard, deleteLikeCard, resOk};

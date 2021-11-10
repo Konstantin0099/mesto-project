@@ -1,7 +1,7 @@
 .profile-info {
   display: flex;
   flex-wrap: wrap;
-  margin: auto 0;
+  margin: auto 0 auto 30px;
   color: #ffffff;
   max-width: 556px;
   min-width: 300px;
