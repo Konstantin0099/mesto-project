@@ -4,6 +4,7 @@ import { getInitialProfile, getInitialCards, resOk} from "../components/api";
 import { initialCards } from "../components/card";
 import {
   openPopupProfileInfo,
+  openPopupEditAvatar,
   openPopupAddCard,
   profile,
   addProfileInfo,
@@ -21,8 +22,13 @@ const profileInfoEditButton = profile.querySelector(
   ".profile-info__edit-button"
 );
 const profileAddButton = profile.querySelector(".profile__add-button");
+const profileAvatarClick = profile.querySelector(".profile__avatar-click");
+
+
+profileAvatarClick.addEventListener("click", openPopupEditAvatar);
 profileInfoEditButton.addEventListener("click", openPopupProfileInfo);
 profileAddButton.addEventListener("click", openPopupAddCard);
+
 resOk(getInitialCards())
   .then((arrayCards) => {
     initialCards(arrayCards);
@@ -36,3 +42,9 @@ resOk(getInitialProfile())
   })
   .catch((err) => { console.log("ошибка---InitialProfile----", err);
   }); 
+  // resOk(getInitialProfile())
+  // .then((profile) => {
+  //   addProfileInfo(profile)
+  // })
+  // .catch((err) => { console.log("ошибка---InitialProfile----", err);
+  // }); 

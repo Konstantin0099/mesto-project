@@ -1,4 +1,4 @@
-import { clickOverlay} from "../components/modal";
+
 export function enableValidation(dataValidation) {
   const addErrorInput = (form) => {
     form.form.classList.add(`${dataValidation.errorClass}`);
@@ -18,7 +18,9 @@ export function enableValidation(dataValidation) {
     form.buttonSubmit.disabled = false;
   };
   const hasValidForm = (form) => {
-    const inputList = Array.from(form.form.querySelectorAll(`${dataValidation.inputSelector}`));
+    const inputList = Array.from(
+      form.form.querySelectorAll(`${dataValidation.inputSelector}`)
+    );
     return inputList.every((input) => {
       return input.validity.valid;
     });
@@ -32,7 +34,6 @@ export function enableValidation(dataValidation) {
       return true;
     }
   };
-  
   const hasValid = (evt) => {
     const form = {
       form: evt.currentTarget,
@@ -49,15 +50,15 @@ export function enableValidation(dataValidation) {
       } else {
         disableButton(form);
       }
-    }
-    else {
+    } else {
       disableButton(form);
     }
   };
   const formList = Array.from(document.forms);
   formList.forEach((form) => {
     form.querySelector(
-      `${dataValidation.submitButtonSelector}`).disabled = true;
-      form.addEventListener("input", hasValid);
+      `${dataValidation.submitButtonSelector}`
+    ).disabled = true;
+    form.addEventListener("input", hasValid);
   });
- }; 
+}

@@ -4,32 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-    <!-- <link rel="stylesheet" href="./../src/pages/index.css" /> -->
   </head>
   <body class="root">
     <div class="page">
       <header class="header">
-        <img class="header__logo" src="<%=require('./../src/image/mesto_logo_w.svg')%>" alt="место" />
+        <img
+          class="header__logo"
+          src="<%=require('./../src/image/mesto_logo_w.svg')%>"
+          alt="место"
+        />
       </header>
+
       <main class="content">
+
         <section class="profile">
-          <img
-          class="profile__avatar"
-          src=""
-          alt=""
-          />
+          <div class="profile__avatar-click">
+          <img class="profile__avatar" src="" alt="" /></div>
           <div class="profile-info">
-            <h1 class="profile-info__name">Жак&#8209;Ив&nbsp;Кусто</h1>
+            <h1 class="profile-info__name">.......</h1>
+            <!-- Жак&#8209;Ив&nbsp;Кусто -->
             <button type="button" class="profile-info__edit-button">
-              <img class="profile-info__img" src="<%=require('./../src/image/stylus.svg')%>" alt="X" />
+              <img
+                class="profile-info__img"
+                src="<%=require('./../src/image/stylus.svg')%>"
+                alt="X"
+              />
             </button>
-            <h2 class="profile-info__vocation">Исследователь океана</h2>
+            <h2 class="profile-info__vocation">.............</h2>
           </div>
           <button class="profile__add-button" type="button">
             <img src="<%=require('./../src/image/+.svg')%>" alt="++++" />
           </button>
         </section>
+
         <section class="elements"></section>
+
         <section class="popup popup_profile-info">
           <div id="popup-profile-info" class="popup__container">
             <button class="popup__click" type="button"></button>
@@ -46,7 +55,7 @@
                   placeholder="Имя"
                   value="Жак&#8209;Ив&nbsp;Кусто"
                   required
-                  autocomplete = "off"
+                  autocomplete="off"
                 />
                 <span class="input-name-error"></span>
                 <input
@@ -59,7 +68,7 @@
                   placeholder="О себе"
                   value="Исследователь океана"
                   required
-                  autocomplete = "off"
+                  autocomplete="off"
                 />
                 <span class="input-profession-error"></span>
               </fieldset>
@@ -71,6 +80,7 @@
             </form>
           </div>
         </section>
+
         <section class="popup popup_card-add">
           <div id="popup-element" class="popup__container">
             <button class="popup__click" type="button"></button>
@@ -86,7 +96,7 @@
                   maxlength="30"
                   placeholder="Наименование"
                   required
-                  autocomplete = "off"
+                  autocomplete="off"
                 />
                 <span class="input-nameMesto-error"></span>
                 <input
@@ -96,7 +106,7 @@
                   id="input-url"
                   placeholder="Не ссылка"
                   required
-                  autocomplete = "off"
+                  autocomplete="off"
                 />
                 <span class="input-url-error"></span>
               </fieldset>
@@ -108,6 +118,7 @@
             </form>
           </div>
         </section>
+
         <section class="popup popup_picture">
           <div class="popup-img">
             <button class="popup__click" type="button"></button>
@@ -115,10 +126,53 @@
             <p class="popup-figcaption"></p>
           </div>
         </section>
+
+        <section class="popup popup_delete-card">
+          <div id="popup-delete-card" class="popup__container">
+            <button class="popup__click" type="button"></button>
+            <h3 class="popup__heading">Вы уверены?</h3>
+            <!-- <form class="input-container" name="input-container" novalidate> -->
+            <!-- <fieldset class="input-container__submit"> -->
+            <button class="input-container__submit-item" type="button">
+              Да
+            </button>
+            <!-- </fieldset> -->
+            <!-- </form> -->
+          </div>
+        </section>
+
+        <section class="popup popup_update-avatar">
+          <div id="popup-update-avatar" class="popup__container">
+            <button class="popup__click" type="button"></button>
+            <h3 class="popup__heading">Обновить аватар</h3>
+            <form class="input-container" name="input-container-avatar" novalidate>
+              <fieldset class="input-container__fieldset">
+                <input
+                  type="url"
+                  class="input-container__item input-container__item_avatar"
+                  name="avatar"
+                  id="input-avatar"
+                  placeholder="Не ссылка"
+                  required
+                  autocomplete="off"
+                />
+                <span class="input-avatar-error"></span>
+              </fieldset>
+            <fieldset class="input-container__submit">
+            <button class="input-container__submit-item" type="submit">
+              Сохранить
+            </button>
+            </fieldset>
+            </form>
+          </div>
+        </section>
+
       </main>
+
       <footer class="footer">
         <h3 class="footer__title">&copy;2020 Mesto Russia</h3>
       </footer>
+
       <template id="elementsSection">
         <div class="element">
           <button class="trash" type="button"></button>
@@ -128,6 +182,7 @@
           <p class="like__numbers"></p>
         </div>
       </template>
+
     </div>
   </body>
 </html>
