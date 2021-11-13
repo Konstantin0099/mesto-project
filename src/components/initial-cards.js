@@ -5,8 +5,8 @@
 //       link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
 //     },
 //     {
-//       name: "Челябинская область",
-//       link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+//       name: "Аватар",
+//       link: "https://cdn.pixabay.com/photo/2019/05/16/16/50/man-4207514_960_720.jpg",
 //     },
 //     {
 //       name: "web-developer",
@@ -20,7 +20,7 @@
 //       name: "Красноярск",
 //       link: "https://4.404content.com/1/89/E2/2091335527437174365/fullsize.jpg",
 //     },
-//     {   // "https://cdn.pixabay.com/photo/2019/05/16/16/50/man-4207514_960_720.jpg";
+//     {   "https://cdn.pixabay.com/photo/2019/05/16/16/50/man-4207514_960_720.jpg";
 //       name: "Байкал",
 //       link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
 //     },

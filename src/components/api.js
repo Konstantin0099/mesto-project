@@ -13,57 +13,58 @@ const resOk = (requestServer) =>{
         return Promise.reject(`Ошибка: ${res.status}`)
       })
 }
-const getInitialProfile = () => {
-     return fetch(`${config.baseUrl}/users/me`, {
-        headers: config.headers
-     })
-  } 
 
 const getInitialCards = () => {
-    return fetch(`${config.baseUrl}/cards`, {
+    return resOk(fetch(`${config.baseUrl}/cards`, {
         headers: config.headers
-    })
+    }))
+  } 
+
+const getInitialProfile = () => {
+     return resOk(fetch(`${config.baseUrl}/users/me`, {
+        headers: config.headers
+     }))
   } 
 
   const editDataProfile = (name, about) => {
-    return fetch(`${config.baseUrl}/users/me`, {
+    return resOk(fetch(`${config.baseUrl}/users/me`, {
       headers: config.headers,
       method: 'PATCH',
       body: JSON.stringify({
            name: name,
            about: about,
       })
-    })
+    }))
   }
 
   const editAvatarProfile = (avatar) => {
-    return fetch(`${config.baseUrl}/users/me/avatar`, {
+    return resOk(fetch(`${config.baseUrl}/users/me/avatar`, {
       headers: config.headers,
       method: 'PATCH',
       body: JSON.stringify({
            avatar: avatar
       })
-    })
+    }))
   }
 
 
 
 
   const addNewCard = (name, link) => {
-    return fetch(`${config.baseUrl}/cards`, {
+    return resOk(fetch(`${config.baseUrl}/cards`, {
       headers: config.headers,
       method: 'POST',
       body: JSON.stringify({
           name: name,
            link: link
       })
-    })
+    }))
   }
   const deleteCard = (id) => {
-    return fetch(`${config.baseUrl}/cards/${id}`, {
+    return resOk(fetch(`${config.baseUrl}/cards/${id}`, {
       headers: config.headers,
       method: 'DELETE',
-    })
+    }))
   }
   const likeCard = (id) => {
     return fetch(`${config.baseUrl}/cards/likes/${id}`, {

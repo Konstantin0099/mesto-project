@@ -75,17 +75,22 @@ const openPopupEditAvatar = () => {
 };
 
 const openPopupDeleteCard = (card) => {
+ 
   openPopup(popupCardDelete);
   const confirmDelete = () => {
-    resOk(deleteCard(card.id))
+    buttonSavingData(popupCardDelete, " Удаление....");
+    deleteCard(card.id)
       .then(() => {
         card.closest(".element").remove();
+        closePopup(popupCardDelete);
+        buttonConfirmDelete.removeEventListener("click", confirmDelete);
       })
       .catch((err) => {
         console.log("ОШИБКА___", err);
+      })
+      .finally(() => {
+        buttonSavingData(popupCardDelete, " Да ");
       });
-    closePopup(popupCardDelete);
-    buttonConfirmDelete.removeEventListener("click", confirmDelete);
   };
   buttonConfirmDelete.addEventListener("click", confirmDelete);
 };
@@ -113,65 +118,71 @@ function addProfileInfo(profile) {
   profileAvatar.src = profile.avatar;
   profileAvatar.alt = profile.name + ", " + profile.about;
 }
-function buttonSavingData(form, text){
-  form.querySelector(
-      ".input-container__submit-item"
-    ).textContent = text ;
-  }
+function buttonSavingData(form, text) {
+  form.querySelector(".input-container__submit-item").textContent = text;
+}
 function addAvatar(avatar) {
   profileAvatar.src = avatar.avatar;
 }
 
 inputSubmitUpdateAvatar.addEventListener("submit", function (evt) {
+  buttonSavingData(inputSubmitUpdateAvatar, "Сохранение....");
   evt.preventDefault();
-  resOk(editAvatarProfile(urlUpdateAvatar.value))
+  editAvatarProfile(urlUpdateAvatar.value)
     .then((avatar) => {
       addAvatar(avatar);
+      closePopup(popupUpdateAvatar);
+      inputSubmitUpdateAvatar.disabled = true;
     })
     .catch((err) => {
       console.log("ОШИБКА_UpdateAvatar__", err);
+    })
+    .finally(() => {
+      buttonSavingData(inputSubmitUpdateAvatar, "Сохранить");
     });
-  closePopup(popupUpdateAvatar);
 });
 
 inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
-  buttonSavingData(inputSubmitItemProfileInfo, "Сохранение....")
+  buttonSavingData(inputSubmitItemProfileInfo, "Сохранение....");
   evt.preventDefault();
-  resOk(
     editDataProfile(
       namePopupProfileInfo.value,
       professionPopupProfileInfo.value
     )
-  )
     .then((profile) => {
       addProfileInfo(profile);
+      closePopup(popupProfile);
+      inputSubmitItemProfileInfo.disabled = true;
     })
     .catch((err) => {
       console.log("ОШИБКА_ProfileInfo__", err);
+    })
+    .finally(() => {
+      buttonSavingData(inputSubmitItemProfileInfo, "Сохранить");
     });
-    closePopup(popupProfile);
-    buttonSavingData(inputSubmitItemProfileInfo, "Сохранить")
 });
 
-
 inputSubmitItemElement.addEventListener("submit", function (evt) {
-  buttonSavingData(inputSubmitItemElement, "Сохранение....")
+  buttonSavingData(inputSubmitItemElement, "Сохранение....");
   evt.preventDefault();
   const newCard = {
     link: inputContainerItemUrl.value,
     name: inputContainerItemNameMesto.value,
   };
-  resOk(addNewCard(newCard.name, newCard.link))
+  addNewCard(newCard.name, newCard.link)
     .then((card) => {
-      elements.prepend(createElementSection(card));
+      // elements.prepend(createElementSection(card));
+      // createElementSection(card, "prepend");
+      closePopup(popupCardAdd);
+      evt.target.reset();
+      inputContainerSubmitItem.disabled = true;
     })
     .catch((err) => {
       console.log("ОШИБКА__ItemElement_", err);
+    })
+    .finally(() => {
+      buttonSavingData(inputSubmitItemElement, "Сохранить");
     });
-  closePopup(popupCardAdd);
-  evt.target.reset();
-  inputContainerSubmitItem.disabled = true;
-  buttonSavingData(inputSubmitItemElement, "Сохранить")
 });
 
 export {

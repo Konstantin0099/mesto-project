@@ -1,6 +1,6 @@
-import './index.css';
+import "./index.css";
 import { enableValidation } from "../components/validate";
-import { getInitialProfile, getInitialCards, resOk} from "../components/api";
+import { getInitialProfile, getInitialCards, resOk } from "../components/api";
 import { initialCards } from "../components/card";
 import {
   openPopupProfileInfo,
@@ -24,27 +24,15 @@ const profileInfoEditButton = profile.querySelector(
 const profileAddButton = profile.querySelector(".profile__add-button");
 const profileAvatarClick = profile.querySelector(".profile__avatar-click");
 
-
 profileAvatarClick.addEventListener("click", openPopupEditAvatar);
 profileInfoEditButton.addEventListener("click", openPopupProfileInfo);
 profileAddButton.addEventListener("click", openPopupAddCard);
 
-resOk(getInitialCards())
-  .then((arrayCards) => {
-    initialCards(arrayCards);
+Promise.all([getInitialCards(), getInitialProfile()])
+  .then(([arrayInitialCards, InitialProfile]) => {
+    addProfileInfo(InitialProfile);
+    initialCards(arrayInitialCards);
   })
-  .catch((err) => { console.log("ошибка---InitialCards----", err);
+  .catch((err) => {
+    console.log("ошибка---InitialProfilePromiseAll----", err);
   });
-
-resOk(getInitialProfile())
-  .then((profile) => {
-    addProfileInfo(profile)
-  })
-  .catch((err) => { console.log("ошибка---InitialProfile----", err);
-  }); 
-  // resOk(getInitialProfile())
-  // .then((profile) => {
-  //   addProfileInfo(profile)
-  // })
-  // .catch((err) => { console.log("ошибка---InitialProfile----", err);
-  // }); 
