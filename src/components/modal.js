@@ -8,6 +8,7 @@ import {
 } from "../components/api";
 
 let ownerId = 0;
+let cardDelete = {};
 const profile = document.querySelector(".profile");
 const profileInfoName = profile.querySelector(".profile-info__name");
 const profileInfoVocation = profile.querySelector(".profile-info__vocation");
@@ -20,6 +21,9 @@ const inputSubmitUpdateAvatar =
 const urlUpdateAvatar = popupUpdateAvatar.querySelector(
   ".input-container__item_avatar"
 );
+const inputSubmitButtonUpdateAvatar = popupUpdateAvatar.querySelector(
+  ".input-container__submit-item"
+);
 
 const popupProfile = document.querySelector(".popup_profile-info");
 const popupProfileInfo = popupProfile.querySelector(".popup__container");
@@ -31,6 +35,10 @@ const professionPopupProfileInfo = popupProfileInfo.querySelector(
 );
 const inputSubmitItemProfileInfo =
   popupProfileInfo.querySelector(".input-container");
+const inputSubmitButtonItemProfileInfo = popupProfileInfo.querySelector(
+  ".input-container__submit-item"
+);
+
 const popupCardAdd = document.querySelector(".popup_card-add");
 const inputContainerSubmitItem = popupCardAdd.querySelector(
   `.input-container__submit-item`
@@ -74,24 +82,25 @@ const openPopupEditAvatar = () => {
   openPopup(popupUpdateAvatar);
 };
 
+const confirmDelete = () => {
+  buttonSavingData(popupCardDelete, " Удаление....");
+  deleteCard(cardDelete.id)
+    .then(() => {
+      cardDelete.closest(".element").remove();
+      closePopup(popupCardDelete);
+    })
+    .catch((err) => {
+      console.log("ОШИБКА___", err);
+    })
+    .finally(() => {
+      buttonConfirmDelete.removeEventListener("click", confirmDelete);
+      buttonSavingData(popupCardDelete, " Да ");
+    });
+};
+
 const openPopupDeleteCard = (card) => {
- 
+  cardDelete = card;
   openPopup(popupCardDelete);
-  const confirmDelete = () => {
-    buttonSavingData(popupCardDelete, " Удаление....");
-    deleteCard(card.id)
-      .then(() => {
-        card.closest(".element").remove();
-        closePopup(popupCardDelete);
-        buttonConfirmDelete.removeEventListener("click", confirmDelete);
-      })
-      .catch((err) => {
-        console.log("ОШИБКА___", err);
-      })
-      .finally(() => {
-        buttonSavingData(popupCardDelete, " Да ");
-      });
-  };
   buttonConfirmDelete.addEventListener("click", confirmDelete);
 };
 
@@ -132,33 +141,30 @@ inputSubmitUpdateAvatar.addEventListener("submit", function (evt) {
     .then((avatar) => {
       addAvatar(avatar);
       closePopup(popupUpdateAvatar);
-      inputSubmitUpdateAvatar.disabled = true;
     })
     .catch((err) => {
       console.log("ОШИБКА_UpdateAvatar__", err);
     })
     .finally(() => {
       buttonSavingData(inputSubmitUpdateAvatar, "Сохранить");
+      inputSubmitButtonUpdateAvatar.disabled = true;
     });
 });
 
 inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
   buttonSavingData(inputSubmitItemProfileInfo, "Сохранение....");
   evt.preventDefault();
-    editDataProfile(
-      namePopupProfileInfo.value,
-      professionPopupProfileInfo.value
-    )
+  editDataProfile(namePopupProfileInfo.value, professionPopupProfileInfo.value)
     .then((profile) => {
       addProfileInfo(profile);
       closePopup(popupProfile);
-      inputSubmitItemProfileInfo.disabled = true;
     })
     .catch((err) => {
       console.log("ОШИБКА_ProfileInfo__", err);
     })
     .finally(() => {
       buttonSavingData(inputSubmitItemProfileInfo, "Сохранить");
+      inputSubmitButtonItemProfileInfo.disabled = true;
     });
 });
 
@@ -171,17 +177,16 @@ inputSubmitItemElement.addEventListener("submit", function (evt) {
   };
   addNewCard(newCard.name, newCard.link)
     .then((card) => {
-      // elements.prepend(createElementSection(card));
-      // createElementSection(card, "prepend");
+      createElementSection(card, "prepend");
       closePopup(popupCardAdd);
       evt.target.reset();
-      inputContainerSubmitItem.disabled = true;
     })
     .catch((err) => {
       console.log("ОШИБКА__ItemElement_", err);
     })
     .finally(() => {
       buttonSavingData(inputSubmitItemElement, "Сохранить");
+      inputContainerSubmitItem.disabled = true;
     });
 });
 

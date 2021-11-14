@@ -1,4 +1,3 @@
-
 export function enableValidation(dataValidation) {
   const addErrorInput = (form) => {
     form.form.classList.add(`${dataValidation.errorClass}`);
