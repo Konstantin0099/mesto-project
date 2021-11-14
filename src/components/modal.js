@@ -8,6 +8,7 @@ import {
 } from "../components/api";
 
 let ownerId = 0;
+let cardDelete = {};
 const profile = document.querySelector(".profile");
 const profileInfoName = profile.querySelector(".profile-info__name");
 const profileInfoVocation = profile.querySelector(".profile-info__vocation");
@@ -20,6 +21,9 @@ const inputSubmitUpdateAvatar =
 const urlUpdateAvatar = popupUpdateAvatar.querySelector(
   ".input-container__item_avatar"
 );
+const inputSubmitButtonUpdateAvatar = popupUpdateAvatar.querySelector(
+  ".input-container__submit-item"
+);
 
 const popupProfile = document.querySelector(".popup_profile-info");
 const popupProfileInfo = popupProfile.querySelector(".popup__container");
@@ -31,6 +35,10 @@ const professionPopupProfileInfo = popupProfileInfo.querySelector(
 );
 const inputSubmitItemProfileInfo =
   popupProfileInfo.querySelector(".input-container");
+const inputSubmitButtonItemProfileInfo = popupProfileInfo.querySelector(
+  ".input-container__submit-item"
+);
+
 const popupCardAdd = document.querySelector(".popup_card-add");
 const inputContainerSubmitItem = popupCardAdd.querySelector(
   `.input-container__submit-item`
@@ -74,19 +82,25 @@ const openPopupEditAvatar = () => {
   openPopup(popupUpdateAvatar);
 };
 
+const confirmDelete = () => {
+  buttonSavingData(popupCardDelete, " Удаление....");
+  deleteCard(cardDelete.id)
+    .then(() => {
+      cardDelete.closest(".element").remove();
+      closePopup(popupCardDelete);
+    })
+    .catch((err) => {
+      console.log("ОШИБКА___", err);
+    })
+    .finally(() => {
+      buttonConfirmDelete.removeEventListener("click", confirmDelete);
+      buttonSavingData(popupCardDelete, " Да ");
+    });
+};
+
 const openPopupDeleteCard = (card) => {
+  cardDelete = card;
   openPopup(popupCardDelete);
-  const confirmDelete = () => {
-    resOk(deleteCard(card.id))
-      .then(() => {
-        card.closest(".element").remove();
-      })
-      .catch((err) => {
-        console.log("ОШИБКА___", err);
-      });
-    closePopup(popupCardDelete);
-    buttonConfirmDelete.removeEventListener("click", confirmDelete);
-  };
   buttonConfirmDelete.addEventListener("click", confirmDelete);
 };
 
@@ -113,65 +127,67 @@ function addProfileInfo(profile) {
   profileAvatar.src = profile.avatar;
   profileAvatar.alt = profile.name + ", " + profile.about;
 }
-function buttonSavingData(form, text){
-  form.querySelector(
-      ".input-container__submit-item"
-    ).textContent = text ;
-  }
+function buttonSavingData(form, text) {
+  form.querySelector(".input-container__submit-item").textContent = text;
+}
 function addAvatar(avatar) {
   profileAvatar.src = avatar.avatar;
 }
 
 inputSubmitUpdateAvatar.addEventListener("submit", function (evt) {
+  buttonSavingData(inputSubmitUpdateAvatar, "Сохранение....");
   evt.preventDefault();
-  resOk(editAvatarProfile(urlUpdateAvatar.value))
+  editAvatarProfile(urlUpdateAvatar.value)
     .then((avatar) => {
       addAvatar(avatar);
+      closePopup(popupUpdateAvatar);
     })
     .catch((err) => {
       console.log("ОШИБКА_UpdateAvatar__", err);
+    })
+    .finally(() => {
+      buttonSavingData(inputSubmitUpdateAvatar, "Сохранить");
+      inputSubmitButtonUpdateAvatar.disabled = true;
     });
-  closePopup(popupUpdateAvatar);
 });
 
 inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
-  buttonSavingData(inputSubmitItemProfileInfo, "Сохранение....")
+  buttonSavingData(inputSubmitItemProfileInfo, "Сохранение....");
   evt.preventDefault();
-  resOk(
-    editDataProfile(
-      namePopupProfileInfo.value,
-      professionPopupProfileInfo.value
-    )
-  )
+  editDataProfile(namePopupProfileInfo.value, professionPopupProfileInfo.value)
     .then((profile) => {
       addProfileInfo(profile);
+      closePopup(popupProfile);
     })
     .catch((err) => {
       console.log("ОШИБКА_ProfileInfo__", err);
+    })
+    .finally(() => {
+      buttonSavingData(inputSubmitItemProfileInfo, "Сохранить");
+      inputSubmitButtonItemProfileInfo.disabled = true;
     });
-    closePopup(popupProfile);
-    buttonSavingData(inputSubmitItemProfileInfo, "Сохранить")
 });
 
-
 inputSubmitItemElement.addEventListener("submit", function (evt) {
-  buttonSavingData(inputSubmitItemElement, "Сохранение....")
+  buttonSavingData(inputSubmitItemElement, "Сохранение....");
   evt.preventDefault();
   const newCard = {
     link: inputContainerItemUrl.value,
     name: inputContainerItemNameMesto.value,
   };
-  resOk(addNewCard(newCard.name, newCard.link))
+  addNewCard(newCard.name, newCard.link)
     .then((card) => {
-      elements.prepend(createElementSection(card));
+      createElementSection(card, "prepend");
+      closePopup(popupCardAdd);
+      evt.target.reset();
     })
     .catch((err) => {
       console.log("ОШИБКА__ItemElement_", err);
+    })
+    .finally(() => {
+      buttonSavingData(inputSubmitItemElement, "Сохранить");
+      inputContainerSubmitItem.disabled = true;
     });
-  closePopup(popupCardAdd);
-  evt.target.reset();
-  inputContainerSubmitItem.disabled = true;
-  buttonSavingData(inputSubmitItemElement, "Сохранить")
 });
 
 export {
