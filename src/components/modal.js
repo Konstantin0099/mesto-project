@@ -141,13 +141,13 @@ inputSubmitUpdateAvatar.addEventListener("submit", function (evt) {
     .then((avatar) => {
       addAvatar(avatar);
       closePopup(popupUpdateAvatar);
+      inputSubmitButtonUpdateAvatar.disabled = true;
     })
     .catch((err) => {
       console.log("ОШИБКА_UpdateAvatar__", err);
     })
     .finally(() => {
       buttonSavingData(inputSubmitUpdateAvatar, "Сохранить");
-      inputSubmitButtonUpdateAvatar.disabled = true;
     });
 });
 
@@ -158,13 +158,13 @@ inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
     .then((profile) => {
       addProfileInfo(profile);
       closePopup(popupProfile);
+      inputSubmitButtonItemProfileInfo.disabled = true;
     })
     .catch((err) => {
       console.log("ОШИБКА_ProfileInfo__", err);
     })
     .finally(() => {
       buttonSavingData(inputSubmitItemProfileInfo, "Сохранить");
-      inputSubmitButtonItemProfileInfo.disabled = true;
     });
 });
 
@@ -180,13 +180,13 @@ inputSubmitItemElement.addEventListener("submit", function (evt) {
       createElementSection(card, "prepend");
       closePopup(popupCardAdd);
       evt.target.reset();
+      inputContainerSubmitItem.disabled = true;
     })
     .catch((err) => {
       console.log("ОШИБКА__ItemElement_", err);
     })
     .finally(() => {
       buttonSavingData(inputSubmitItemElement, "Сохранить");
-      inputContainerSubmitItem.disabled = true;
     });
 });
 
