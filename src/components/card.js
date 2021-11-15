@@ -61,7 +61,14 @@ function checkMyLikesInit(arrayLikes) {
     return card._id === ownerId;
   });
 }
-function createElementSection(card, metod) {
+
+
+
+
+
+
+function createElementSection(card) {
+
   const newCard = elementSectionTemplate
     .querySelector(".element")
     .cloneNode(true);
@@ -69,16 +76,9 @@ function createElementSection(card, metod) {
   imgNewCard.onload = resolve;
   imgNewCard.onerror = reject;
   imgNewCard.src = card.link;
-  if (metod === "prepend") {
-    elements.prepend(newCard);
-  }
-  if (metod === "append") {
-    elements.append(newCard);
-  }
-  function resolve() {
-    newCard.id = card._id;
-  }
   imgNewCard.alt = card.name;
+function resolve() {
+}
   newCard.id = card._id;
   newCard.querySelector(".element__figcaption").textContent = card.name;
   countLikes(newCard, card.likes);
@@ -89,14 +89,18 @@ function createElementSection(card, metod) {
     newCard.querySelector(".trash").classList.add("trash_include");
   }
   newCard.addEventListener("click", clickCard);
-  function reject() {
-    console.log("Ошибка загрузки______________");
-  }
+
+
+function reject() {
+  console.log("Ошибка загрузки______________");
+}
+return newCard;
 }
 
 function initialCards(arrayCards) {
   arrayCards.forEach((card) => {
-    createElementSection(card, "append");
+    elements.append(createElementSection(card))
+    // createElementSection(card, "append");
   });
 }
 export { createElementSection, initialCards };

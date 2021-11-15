@@ -5,6 +5,7 @@ import {
   resOk,
   addNewCard,
   deleteCard,
+  checkUrl,
 } from "../components/api";
 
 let ownerId = 0;
@@ -175,19 +176,32 @@ inputSubmitItemElement.addEventListener("submit", function (evt) {
     link: inputContainerItemUrl.value,
     name: inputContainerItemNameMesto.value,
   };
-  addNewCard(newCard.name, newCard.link)
-    .then((card) => {
-      createElementSection(card, "prepend");
-      closePopup(popupCardAdd);
-      evt.target.reset();
-      inputContainerSubmitItem.disabled = true;
-    })
-    .catch((err) => {
-      console.log("ОШИБКА__ItemElement_", err);
-    })
-    .finally(() => {
-      buttonSavingData(inputSubmitItemElement, "Сохранить");
-    });
+  let img = new Image();
+  img.onload = onLoadAddNewCard;
+  img.onerror = onErrorAddNewCard;
+  img.src = newCard.link;
+  function onLoadAddNewCard() {
+    addNewCard(newCard.name, newCard.link)
+      .then((card) => {
+        elements.prepend(createElementSection(card));
+        closePopup(popupCardAdd);
+        evt.target.reset();
+        inputContainerSubmitItem.disabled = true;
+      })
+      .catch((err) => {
+        console.log("ОШИБКА__ItemElement_", err);
+      })
+      .finally(() => {
+        buttonSavingData(inputSubmitItemElement, "Сохранить");
+      });
+  }
+  function onErrorAddNewCard() {
+    console.log("ОШИБКА__битая катрочка_");
+    inputContainerItemUrl.value = "неверный адрес картинки";
+    buttonSavingData(inputSubmitItemElement, "Сохранить");
+    inputContainerSubmitItem.disabled = true;
+
+  }
 });
 
 export {
