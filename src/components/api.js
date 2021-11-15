@@ -1,3 +1,7 @@
+// import { reject } from "core-js/fn/promise";
+
+// import { resolve } from "core-js/fn/promise";
+
 const config = {
   baseUrl: "https://nomoreparties.co/v1/plus-cohort-3",
   headers: {
@@ -67,6 +71,8 @@ const addNewCard = (name, link) => {
     })
   );
 };
+
+
 const deleteCard = (id) => {
   return resOk(
     fetch(`${config.baseUrl}/cards/${id}`, {
@@ -97,5 +103,5 @@ export {
   deleteCard,
   likeCard,
   deleteLikeCard,
-  resOk,
+  resOk
 };
