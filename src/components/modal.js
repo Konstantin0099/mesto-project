@@ -170,6 +170,7 @@ inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
 });
 
 inputSubmitItemElement.addEventListener("submit", function (evt) {
+  debugger;
   buttonSavingData(inputSubmitItemElement, "Сохранение....");
   evt.preventDefault();
   const newCard = {
