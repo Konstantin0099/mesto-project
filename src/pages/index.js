@@ -10,6 +10,15 @@ import {
   addProfileInfo,
 } from "../components/modal";
 
+const config = {
+  baseUrl: "https://nomoreparties.co/v1/plus-cohort-3",
+  headers: {
+    authorization: "506ae529-0bc2-4a43-a253-986c9dc5ffe6", //"506ae529-0bc2-4a43-a253-986c9dc5ffe6"
+    "Content-Type": "application/json",
+  },
+};
+
+
 enableValidation({
   formSelector: ".input-container",
   inputSelector: ".input-container__item",
@@ -36,3 +45,13 @@ Promise.all([getInitialCards(), getInitialProfile()])
   .catch((err) => {
     console.log("ошибка---InitialProfilePromiseAll----", err);
   });
+
+  function initialCards(arrayCards) {
+    arrayCards.forEach((card) => {
+  
+  const elementSection = new Card(card, selector)
+  
+      elements.append(elementSection)
+      // createElementSection(card, "append");
+    });
+  }
