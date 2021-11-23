@@ -1,7 +1,3 @@
-// import { reject } from "core-js/fn/promise";
-
-// import { resolve } from "core-js/fn/promise";
-
 const config = {
   baseUrl: "https://nomoreparties.co/v1/plus-cohort-3",
   headers: {
@@ -9,30 +5,37 @@ const config = {
     "Content-Type": "application/json",
   },
 };
-const resOk = (requestServer) => {
-  return requestServer.then((res) => {
+
+class Api {
+  constructor({ baseUrl, headers }) { // config = {baseUrl, headers }
+    this.baseUrl = baseUrl;
+    this.headers = headers;
+  }
+
+  
+  _resOk() {
     if (res.ok) {
       return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`);
-  });
-};
+  }
 
-const getInitialCards = () => {
-  return resOk(
-    fetch(`${config.baseUrl}/cards`, {
-      headers: config.headers,
-    })
-  );
-};
+  getInitialCards() {
+    return fetch(`${this.baseUrl}/cards`, {
+      headers: this.headers,
+    }).then(_resOk);
+  }
 
-const getInitialProfile = () => {
-  return resOk(
-    fetch(`${config.baseUrl}/users/me`, {
-      headers: config.headers,
-    })
-  );
-};
+  getInitialProfile() {
+    return fetch(`${this.baseUrl}/users/me`, {
+      headers: this.headers,
+    }).then(_resOk);
+  }
+
+
+}
+
+
 
 const editDataProfile = (name, about) => {
   return resOk(
@@ -46,6 +49,7 @@ const editDataProfile = (name, about) => {
     })
   );
 };
+
 
 const editAvatarProfile = (avatar) => {
   return resOk(
@@ -71,7 +75,6 @@ const addNewCard = (name, link) => {
     })
   );
 };
-
 
 const deleteCard = (id) => {
   return resOk(
@@ -103,5 +106,5 @@ export {
   deleteCard,
   likeCard,
   deleteLikeCard,
-  resOk
+  resOk,
 };
