@@ -1,15 +1,31 @@
+// класса Card
+// Поработайте с функциональностью работы карточек и валидации форм. 
+// Всю валидацию форм вы до этого писали в отдельном файле, а работу карточек — в другом. Теперь преобразуйте функции, которые существовали ранее, в единое целое — классы Card и FormValidator. В этом пункте задания поговорим про класс Card.
+// Организуйте в классе Card код, который создаёт карточку с текстом и ссылкой на изображение:
+// * 		принимает в конструктор её данные и селектор её template-элемента;
+// * 		содержит приватные методы, которые работают с разметкой, устанавливают слушателей событий;
+// * 		содержит приватные методы для каждого обработчика;
+// * 		содержит один публичный метод, который возвращает полностью работоспособный и наполненный данными элемент карточки.
+// Для каждой карточки создайте экземпляр класса Card. Когда дойдёте до реализации классов Popup, свяжите класс Card c попапом. 
+// Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick. 
+// При клике на карточку эта функция должна открывать попап с картинкой.
+import 
+  {ownerId}
+ from "../utils/constants";
 
 
-class Card {
-  constructor({ nameMesto, imageUrl, likes, _id, owner }, selectorTemplateElement) { // card = { nameMesto, imageUrl, likes, _id,}
-    this._nameMesto = nameMesto;
-    this._imageUrl = imageUrl;
-    this._likes = likes;
-    this._id = _id;
-    this._ownerId = owner._id;
+export default class Card {
+  constructor(data, selectorTemplateElement) { // card = { nameMesto, imageUrl, likes, _id,}
+    this._nameMesto = data.name;
+    this._imageUrl = data.link;
+    this._likes = data.likes;
+    this._id = data._id;
+    this._ownerId = data.owner._id;
+    // this._handleCardClick = handleCardClick; // чтобы Card принимал в конструктор функцию handleCardClick. 
     this._selectorTemplateElement = selectorTemplateElement;
 
   }
+
   _createElement() {
     return document
       .querySelector(this._selectorTemplateElement)
@@ -33,14 +49,19 @@ class Card {
   //   popupImage.src = "";
   //   popupElement.classList.remove("popup_is-opened");
   // }
-
+  // _handleCardClick() {
+  //   console.log("+++++++_handleCardClick()+++++");
+  // };
   _setEventListeners() {
     this._element.addEventListener('click', () => {
-      // this._handleOpenPopup()
+     // this._handleCardClick()    // При клике на карточку эта функция должна открывать попап с картинкой.
+     console.log("+++++++_setEventListeners() +++++");
     });
-    popupCloseButton.addEventListener('click', () => {
-      // this._handleClosePopup()
-    });
+
+    // popupCloseButton.addEventListener('click', () => {
+    //   // this._handleClosePopup()
+    //   console.log("+++++++_handleCardClick()+++++");
+    // });
   }
 
   _checkLikes(likeItem) {
@@ -84,12 +105,13 @@ class Card {
     if (item.classList.contains("trash")) {
       // this._openPopupDeleteCard(card);
     }
-    if (item.classList.contains("element__img")) {
-      // this._clickImg(item, card);
-    }
+    // if (item.classList.contains("element__img")) {
+    //   // this._clickImg(item, card);
+    // }
   };
 
   generate() {
+    // console.log("+++++++this._nameMesto+++++", this._nameMesto);
     this._element = this._createElement();
     this._setEventListeners();
     this._element.querySelector('.element__img').src = this._imageUrl;
@@ -104,6 +126,7 @@ class Card {
       this._element.querySelector(".trash").classList.add("trash_include");
     }
     this._element.addEventListener("click", this._clickCard);
+    // console.log("+++++++this._element+++++", this._element);
     return this._element;
   }
 
@@ -119,28 +142,18 @@ class Card {
 
 
 
-import { openPopupDeleteCard, openPopup, elements, ownerId } from "./Popup";
-import { deleteCard, likeCard, deleteLikeCard, resOk } from "./api";
-const popupPicture = document.querySelector(".popup_picture");
-const popupImg = popupPicture.querySelector(".popup-img");
-const imgPopup = popupImg.querySelector(".img-popup");
-const popupFigcaption = popupImg.querySelector(".popup-figcaption");
-const elementSectionTemplate =
-  document.querySelector("#elementsSection").content;
-
-
-
+// import { openPopupDeleteCard, openPopup, elements, ownerId } from "./Popup";
+// import { deleteCard, likeCard, deleteLikeCard, resOk } from "./Api";
 
 // function checkMyCard(card) {
 //   return card.owner._id === ownerId;
 // }
-function clickImg(imgItem, card) {
-  imgPopup.src = imgItem.src;
-  imgPopup.alt = imgItem.alt;
-  popupFigcaption.textContent = imgItem.alt;
-  openPopup(popupPicture);
-}
-
+// function clickImg(imgItem, card) {
+//   imgPopup.src = imgItem.src;
+//   imgPopup.alt = imgItem.alt;
+//   popupFigcaption.textContent = imgItem.alt;
+//   openPopup(popupPicture);
+// }
 
 // function checkMyLikesInit(arrayLikes) {
 //   return arrayLikes.some((card) => {
@@ -148,13 +161,7 @@ function clickImg(imgItem, card) {
 //   });
 // }
 
-
-
-
-
-
-function createElementSection(card) {
-
+// function createElementSection(card) {
   // const newCard = elementSectionTemplate
   //   .querySelector(".element")
   //   .cloneNode(true);
@@ -176,4 +183,4 @@ function createElementSection(card) {
 // }
 
 
-export { createElementSection, initialCards };
+// export { createElementSection, initialCards };
