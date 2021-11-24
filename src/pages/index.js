@@ -8,7 +8,7 @@ import {
   openPopupAddCard,
   profile,
   addProfileInfo,
-} from "../components/modal";
+} from "../components/Popup";
 
 const config = {
   baseUrl: "https://nomoreparties.co/v1/plus-cohort-3",
@@ -18,7 +18,26 @@ const config = {
   },
 };
 
+///////////////////////
 
+const api = new Api(Object1)
+api.initialCards // получаем с сервера карточки
+
+const card = new Card (Object2)
+card.renderer
+
+const Section = new Section (Object2)
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
 enableValidation({
   formSelector: ".input-container",
   inputSelector: ".input-container__item",

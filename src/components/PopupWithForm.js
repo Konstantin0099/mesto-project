@@ -11,15 +11,16 @@
     export default class PopupWithForm extends Popup {
         // * Кроме селектора попапа принимает в конструктор колбэк сабмита формы. 
         //В этом колбэке содержится метод класса Api.
-    constructor(){
+    constructor(selector, callback){
         super(selector);
-
+        this._callback = callback;
 
     }
 // * Содержит приватный метод _getInputValues, который собирает данные всех полей формы.
     _getInputValues(){
 
     }
+
 
 // * Перезаписывает родительский метод setEventListeners. 
 //Метод setEventListeners класса PopupWithForm должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.

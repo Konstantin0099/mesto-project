@@ -119,7 +119,7 @@ class Card {
 
 
 
-import { openPopupDeleteCard, openPopup, elements, ownerId } from "./modal";
+import { openPopupDeleteCard, openPopup, elements, ownerId } from "./Popup";
 import { deleteCard, likeCard, deleteLikeCard, resOk } from "./api";
 const popupPicture = document.querySelector(".popup_picture");
 const popupImg = popupPicture.querySelector(".popup-img");

@@ -8,58 +8,58 @@ class Popup {
   //		Принимает в конструктор единственный параметр — селектор попапа.
   constructor (selector) {
     this._selector = selector;
-}
-//		Содержит публичные методы open и close, которые отвечают за открытие и закрытие попапа.
-open(){
-  this.classList.add("popup_opened");
-  document.addEventListener("keydown", this._handleEscClose());
-}
-// function openPopup(overlay) {
-//   overlay.classList.add("popup_opened");
-//   document.addEventListener("keydown", keyDownEscape);
-// }
-close(){
-  this.classList.remove("popup_opened");
-  document.removeEventListener("keydown", this._handleEscClose());
-};
-// const closePopup = (overlay) => {
-//   overlay.classList.remove("popup_opened");
-//   document.removeEventListener("keydown", keyDownEscape);
-// };
-
-//		Содержит приватный метод _handleEscClose, который содержит логику закрытия попапа клавишей Esc.
-_handleEscClose = (evt) => {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_opened");
-    this.close(openedPopup);
   }
-};
-// const keyDownEscape = (evt) => {
-//   if (evt.key === "Escape") {
-//     const openedPopup = document.querySelector(".popup_opened");
-//     closePopup(openedPopup);
-//   }
-// };
-//		Содержит публичный метод setEventListeners, который добавляет слушатель клика иконке закрытия попапа.
-//    Модальное окно также закрывается при клике на затемнённую область вокруг формы.
-setEventListeners(){
-  this.addEventListener("click", (evt) => {
-    if (
-      evt.target === evt.currentTarget ||  
-      evt.target === this.querySelector(".popup__click")
-    ) {
-      this.close(this);
+  //		Содержит публичные методы open и close, которые отвечают за открытие и закрытие попапа.
+  open(){
+    this.classList.add("popup_opened");
+    document.addEventListener("keydown", this._handleEscClose());
+  }
+  // function openPopup(overlay) {
+  //   overlay.classList.add("popup_opened");
+  //   document.addEventListener("keydown", keyDownEscape);
+  // }
+  close(){
+    this.classList.remove("popup_opened");
+    document.removeEventListener("keydown", this._handleEscClose());
+  };
+  // const closePopup = (overlay) => {
+  //   overlay.classList.remove("popup_opened");
+  //   document.removeEventListener("keydown", keyDownEscape);
+  // };
+
+  //		Содержит приватный метод _handleEscClose, который содержит логику закрытия попапа клавишей Esc.
+  _handleEscClose = (evt) => {
+    if (evt.key === "Escape") {
+      const openedPopup = document.querySelector(".popup_opened");
+      this.close(openedPopup);
     }
-  });
-}
-// popup.addEventListener("click", (evt) => {
-//   if (
-//     evt.target === evt.currentTarget ||
-//     evt.target === popup.querySelector(".popup__click")
-//   ) {
-//     closePopup(popup);
-//   }
-// });
+  };
+  // const keyDownEscape = (evt) => {
+  //   if (evt.key === "Escape") {
+  //     const openedPopup = document.querySelector(".popup_opened");
+  //     closePopup(openedPopup);
+  //   }
+  // };
+  //		Содержит публичный метод setEventListeners, который добавляет слушатель клика иконке закрытия попапа.
+  //    Модальное окно также закрывается при клике на затемнённую область вокруг формы.
+  setEventListeners(){
+    this.addEventListener("click", (evt) => {
+      if (
+        evt.target === evt.currentTarget ||  
+        evt.target === this.querySelector(".popup__click")
+      ) {
+        this.close(this);// this -????--const openedPopup = document.querySelector(".popup_opened");
+      }
+    });
+  }
+  // popup.addEventListener("click", (evt) => {
+  //   if (
+  //     evt.target === evt.currentTarget ||
+  //     evt.target === popup.querySelector(".popup__click")
+  //   ) {
+  //     closePopup(popup);
+  //   }
+  // });
 
 }// конец class Popup
 
@@ -71,7 +71,7 @@ setEventListeners(){
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-import { createElementSection } from "../components/card";
+import { createElementSection } from "./card";
 import {
   editDataProfile,
   editAvatarProfile,
@@ -79,7 +79,7 @@ import {
   addNewCard,
   deleteCard,
   checkUrl,
-} from "../components/api";
+} from "./api";
 
 let ownerId = 0;
 let cardDelete = {};
