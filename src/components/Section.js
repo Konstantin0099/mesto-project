@@ -17,6 +17,8 @@ export default class Section {
     this._renderer = renderer;
     this._container = document.querySelector(selector);
   }
+
+  
 // Содержит публичный метод, который отвечает за отрисовку всех элементов.
 // Отрисовка каждого отдельного элемента должна осуществляться функцией renderer.
 renderItems() {

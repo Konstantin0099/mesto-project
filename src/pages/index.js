@@ -33,6 +33,7 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 }); 
+
 //получаем с сервера карточки
 const cardList = new Section({
     data: {},
@@ -44,7 +45,7 @@ const cardList = new Section({
   }, ".elements");
 
   api.getInitialCards().then((dataCards) => {
-  console.log("api.getInitialCards()________ ", dataCards);
+  console.log("api.getInitilCards()________ ", dataCards);
   cardList._items = dataCards;
   cardList.renderItems();
 });

@@ -49,22 +49,19 @@ export default class Card {
   //   popupImage.src = "";
   //   popupElement.classList.remove("popup_is-opened");
   // }
-  // _handleCardClick() {
-  //   console.log("+++++++_handleCardClick()+++++");
-  // };
-  _setEventListeners() {
-    this._element.addEventListener('click', () => {
-     // this._handleCardClick()    // При клике на карточку эта функция должна открывать попап с картинкой.
-     console.log("+++++++_setEventListeners() +++++");
-    });
 
-    // popupCloseButton.addEventListener('click', () => {
-    //   // this._handleClosePopup()
-    //   console.log("+++++++_handleCardClick()+++++");
-    // });
+  _handleCardClick(){
+    console.log("+++++++_handleCardClick()+++++");
+  };
+  _setEventListeners() {
+    this._element.addEventListener('click',
+      this._clickCard
+     //this._handleCardClick()    // При клике на карточку эта функция должна открывать попап с картинкой.
+    );
   }
 
   _checkLikes(likeItem) {
+    console.log("_checkLikes__", likeItem.classList.contains("like_click"));
     return likeItem.classList.contains("like_click");
   }
 
@@ -84,6 +81,7 @@ export default class Card {
   }
 
   _clickLike(likeItem, card) {
+    // console.log("likeItem, card", likeItem, card);
     if (this._checkLikes(likeItem)) {
       this._toggleLikeCard(deleteLikeCard, card);
     } else {
@@ -97,17 +95,21 @@ export default class Card {
   }
   
   _clickCard = (evt) => {
+    // console.log("evt.target_____", evt.target);
     const item = evt.target;
     const card = evt.currentTarget;
     if (item.classList.contains("like")) {
+      console.log("нажали лайк");
       this._clickLike(item, card);
     }
     if (item.classList.contains("trash")) {
+      console.log("нажали удалить");
       // this._openPopupDeleteCard(card);
     }
-    // if (item.classList.contains("element__img")) {
-    //   // this._clickImg(item, card);
-    // }
+    if (item.classList.contains("element__img")) {
+      console.log("нажали на картинку");
+      // this._clickImg(item, card);
+    }
   };
 
   generate() {

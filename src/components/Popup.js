@@ -242,14 +242,14 @@ class Popup {
 //   }
 // });
 
-export {
-  openPopupProfileInfo,
-  openPopupAddCard,
-  openPopupDeleteCard,
-  openPopupEditAvatar,
-  openPopup,
-  addProfileInfo,
-  profile,
-  elements,
-  ownerId,
-};
+// export {
+//   openPopupProfileInfo,
+//   openPopupAddCard,
+//   openPopupDeleteCard,
+//   openPopupEditAvatar,
+//   openPopup,
+//   addProfileInfo,
+//   profile,
+//   elements,
+//   ownerId,
+// };
