@@ -4,7 +4,7 @@ export default class Api {
     this.headers = headers;
   }
   
-  _checkResponse() {
+  _checkResponse(res) {
     if (res.ok) {
       return res.json();
     }
@@ -14,13 +14,13 @@ export default class Api {
   getInitialCards() {
     return fetch(`${this.baseUrl}/cards`, {
       headers: this.headers,
-    }).then(_checkResponse);
+    }).then(this._checkResponse);
   }
 
   getInitialProfile() {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers,
-    }).then(_checkResponse);
+    }).then(this._checkResponse);
   }
 
   editDataProfile(name, about) {
@@ -31,7 +31,7 @@ export default class Api {
         name: name,
         about: about,
       })
-    }).then(_checkResponse)
+    }).then(this._checkResponse)
   }
 
   editAvatarProfile(name, about) {
@@ -41,7 +41,7 @@ export default class Api {
       body: JSON.stringify({
         avatar: avatar,
       })
-    }).then(_checkResponse)
+    }).then(this._checkResponse)
   }
 
   addNewCard(name, link) {
@@ -52,27 +52,27 @@ export default class Api {
         name: name,
         link: link,
       })
-    }).then(_checkResponse)
+    }).then(this._checkResponse)
   };
 
   deleteCard(id){
     fetch(`${this.baseUrl}/cards/${id}`, {
       headers: this.headers,
       method: "DELETE",
-    }).then(_checkResponse)
+    }).then(this._checkResponse)
   };
   likeCard(id){
     fetch(`${this.baseUrl}/cards/likes/${id}`, {
       headers: this.headers,
       method: "PUT",
-    }).then(_checkResponse)
+    }).then(this._checkResponse)
   };
 
   deleteLikeCard(id){
     return fetch(`${this.baseUrl}/cards/likes/${id}`, {
       headers: this.headers,
       method: "DELETE",
-    }).then(_checkResponse)
+    }).then(this._checkResponse)
   };
 
 }
