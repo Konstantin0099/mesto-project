@@ -20,7 +20,7 @@ const API = new Api(config);
 const popupUpdateAvatar = new PopupWithForm(".popup_update-avatar");
 popupUpdateAvatar.setEventListeners();
 
-const popupProfile = new PopupWithForm(".popup_profile-info", API.editDataProfile);
+const popupProfile = new PopupWithForm(".popup_profile-info", API.editDataProfile.bind(API));
 popupProfile.setEventListeners();
 
 
