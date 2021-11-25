@@ -1,5 +1,8 @@
+
+
+
 export default class Api {
-  constructor({ baseUrl, headers }) { // config = {baseUrl, headers }
+  constructor({ baseUrl, headers }) { 
     this.baseUrl = baseUrl;
     this.headers = headers;
   }
@@ -16,6 +19,7 @@ export default class Api {
       headers: this.headers,
     }).then(this._checkResponse);
   }
+
 
   getInitialProfile() {
     return fetch(`${this.baseUrl}/users/me`, {
@@ -61,6 +65,7 @@ export default class Api {
       method: "DELETE",
     }).then(this._checkResponse)
   };
+
   likeCard(id){
     fetch(`${this.baseUrl}/cards/likes/${id}`, {
       headers: this.headers,
@@ -76,3 +81,4 @@ export default class Api {
   };
 
 }
+

@@ -8,19 +8,19 @@
 // * 		Содержит публичный метод setUserInfo, который принимает новые данные пользователя, отправляет их на сервер и добавляет их на страницу.
 
 export default class UserInfo {
-    constructor({ selectorName, selectorProf }) { // card = { nameMesto, imageUrl, likes, _id,}
+    constructor({ selectorName, selectorProfession }) { // card = { nameMesto, imageUrl, likes, _id,}
       this._selectorName = selectorName;
-      this._selectorProf = selectorProf;
+      this._selectorProfession = selectorProfession;
  
     }
 
     getUserInfo(){
- 
+  
 
         return UserInfo
     }
-
-    setUserInfo(){
+    // который принимает новые данные пользователя, отправляет их на сервер и добавляет их на страницу.
+    setUserInfo(newName, newProfession){
         
     }
 

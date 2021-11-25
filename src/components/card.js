@@ -1,3 +1,4 @@
+
 export default class Card {
   // { name, link, likes, _id, owner }
   constructor({ name, link, likes, _id, owner }, selectorTemplateElement) {
@@ -8,6 +9,7 @@ export default class Card {
     this._ownerId = owner._id;
     this._selectorTemplateElement = selectorTemplateElement;
   }
+
   _createElement() {
     return document
       .querySelector(this._selectorTemplateElement)
@@ -32,16 +34,19 @@ export default class Card {
   //   popupElement.classList.remove("popup_is-opened");
   // }
 
+  _handleCardClick(){
+    console.log("+++++++_handleCardClick()+++++");
+  };
   _setEventListeners() {
-    this._element.addEventListener('click', () => {
-      // this._handleOpenPopup()
-    });
-    // popupCloseButton.addEventListener('click', () => {
-    //   // this._handleClosePopup()
-    // });
+    this._element.addEventListener('click',
+      this._clickCard
+     //this._handleCardClick()    // При клике на карточку эта функция должна открывать попап с картинкой.
+    );
+
   }
 
   _checkLikes(likeItem) {
+    console.log("_checkLikes__", likeItem.classList.contains("like_click"));
     return likeItem.classList.contains("like_click");
   }
 
@@ -61,10 +66,11 @@ export default class Card {
   }
 
   _clickLike(likeItem, card) {
+    console.log("api.likeCard________", api);
     if (this._checkLikes(likeItem)) {
-      this._toggleLikeCard(deleteLikeCard, card);
+      this._toggleLikeCard(api.deleteLikeCard, card);
     } else {
-      this._toggleLikeCard(likeCard, card);
+      this._toggleLikeCard(api.likeCard, card);
     }
     this._toggleClassLike(likeItem);
   }
@@ -74,20 +80,25 @@ export default class Card {
   }
   
   _clickCard = (evt) => {
+    // console.log("evt.target_____", evt.target);
     const item = evt.target;
     const card = evt.currentTarget;
     if (item.classList.contains("like")) {
+      console.log("нажали лайк");
       this._clickLike(item, card);
     }
     if (item.classList.contains("trash")) {
+      console.log("нажали удалить");
       // this._openPopupDeleteCard(card);
     }
     if (item.classList.contains("element__img")) {
+      console.log("нажали на картинку");
       // this._clickImg(item, card);
     }
   };
 
   generate() {
+    // console.log("+++++++this._nameMesto+++++", this._nameMesto);
     this._element = this._createElement();
     this._setEventListeners();
     this._element.querySelector('.element__img').src = this._imageUrl;
@@ -102,30 +113,32 @@ export default class Card {
       this._element.querySelector(".trash").classList.add("trash_include");
     }
     this._element.addEventListener("click", this._clickCard);
+    // console.log("+++++++this._element+++++", this._element);
     return this._element;
   }
 }
 
+
+///////////////////////////////
+
+
+
+
+
+
 // import { openPopupDeleteCard, openPopup, elements, ownerId } from "./Popup";
 // import { deleteCard, likeCard, deleteLikeCard, resOk } from "./Api";
-// const popupPicture = document.querySelector(".popup_picture");
-// const popupImg = popupPicture.querySelector(".popup-img");
-// const imgPopup = popupImg.querySelector(".img-popup");
-// const popupFigcaption = popupImg.querySelector(".popup-figcaption");
-// const elementSectionTemplate =
-//   document.querySelector("#elementsSection").content;
-//
-//
-//
-//
-// // function checkMyCard(card) {
-// //   return card.owner._id === ownerId;
-// // }
+
+// function checkMyCard(card) {
+//   return card.owner._id === ownerId;
+// }
+
 // function clickImg(imgItem, card) {
 //   imgPopup.src = imgItem.src;
 //   imgPopup.alt = imgItem.alt;
 //   popupFigcaption.textContent = imgItem.alt;
 //   openPopup(popupPicture);
+
 // }
 //
 //
