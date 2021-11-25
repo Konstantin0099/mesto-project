@@ -1,4 +1,11 @@
-
+const dataValidation = {
+        formSelector: ".input-container",
+        inputSelector: ".input-container__item",
+        submitButtonSelector: ".input-container__submit-item",
+        inactiveButtonClass: "input-container__submit-item_disabled",
+        inputErrorClass: "input-container__item_error",
+        errorClass: "popup__error_visible",
+      }
 const profile = document.querySelector(".profile");
 const profileInfoName = profile.querySelector(".profile-info__name");
 const profileInfoVocation = profile.querySelector(".profile-info__vocation");
@@ -54,10 +61,6 @@ const popupFigcaption = popupImg.querySelector(".popup-figcaption");
 const elementSectionTemplate =
   document.querySelector("#elementsSection").content;
 
-  export{
-    elements,
-    ownerId
-  }
 
 /// /////////////
 const profileAvatarClick = document.querySelector('.profile__avatar-click');
@@ -65,7 +68,8 @@ const profileInfoEditButton = document.querySelector('.profile-info__edit-button
 const profileAddButton = document.querySelector('.profile__add-button');
 
 export {
-  profile, profileInfoName, profileInfoVocation, profileAvatar,
+    dataValidation,
+    elements, profile, profileInfoName, profileInfoVocation, profileAvatar,
   profileAvatarClick, profileInfoEditButton, profileAddButton
 }
 

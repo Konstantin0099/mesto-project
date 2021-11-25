@@ -1,63 +1,93 @@
+// enableValidation({
+//     formSelector: ".input-container",
+//     inputSelector: ".input-container__item",
+//     submitButtonSelector: ".input-container__submit-item",
+//     inactiveButtonClass: "input-container__submit-item_disabled",
+//     inputErrorClass: "input-container__item_error",
+//     errorClass: "popup__error_visible",
+//   });
+
 // export function enableValidation(dataValidation) {
-//   const addErrorInput = (form) => {
-//     form.form.classList.add(`${dataValidation.errorClass}`);
-//     form.error.classList.add(`${dataValidation.inputErrorClass}`);
+// export default class EnableValidation {
+// constructor(dataValidation){
+//     this.dataValidation = dataValidation;
+// }
+
+// addErrorInput = (form) => {
+// console.log("addErrorInput>form_____", form);
+//     form.form.classList.add(`${this.dataValidation.errorClass}`);
+//     form.error.classList.add(`${this.dataValidation.inputErrorClass}`);
 //     form.error.textContent = form.messageError;
-//     form.buttonSubmit.classList.add(`${dataValidation.inactiveButtonClass}`);
-//     disableButton(form);
+//     form.buttonSubmit.classList.add(`${this.dataValidation.inactiveButtonClass}`);
+//     this.disableButton(form);
 //   };
-//   const deleteErrorInput = (form) => {
-//     form.error.classList.remove(`${dataValidation.inputErrorClass}`);
+// deleteErrorInput = (form) => {
+//     console.log("deleteErrorInput>form_____", form);
+//     form.error.classList.remove(`${this.dataValidation.inputErrorClass}`);
 //     form.error.textContent = "";
 //   };
-//   const disableButton = (form) => {
+  
+// disableButton = (form) => {
 //     form.buttonSubmit.disabled = true;
 //   };
-//   const activateButton = (form) => {
+// activateButton = (form) => {
 //     form.buttonSubmit.disabled = false;
 //   };
-//   const hasValidForm = (form) => {
+//   hasValidForm = (form) => {
+//     console.log("hasValidForm>form_____", form);
 //     const inputList = Array.from(
-//       form.form.querySelectorAll(`${dataValidation.inputSelector}`)
+//       form.form.querySelectorAll(`${this.dataValidation.inputSelector}`)
 //     );
 //     return inputList.every((input) => {
 //       return input.validity.valid;
 //     });
 //   };
-//   const hasValidinput = (form) => {
+//   hasValidinput = (form) => {
+//     console.log("hasValidinput_____", form);
 //     if (!form.input.validity.valid) {
-//       addErrorInput(form);
+//         this.addErrorInput(form);
 //       return false;
 //     } else {
-//       deleteErrorInput(form);
+//         this.deleteErrorInput(form);
 //       return true;
 //     }
 //   };
-//   const hasValid = (evt) => {
+//   hasValid = (evt) => {
+//     console.log("hasValid>evt_____", evt);
 //     const form = {
 //       form: evt.currentTarget,
 //       input: evt.target,
 //       error: evt.currentTarget.querySelector(`.${evt.target.id}-error`),
 //       messageError: evt.target.validationMessage,
 //       buttonSubmit: evt.currentTarget.querySelector(
-//         `${dataValidation.submitButtonSelector}`
+//         `${this.dataValidation.submitButtonSelector}`
 //       ),
 //     };
-//     if (hasValidinput(form)) {
-//       if (hasValidForm(form)) {
-//         activateButton(form);
+//     console.log("hasValid>form_____", form);
+//     if (this.hasValidinput(form)) {
+//       if (this.hasValidForm(form)) {
+//         this.activateButton(form);
 //       } else {
-//         disableButton(form);
+//         this.disableButton(form);
 //       }
 //     } else {
-//       disableButton(form);
+//         this.disableButton(form);
 //     }
 //   };
-//   const formList = Array.from(document.forms);
-//   formList.forEach((form) => {
+// _setEventListenerInput = () =>
+// {
+//     const formList = Array.from(document.forms);
+//     formList.forEach((form) => {
+//       console.log("_setEventListenerInput()_____", form);
+//       console.log("_finish_____", this.dataValidation.submitButtonSelector);
 //     form.querySelector(
-//       `${dataValidation.submitButtonSelector}`
+//       `${this.dataValidation.submitButtonSelector}`
 //     ).disabled = true;
-//     form.addEventListener("input", hasValid);
+//     form.addEventListener("input", this.hasValid);
 //   });
+
+// }
+
+
+
 // }

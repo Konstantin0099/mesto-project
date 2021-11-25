@@ -1,10 +1,13 @@
 import "./index.css";
 
 import config from "../components/config";
-import {profileAvatarClick, profileInfoEditButton, profileAddButton} from "../utils/constants";
+import {
+  dataValidation,
+  profileAvatarClick, profileInfoEditButton, profileAddButton} from "../utils/constants";
 import {addProfileInfo} from "../utils/utils";
 
 import Api from "../components/Api";
+import FormValidator from "../components/FormValidator";
 import Section from "../components/Section";
 import Card from "../components/Card";
 import PopupWithForm from "../components/PopupWithForm";
@@ -20,9 +23,10 @@ popupProfile.setEventListeners();
 
 
 const popupCardAdd = new PopupWithForm(".popup_card-add");
+
+
+
 popupCardAdd.setEventListeners();
-
-
 
 profileAvatarClick.addEventListener('click', popupUpdateAvatar.open);
 profileInfoEditButton.addEventListener('click', popupProfile.open);
@@ -46,5 +50,11 @@ Promise.all([API.getInitialProfile(), API.getInitialCards()])
   })
   .catch((err) => {
     console.log("ошибка---InitialProfilePromiseAll----", err);
-  })
+  });
+
+
+
+  const valid = new  FormValidator(dataValidation)
+  valid._setEventListenerInput();
+
 
