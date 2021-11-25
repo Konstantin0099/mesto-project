@@ -17,8 +17,8 @@ export default class PopupWithForm extends Popup {
         formData[item.name] = item.value;
       }
     })
-
-    console.log(formData);
+return formData;
+  
   }
 
 
@@ -29,6 +29,9 @@ export default class PopupWithForm extends Popup {
     // добавлять обработчик сабмита формы.
     this._form.addEventListener('submit', evt => {
       evt.preventDefault();
+      
+      const formData = this._getInputValues();
+      console.log(">>>>>>>>", this._callback(formData));
     })
   }
 

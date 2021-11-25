@@ -2,11 +2,13 @@ import "./index.css";
 
 import config from "../components/config";
 import {
+  profileInfoName, profileInfoVocation, profileAvatar,
   dataValidation,
   profileAvatarClick, profileInfoEditButton, profileAddButton} from "../utils/constants";
 import {addProfileInfo} from "../utils/utils";
 
 import Api from "../components/Api";
+import UserInfo from "../components/UserInfo";
 import FormValidator from "../components/FormValidator";
 import Section from "../components/Section";
 import Card from "../components/Card";
@@ -18,7 +20,7 @@ const API = new Api(config);
 const popupUpdateAvatar = new PopupWithForm(".popup_update-avatar");
 popupUpdateAvatar.setEventListeners();
 
-const popupProfile = new PopupWithForm(".popup_profile-info");
+const popupProfile = new PopupWithForm(".popup_profile-info", API.editDataProfile);
 popupProfile.setEventListeners();
 
 
@@ -34,11 +36,11 @@ profileAddButton.addEventListener('click', popupCardAdd.open);
 
 
 Promise.all([API.getInitialProfile(), API.getInitialCards()])
-  .then(([profileInfo, cards]) => {
-    window.userId = profileInfo._id;
-    addProfileInfo(profileInfo);
-
-
+  .then(([user, cards]) => {
+    window.userId = user._id;
+    // addProfileInfo(profileInfo);
+const profileInfo = new UserInfo(profileInfoName, profileInfoVocation, profileAvatar);
+profileInfo.initUserInfo(user);
     const sectionCards = new Section({
       items: cards, renderer: function (card) {
         sectionCards.addItem(new Card(card, '#elementsSection').generate());
@@ -56,5 +58,8 @@ Promise.all([API.getInitialProfile(), API.getInitialCards()])
 
   const valid = new  FormValidator(dataValidation)
   valid._setEventListenerInput();
+
+
+  console.log()
 
 

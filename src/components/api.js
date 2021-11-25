@@ -28,6 +28,9 @@ export default class Api {
   }
 
   editDataProfile(name, about) {
+    console.log("editDataProfile(name, about)", name, about);
+    console.log("${this.baseUrl}", this);
+
     return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers,
       method: "PATCH",
