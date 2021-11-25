@@ -1,9 +1,9 @@
 export default class Api {
-  constructor({ baseUrl, headers }) { 
+  constructor({ baseUrl, headers }) {
     this.baseUrl = baseUrl;
     this.headers = headers;
   }
-  
+
   _checkResponse(res) {
     if (res.ok) {
       return res.json();
@@ -23,7 +23,7 @@ export default class Api {
     }).then(this._checkResponse);
   }
 
-  editDataProfile({name, profession}) {
+  editDataProfile({ name, profession }) {
     console.log("editDataProfile(name)", name);
     console.log("editDataProfile(about)", profession);
     return fetch(`${this.baseUrl}/users/me`, {
@@ -32,19 +32,21 @@ export default class Api {
       body: JSON.stringify({
         name: name,
         about: profession,
-      })
-    }).then(this._checkResponse)
+      }),
+    }).then(this._checkResponse);
   }
 
-  editAvatarProfile(name, about) {
+  editAvatarProfile({avatar}) {
+    console.log("AvatarProfile________", avatar);
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       headers: this.headers,
       method: "PATCH",
       body: JSON.stringify({
         avatar: avatar,
-      })
-    }).then(this._checkResponse)
+      }),
+    }).then(this._checkResponse);
   }
+
 
   addNewCard(name, link) {
     return fetch(`${this.baseUrl}/cards`, {
@@ -53,30 +55,28 @@ export default class Api {
       body: JSON.stringify({
         name: name,
         link: link,
-      })
-    }).then(this._checkResponse)
-  };
+      }),
+    }).then(this._checkResponse);
+  }
 
-  deleteCard(id){
+  deleteCard(id) {
     fetch(`${this.baseUrl}/cards/${id}`, {
       headers: this.headers,
       method: "DELETE",
-    }).then(this._checkResponse)
-  };
+    }).then(this._checkResponse);
+  }
 
-  likeCard(id){
+  likeCard(id) {
     fetch(`${this.baseUrl}/cards/likes/${id}`, {
       headers: this.headers,
       method: "PUT",
-    }).then(this._checkResponse)
-  };
+    }).then(this._checkResponse);
+  }
 
-  deleteLikeCard(id){
+  deleteLikeCard(id) {
     return fetch(`${this.baseUrl}/cards/likes/${id}`, {
       headers: this.headers,
       method: "DELETE",
-    }).then(this._checkResponse)
-  };
-
+    }).then(this._checkResponse);
+  }
 }
-
