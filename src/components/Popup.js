@@ -1,77 +1,45 @@
-
-//		Принимает в конструктор единственный параметр — селектор попапа.
-//		Содержит публичные методы open и close, которые отвечают за открытие и закрытие попапа.
-//		Содержит приватный метод _handleEscClose, который содержит логику закрытия попапа клавишей Esc.
-//		Содержит публичный метод setEventListeners, который добавляет слушатель клика иконке закрытия попапа. Модальное окно также закрывается при клике на затемнённую область вокруг формы.
-
-class Popup {
-  //		Принимает в конструктор единственный параметр — селектор попапа.
-  constructor (selector) {
-    this._selector = selector;
+export default class Popup {
+  // Принимает в конструктор единственный параметр — селектор попапа.
+  constructor(selector) {
+    this._popup = document.querySelector(selector);
   }
-  //		Содержит публичные методы open и close, которые отвечают за открытие и закрытие попапа.
-  open(){
-    this.classList.add("popup_opened");
-    document.addEventListener("keydown", this._handleEscClose());
+
+  // Содержит публичные методы open и close, которые отвечают за открытие и закрытие попапа.
+  open = () => {
+    this._popup.classList.add("popup_opened");
+    document.addEventListener("keydown", this._handleEscClose);
   }
-  // function openPopup(overlay) {
-  //   overlay.classList.add("popup_opened");
-  //   document.addEventListener("keydown", keyDownEscape);
-  // }
-  close(){
-    this.classList.remove("popup_opened");
-    document.removeEventListener("keydown", this._handleEscClose());
+
+  close() {
+    this._popup.classList.remove("popup_opened");
+    document.removeEventListener("keydown", this._handleEscClose);
   };
-  // const closePopup = (overlay) => {
-  //   overlay.classList.remove("popup_opened");
-  //   document.removeEventListener("keydown", keyDownEscape);
-  // };
 
-  //		Содержит приватный метод _handleEscClose, который содержит логику закрытия попапа клавишей Esc.
+  // Содержит приватный метод _handleEscClose, который содержит логику закрытия попапа клавишей Esc.
   _handleEscClose = (evt) => {
     if (evt.key === "Escape") {
       const openedPopup = document.querySelector(".popup_opened");
       this.close(openedPopup);
     }
   };
-  // const keyDownEscape = (evt) => {
-  //   if (evt.key === "Escape") {
-  //     const openedPopup = document.querySelector(".popup_opened");
-  //     closePopup(openedPopup);
-  //   }
-  // };
-  //		Содержит публичный метод setEventListeners, который добавляет слушатель клика иконке закрытия попапа.
-  //    Модальное окно также закрывается при клике на затемнённую область вокруг формы.
-  setEventListeners(){
-    this.addEventListener("click", (evt) => {
-      if (
-        evt.target === evt.currentTarget ||  
-        evt.target === this.querySelector(".popup__click")
-      ) {
-        this.close(this);// this -????--const openedPopup = document.querySelector(".popup_opened");
+
+  // Содержит публичный метод setEventListeners, который добавляет слушатель клика иконке закрытия попапа.
+  // Модальное окно также закрывается при клике на затемнённую область вокруг формы.
+  setEventListeners() {
+    this._popup.addEventListener("click", (evt) => {
+      if (evt.target === evt.currentTarget
+        || evt.target === this._popup.querySelector(".popup__click")) {
+        this.close(this._popup);
       }
     });
   }
-  // popup.addEventListener("click", (evt) => {
-  //   if (
-  //     evt.target === evt.currentTarget ||
-  //     evt.target === popup.querySelector(".popup__click")
-  //   ) {
-  //     closePopup(popup);
-  //   }
-  // });
-
 }// конец class Popup
-
-
-
-
-
 
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // import { createElementSection } from "./Card";
+
 // import {
 //   editDataProfile,
 //   editAvatarProfile,
@@ -94,8 +62,6 @@ class Popup {
   // });
 // });
 
-
-
 // const openPopupProfileInfo = () => {
 //   namePopupProfileInfo.value = profileInfoName.textContent;
 //   professionPopupProfileInfo.value = profileInfoVocation.textContent;
@@ -106,6 +72,7 @@ class Popup {
 //   inputContainerItemNameMesto.value = "";
 //   openPopup(popupCardAdd);
 // };
+
 
 // const openPopupEditAvatar = () => {
 //   urlUpdateAvatar.value = "";
@@ -128,15 +95,12 @@ class Popup {
 //     });
 // };
 
+
 // const openPopupDeleteCard = (card) => {
 //   cardDelete = card;
 //   openPopup(popupCardDelete);
 //   buttonConfirmDelete.addEventListener("click", confirmDelete);
 // };
-
-
-
-
 
 
 
@@ -187,7 +151,8 @@ class Popup {
 //     .finally(() => {
 //       buttonSavingData(inputSubmitUpdateAvatar, "Сохранить");
 //     });
-// });
+
+//
 
 // inputSubmitItemProfileInfo.addEventListener("submit", function (evt) {
 //   buttonSavingData(inputSubmitItemProfileInfo, "Сохранение....");
@@ -206,6 +171,8 @@ class Popup {
 //     });
 // });
 
+
+
 // inputSubmitItemElement.addEventListener("submit", function (evt) {
 //   debugger;
 //   buttonSavingData(inputSubmitItemElement, "Сохранение....");
@@ -218,6 +185,8 @@ class Popup {
 //   img.onload = onLoadAddNewCard;
 //   img.onerror = onErrorAddNewCard;
 //   img.src = newCard.link;
+
+
 //   function onLoadAddNewCard() {
 //     addNewCard(newCard.name, newCard.link)
 //       .then((card) => {
@@ -233,14 +202,19 @@ class Popup {
 //         buttonSavingData(inputSubmitItemElement, "Сохранить");
 //       });
 //   }
+
+//
+
 //   function onErrorAddNewCard() {
 //     console.log("ОШИБКА__битая катрочка_");
 //     inputContainerItemUrl.value = "неверный адрес картинки";
 //     buttonSavingData(inputSubmitItemElement, "Сохранить");
 //     inputContainerSubmitItem.disabled = true;
 
+
 //   }
 // });
+
 
 // export {
 //   openPopupProfileInfo,

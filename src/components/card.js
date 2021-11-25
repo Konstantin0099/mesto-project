@@ -1,30 +1,13 @@
-// класса Card
-// Поработайте с функциональностью работы карточек и валидации форм. 
-// Всю валидацию форм вы до этого писали в отдельном файле, а работу карточек — в другом. Теперь преобразуйте функции, которые существовали ранее, в единое целое — классы Card и FormValidator. В этом пункте задания поговорим про класс Card.
-// Организуйте в классе Card код, который создаёт карточку с текстом и ссылкой на изображение:
-// * 		принимает в конструктор её данные и селектор её template-элемента;
-// * 		содержит приватные методы, которые работают с разметкой, устанавливают слушателей событий;
-// * 		содержит приватные методы для каждого обработчика;
-// * 		содержит один публичный метод, который возвращает полностью работоспособный и наполненный данными элемент карточки.
-// Для каждой карточки создайте экземпляр класса Card. Когда дойдёте до реализации классов Popup, свяжите класс Card c попапом. 
-// Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick. 
-// При клике на карточку эта функция должна открывать попап с картинкой.
-import 
-  {ownerId}
- from "../utils/constants";
- import {api} from "../pages/index";
-
 
 export default class Card {
-  constructor(data, selectorTemplateElement) { // card = { nameMesto, imageUrl, likes, _id,}
-    this._nameMesto = data.name;
-    this._imageUrl = data.link;
-    this._likes = data.likes;
-    this._id = data._id;
-    this._ownerId = data.owner._id;
-    // this._handleCardClick = handleCardClick; // чтобы Card принимал в конструктор функцию handleCardClick. 
+  // { name, link, likes, _id, owner }
+  constructor({ name, link, likes, _id, owner }, selectorTemplateElement) {
+    this._name = name;
+    this._imageUrl = link;
+    this._likes = likes;
+    this._id = _id;
+    this._ownerId = owner._id;
     this._selectorTemplateElement = selectorTemplateElement;
-
   }
 
   _createElement() {
@@ -37,7 +20,7 @@ export default class Card {
 
   _checkMyLikesInit() {
     return this._likes.some((card) => {
-      return card._id === ownerId;
+      return card._id === window.userId;
     });
   }
 
@@ -59,6 +42,7 @@ export default class Card {
       this._clickCard
      //this._handleCardClick()    // При клике на карточку эта функция должна открывать попап с картинкой.
     );
+
   }
 
   _checkLikes(likeItem) {
@@ -118,25 +102,22 @@ export default class Card {
     this._element = this._createElement();
     this._setEventListeners();
     this._element.querySelector('.element__img').src = this._imageUrl;
-    this._element.querySelector('.element__figcaption').textContent = this._nameMesto;
-    this._element.querySelector('.element__img').alt = this._nameMesto;
+    this._element.querySelector('.element__figcaption').textContent = this._name;
+    this._element.querySelector('.element__img').alt = this._name;
     this._element.querySelector(".like__numbers").textContent = this._likes.length;
     this._element.id = this._id;
     if (this._checkMyLikesInit()) {
       this._element.querySelector(".like").classList.add("like_click");
     }
-    if (this._ownerId === ownerId) {
+    if (this._ownerId === window.userId) {
       this._element.querySelector(".trash").classList.add("trash_include");
     }
     this._element.addEventListener("click", this._clickCard);
     // console.log("+++++++this._element+++++", this._element);
     return this._element;
   }
-
-
-
-
 }
+
 
 ///////////////////////////////
 
@@ -151,39 +132,48 @@ export default class Card {
 // function checkMyCard(card) {
 //   return card.owner._id === ownerId;
 // }
+
 // function clickImg(imgItem, card) {
 //   imgPopup.src = imgItem.src;
 //   imgPopup.alt = imgItem.alt;
 //   popupFigcaption.textContent = imgItem.alt;
 //   openPopup(popupPicture);
-// }
 
-// function checkMyLikesInit(arrayLikes) {
-//   return arrayLikes.some((card) => {
-//     return card._id === ownerId;
-//   });
 // }
-
+//
+//
+// // function checkMyLikesInit(arrayLikes) {
+// //   return arrayLikes.some((card) => {
+// //     return card._id === ownerId;
+// //   });
+// // }
+//
+//
+//
+//
+//
+//
 // function createElementSection(card) {
-  // const newCard = elementSectionTemplate
-  //   .querySelector(".element")
-  //   .cloneNode(true);
-  // const imgNewCard = newCard.querySelector(".element__img");
-  // imgNewCard.src = card.link;
-  // imgNewCard.alt = card.name;
-  // newCard.id = card._id;
-  // newCard.querySelector(".element__figcaption").textContent = card.name;
-  // countLikes(newCard, card.likes);
-//   if (checkMyLikesInit(card.likes)) {
-//     toggleClassLike(newCard.querySelector(".like"));
-//   }
-//   if (checkMyCard(card)) {
-//     newCard.querySelector(".trash").classList.add("trash_include");
-//   }
-//   newCard.addEventListener("click", clickCard);
-
-//   return newCard;
-// }
-
-
+//
+//   // const newCard = elementSectionTemplate
+//   //   .querySelector(".element")
+//   //   .cloneNode(true);
+//   // const imgNewCard = newCard.querySelector(".element__img");
+//   // imgNewCard.src = card.link;
+//   // imgNewCard.alt = card.name;
+//   // newCard.id = card._id;
+//   // newCard.querySelector(".element__figcaption").textContent = card.name;
+//   // countLikes(newCard, card.likes);
+// //   if (checkMyLikesInit(card.likes)) {
+// //     toggleClassLike(newCard.querySelector(".like"));
+// //   }
+// //   if (checkMyCard(card)) {
+// //     newCard.querySelector(".trash").classList.add("trash_include");
+// //   }
+// //   newCard.addEventListener("click", clickCard);
+//
+// //   return newCard;
+// // }
+//
+//
 // export { createElementSection, initialCards };
