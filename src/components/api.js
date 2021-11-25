@@ -27,16 +27,18 @@ export default class Api {
     }).then(this._checkResponse);
   }
 
-  editDataProfile(name, about) {
-    console.log("editDataProfile(name, about)", name, about);
-    console.log("${this.baseUrl}", this);
+  editDataProfile({name, profession}) {
+    console.log("editDataProfile(name)", name);
+    console.log("editDataProfile(about)", profession);
+
+    console.log("${this.baseUrl}", `${this.baseUrl}/users/me`);
 
     return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers,
       method: "PATCH",
       body: JSON.stringify({
         name: name,
-        about: about,
+        about: profession,
       })
     }).then(this._checkResponse)
   }
