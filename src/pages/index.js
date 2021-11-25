@@ -33,7 +33,7 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 }); 
-
+// console.log("api________ ", api);
 //получаем с сервера карточки
 const cardList = new Section({
     data: {},
@@ -107,3 +107,5 @@ const cardList = new Section({
 //       // createElementSection(card, "append");
 //     });
 //   }
+
+export {api}

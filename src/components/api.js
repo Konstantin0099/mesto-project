@@ -65,6 +65,7 @@ export default class Api {
       method: "DELETE",
     }).then(this._checkResponse)
   };
+
   likeCard(id){
     fetch(`${this.baseUrl}/cards/likes/${id}`, {
       headers: this.headers,
@@ -80,3 +81,4 @@ export default class Api {
   };
 
 }
+

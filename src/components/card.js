@@ -12,6 +12,7 @@
 import 
   {ownerId}
  from "../utils/constants";
+ import {api} from "../pages/index";
 
 
 export default class Card {
@@ -81,11 +82,11 @@ export default class Card {
   }
 
   _clickLike(likeItem, card) {
-    // console.log("likeItem, card", likeItem, card);
+    console.log("api.likeCard________", api);
     if (this._checkLikes(likeItem)) {
-      this._toggleLikeCard(deleteLikeCard, card);
+      this._toggleLikeCard(api.deleteLikeCard, card);
     } else {
-      this._toggleLikeCard(likeCard, card);
+      this._toggleLikeCard(api.likeCard, card);
     }
     this._toggleClassLike(likeItem);
   }
