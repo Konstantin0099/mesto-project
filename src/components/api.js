@@ -1,6 +1,3 @@
-
-
-
 export default class Api {
   constructor({ baseUrl, headers }) { 
     this.baseUrl = baseUrl;
@@ -20,7 +17,6 @@ export default class Api {
     }).then(this._checkResponse);
   }
 
-
   getInitialProfile() {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers,
@@ -30,9 +26,6 @@ export default class Api {
   editDataProfile({name, profession}) {
     console.log("editDataProfile(name)", name);
     console.log("editDataProfile(about)", profession);
-
-    console.log("${this.baseUrl}", `${this.baseUrl}/users/me`);
-
     return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers,
       method: "PATCH",

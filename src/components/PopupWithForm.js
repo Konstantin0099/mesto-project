@@ -30,7 +30,6 @@ return formData;
     // добавлять обработчик сабмита формы.
     this._form.addEventListener('submit', evt => {
       evt.preventDefault();
-      console.log("функция колбек__________", this._callback);
       const formData = this._getInputValues();
       this._callback(formData);
     })
