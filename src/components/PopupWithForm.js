@@ -27,18 +27,12 @@ return formData;
   // Метод setEventListeners класса PopupWithForm должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
   setEventListeners() {
     // console.log("функция колбек__________", this._editData);
-    // console.log("функция колбек__________", this._initData);
     super.setEventListeners();
     // добавлять обработчик сабмита формы.
     this._form.addEventListener('submit', evt => {
       evt.preventDefault();
       const formData = this._getInputValues();
-      // console.log("функция колбек__принимает на вход___formData____", formData);
-      console.log("функция колбек__принимает на вход___formData____", this._editData);
-
-      this._editData(formData).then((res) => {
-        console.log("функция колбек___принимает на вход_______", res);
-        this._initData(res)});
+      this._editData(formData).then(res => this._initData(res));
 
     })
   }

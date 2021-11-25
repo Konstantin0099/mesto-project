@@ -24,8 +24,7 @@ export default class Api {
   }
 
   editDataProfile({ name, profession }) {
-    console.log("editDataProfile(name)", name);
-    console.log("editDataProfile(about)", profession);
+    // console.log("editDataProfile(name)", name);
     return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers,
       method: "PATCH",
@@ -37,7 +36,6 @@ export default class Api {
   }
 
   editAvatarProfile({avatar}) {
-    console.log("AvatarProfile________", avatar);
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       headers: this.headers,
       method: "PATCH",
