@@ -91,4 +91,4 @@ Promise.all([API.getInitialProfile(), API.getInitialCards()])
 const valid = new FormValidator(dataValidation);
 valid._setEventListenerInput();
 
-console.log();
+export { API }
