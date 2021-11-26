@@ -24,7 +24,6 @@ export default class Api {
   }
 
   editDataProfile({ name, profession }) {
-    // console.log("editDataProfile(name)", name);
     return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers,
       method: "PATCH",
@@ -45,10 +44,7 @@ export default class Api {
     }).then(this._checkResponse);
   }
 
-
   addNewCard({nameMesto, url}) {
-    console.log("addNewCard(name)", nameMesto);
-    console.log("addNewCard(link)", url);
     return fetch(`${this.baseUrl}/cards`, {
       headers: this.headers,
       method: "POST",

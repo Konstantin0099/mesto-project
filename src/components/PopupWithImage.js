@@ -6,8 +6,6 @@ export default class PopupWithImage extends Popup {
     super(selector);
     this._imageElement = this._popup.querySelector('.img-popup');
     this._captionElement = this._popup.querySelector('.popup-figcaption');
-    console.log(this._imageSrc)
-    console.log(this._caption)
   }
 
 // Этот класс должен перезаписывать родительский метод open.

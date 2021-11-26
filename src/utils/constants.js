@@ -1,17 +1,21 @@
 const dataValidation = {
-        formSelector: ".input-container",
-        inputSelector: ".input-container__item",
-        submitButtonSelector: ".input-container__submit-item",
-        inactiveButtonClass: "input-container__submit-item_disabled",
-        inputErrorClass: "input-container__item_error",
-        errorClass: "popup__error_visible",
-      }
+  formSelector: ".input-container",
+  inputSelector: ".input-container__item",
+  submitButtonSelector: ".input-container__submit-item",
+  inactiveButtonClass: "input-container__submit-item_disabled",
+  inputErrorClass: "input-container__item_error",
+  errorClass: "popup__error_visible",
+}
 const profile = document.querySelector(".profile");
 const profileInfoName = profile.querySelector(".profile-info__name");
 const profileInfoVocation = profile.querySelector(".profile-info__vocation");
 const profileAvatar = profile.querySelector(".profile__avatar");
 
 const elements = document.querySelector(".elements");
+
+const userAvatar = document.querySelector('.profile__avatar');
+const userName = document.querySelector('.profile-info__name');
+const userProfession = document.querySelector('.profile-info__vocation');
 
 const popupUpdateAvatar = document.querySelector(".popup_update-avatar");
 const inputSubmitUpdateAvatar =
@@ -68,8 +72,8 @@ const profileInfoEditButton = document.querySelector('.profile-info__edit-button
 const profileAddButton = document.querySelector('.profile__add-button');
 
 export {
-    dataValidation,
-    elements, profile, profileInfoName, profileInfoVocation, profileAvatar,
-  profileAvatarClick, profileInfoEditButton, profileAddButton
+  dataValidation, userAvatar, userName, userProfession,
+  elements, profile, profileInfoName, profileInfoVocation, profileAvatar,
+  profileAvatarClick, profileInfoEditButton, profileAddButton,
 }
 

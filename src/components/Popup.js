@@ -36,7 +36,6 @@ export default class Popup {
 }// конец class Popup
 
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 // import { createElementSection } from "./Card";
 
@@ -52,14 +51,14 @@ export default class Popup {
 
 // const popupList = Array.from(document.querySelectorAll(".popup"));
 // popupList.forEach((popup) => {
-  // popup.addEventListener("click", (evt) => {
-  //   if (
-  //     evt.target === evt.currentTarget ||
-  //     evt.target === popup.querySelector(".popup__click")
-  //   ) {
-  //     closePopup(popup);
-  //   }
-  // });
+// popup.addEventListener("click", (evt) => {
+//   if (
+//     evt.target === evt.currentTarget ||
+//     evt.target === popup.querySelector(".popup__click")
+//   ) {
+//     closePopup(popup);
+//   }
+// });
 // });
 
 // const openPopupProfileInfo = () => {
@@ -101,9 +100,6 @@ export default class Popup {
 //   openPopup(popupCardDelete);
 //   buttonConfirmDelete.addEventListener("click", confirmDelete);
 // };
-
-
-
 
 
 // function openPopup(overlay) {
@@ -170,7 +166,6 @@ export default class Popup {
 //       buttonSavingData(inputSubmitItemProfileInfo, "Сохранить");
 //     });
 // });
-
 
 
 // inputSubmitItemElement.addEventListener("submit", function (evt) {
