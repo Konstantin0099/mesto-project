@@ -1,0 +1,64 @@
+### GET Cards
+GET https://mesto.nomoreparties.co/v1/plus-cohort-3/cards
+Content-Type: application/json
+Authorization: {{token}}
+
+### GET Card
+GET https://mesto.nomoreparties.co/v1/plus-cohort-3/cards/618e0fcd67e66e0012ce576b
+Content-Type: application/json
+Authorization: {{token}}
+
+
+### add card
+POST https://mesto.nomoreparties.co/v1/plus-cohort-3/cards
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "name": "Название",
+    "link": "https://link.ru"
+}
+
+### delete card
+DELETE https://mesto.nomoreparties.co/v1/plus-cohort-3/cards/{{$uuid}}
+Content-Type: application/json
+Authorization: {{token}}
+
+### Like card
+PUT https://mesto.nomoreparties.co/v1/plus-cohort-3/cards/likes/618e0fcd67e66e0012ce576b
+Content-Type: application/json
+Authorization: {{token}}
+
+### Remove like from card
+DELETE https://mesto.nomoreparties.co/v1/plus-cohort-3/cards/likes/{{$uuid}}
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get Users list
+GET https://mesto.nomoreparties.co/v1/plus-cohort-3/users
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get User
+GET https://mesto.nomoreparties.co/v1/plus-cohort-3/users/me
+Content-Type: application/json
+Authorization: {{token}}
+
+### Edit User info
+PATCH https://mesto.nomoreparties.co/v1/plus-cohort-3/users/me
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "name": "Jacques Cousteau",
+  "about": "Sailor, researcher"
+}
+
+### Edit User Avatar
+PATCH https://mesto.nomoreparties.co/v1/plus-cohort-3/users/me/avatar
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "avatar": "https://link"
+}
