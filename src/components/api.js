@@ -60,14 +60,14 @@ export default class Api {
   }
 
   deleteCard(id) {
-    fetch(`${this.baseUrl}/cards/${id}`, {
+    return fetch(`${this.baseUrl}/cards/${id}`, {
       headers: this.headers,
       method: "DELETE",
     }).then(this._checkResponse);
   }
 
   likeCard(id) {
-    fetch(`${this.baseUrl}/cards/likes/${id}`, {
+    return fetch(`${this.baseUrl}/cards/likes/${id}`, {
       headers: this.headers,
       method: "PUT",
     }).then(this._checkResponse);

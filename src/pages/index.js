@@ -18,6 +18,7 @@ import FormValidator from "../components/FormValidator";
 import Section from "../components/Section";
 import Card from "../components/Card";
 import PopupWithForm from "../components/PopupWithForm";
+import PopupWithImage from "../components/PopupWithImage";
 
 window.userId = undefined;
 const API = new Api(config);
@@ -65,13 +66,21 @@ const popupCardAdd = new PopupWithForm(
   sectionCards._renderer.bind(sectionCards)
   // sectionCards.addItem.bind(sectionCards)
 ); // необходимо изменить колбек вынести sectionCards в зону видимости
-
-
 popupCardAdd.setEventListeners();
 
-profileAvatarClick.addEventListener("click", popupUpdateAvatar.open);
-profileInfoEditButton.addEventListener("click", popupProfile.open);
-profileAddButton.addEventListener("click", popupCardAdd.open);
+const popupImage = new PopupWithImage('.popup_picture');
+popupImage.setEventListeners();
+
+profileAvatarClick.addEventListener("click", () => {
+  popupUpdateAvatar.open();
+  console.log(this)
+});
+profileInfoEditButton.addEventListener("click", () => {
+  popupProfile.open();
+});
+profileAddButton.addEventListener("click", () => {
+  popupCardAdd.open();
+});
 
 Promise.all([API.getInitialProfile(), API.getInitialCards()])
   .then(([user, cards]) => {
@@ -100,4 +109,4 @@ Promise.all([API.getInitialProfile(), API.getInitialCards()])
 const valid = new FormValidator(dataValidation);
 valid._setEventListenerInput();
 
-console.log();
+export { API, popupImage }
