@@ -26,9 +26,12 @@ export default class UserInfo {
     initUserInfo(user){
       this._selectorName.textContent = user.name;
       this._selectorProfession.textContent = user.about;
+    }
+    initUserAvatar(user){
       this._selectorAvatar.src = user.avatar;
       this._selectorAvatar.alt = user.name + ", " + user.about;
     }
+
 
 
 }
