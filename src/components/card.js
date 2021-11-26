@@ -26,12 +26,13 @@ export default class Card {
     // console.log("+++++++_checkMyLikesInit()+this.card++++", this.card);
     // console.log("+++++++_checkMyLikesInit()+this._likes++++", this.card.likes);
     return this.card.likes.some((card) => {
-      return card.id === window.userId;
+      return this.card._id === window.userId;
     });
   }
 
   _handleCardClick(){
-    popupImage.open(this._imageUrl, this._name)
+    console.log(this);
+    popupImage.open(this.card.link, this.card.name)
   };
   _setEventListeners() {
     this._element.addEventListener('click',
@@ -71,7 +72,7 @@ export default class Card {
   }
 
   _openPopupDeleteCard() {
-    API.deleteCard(this._id)
+    API.deleteCard(this.card._id)
       .then(res => {
         this._element.remove();
       });
@@ -106,7 +107,7 @@ export default class Card {
     if (this._checkMyLikesInit()) {
       this._element.querySelector(".like").classList.add("like_click");
     }
-    if (this.card.ownerId === window.userId) {
+    if (this.card.owner._id === window.userId) {
       this._element.querySelector(".trash").classList.add("trash_include");
     }
     this._element.addEventListener("click", this._clickCard);
