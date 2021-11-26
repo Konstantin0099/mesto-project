@@ -32,6 +32,7 @@ return formData;
     this._form.addEventListener('submit', evt => {
       evt.preventDefault();
       const formData = this._getInputValues();
+      console.log("функция колбек получает__________", formData);
       this._editData(formData).then(res => this._initData(res));
 
     })

@@ -28,6 +28,18 @@ const profileInfo = new UserInfo(
   profileAvatar
 );
 
+
+// const sectionCards = new Section(
+//   {
+//     items: cards,
+//     renderer: function (card) {
+//       sectionCards.addItem(new Card(card, "#elementsSection").generate());
+//     },
+//   },
+//   ".elements"
+// );
+
+
 const popupUpdateAvatar = new PopupWithForm(
   ".popup_update-avatar",
   API.editAvatarProfile.bind(API),
@@ -45,8 +57,8 @@ popupProfile.setEventListeners();
 const popupCardAdd = new PopupWithForm(
   ".popup_card-add",
   API.addNewCard.bind(API),
-  profileInfo.initUserAvatar.bind(profileInfo)
-); // необходимо изменить колбек
+  // sectionCards.addItem.bind(sectionCards)
+); // необходимо изменить колбек вынести sectionCards в зону видимости
 
 
 popupCardAdd.setEventListeners();
