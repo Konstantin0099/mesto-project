@@ -1,13 +1,16 @@
 import {API} from "../pages";
+import {popupImage} from "../pages";
 
 export default class Card {
   // { name, link, likes, _id, owner }
-  constructor({ name, link, likes, _id, owner }, selectorTemplateElement) {
-    this._name = name;
-    this._imageUrl = link;
-    this._likes = likes;
-    this._id = _id;
-    this._ownerId = owner._id;
+  // constructor({ name = "1", link  = "1", likes  = [1] , _id  = "1" , owner  = "1"}, selectorTemplateElement) {
+  constructor(card, selectorTemplateElement) {
+    this.card = card;
+    // this.name = card.name;
+    // this.imageUrl = card.link;
+    // this.likes = this.card.likes;
+    // this.id = card._id;
+    // this.ownerId = card.owner;
     this._selectorTemplateElement = selectorTemplateElement;
   }
 
@@ -20,23 +23,15 @@ export default class Card {
   };
 
   _checkMyLikesInit() {
-    return this._likes.some((card) => {
-      return card._id === window.userId;
+    // console.log("+++++++_checkMyLikesInit()+this.card++++", this.card);
+    // console.log("+++++++_checkMyLikesInit()+this._likes++++", this.card.likes);
+    return this.card.likes.some((card) => {
+      return card.id === window.userId;
     });
   }
 
-  // _handleOpenPopup(){
-  //   popupImage.src = this._image;
-  //   popupElement.classList.add("popup_is-opened");
-  // }
-
-  // _handleClosePopup(){
-  //   popupImage.src = "";
-  //   popupElement.classList.remove("popup_is-opened");
-  // }
-
   _handleCardClick(){
-    console.log("+++++++_handleCardClick()+++++");
+    popupImage.open(this._imageUrl, this._name)
   };
   _setEventListeners() {
     this._element.addEventListener('click',
@@ -63,6 +58,7 @@ export default class Card {
   }
 
   _countLikes(card, arrayLikes) {
+    // card.querySelector(".like__numbers").textContent = 111;
     card.querySelector(".like__numbers").textContent = arrayLikes.length;
   }
 
@@ -73,22 +69,27 @@ export default class Card {
       this._toggleLikeCard(API.likeCard.bind(API), card, likeItem);
     }
   }
-  
+
+  _openPopupDeleteCard() {
+    API.deleteCard(this._id)
+      .then(res => {
+        this._element.remove();
+      });
+  }
+
   _clickCard = (evt) => {
-    // console.log("evt.target_____", evt.target);
     const item = evt.target;
     const card = evt.currentTarget;
     if (item.classList.contains("like")) {
-      console.log("нажали лайк");
       this._clickLike(item, card);
     }
     if (item.classList.contains("trash")) {
       console.log("нажали удалить");
-      // this._openPopupDeleteCard(card);
+      this._openPopupDeleteCard(card);
     }
     if (item.classList.contains("element__img")) {
       console.log("нажали на картинку");
-      // this._clickImg(item, card);
+      this._handleCardClick();
     }
   };
 
@@ -96,19 +97,19 @@ export default class Card {
     // console.log("+++++++this._nameMesto+++++", this._nameMesto);
     this._element = this._createElement();
     this._setEventListeners();
-    this._element.querySelector('.element__img').src = this._imageUrl;
-    this._element.querySelector('.element__figcaption').textContent = this._name;
-    this._element.querySelector('.element__img').alt = this._name;
-    this._element.querySelector(".like__numbers").textContent = this._likes.length;
-    this._element.id = this._id;
+    this._element.querySelector('.element__img').src = this.card.link;
+    this._element.querySelector('.element__figcaption').textContent = this.card.name;
+    this._element.querySelector('.element__img').alt = this.card.name;
+    // this._element.querySelector(".like__numbers").textContent = 99;
+    this._element.querySelector(".like__numbers").textContent = this.card.likes.length;
+    this._element.id = this.card._id;
     if (this._checkMyLikesInit()) {
       this._element.querySelector(".like").classList.add("like_click");
     }
-    if (this._ownerId === window.userId) {
+    if (this.card.ownerId === window.userId) {
       this._element.querySelector(".trash").classList.add("trash_include");
     }
     this._element.addEventListener("click", this._clickCard);
-    // console.log("+++++++this._element+++++", this._element);
     return this._element;
   }
 }

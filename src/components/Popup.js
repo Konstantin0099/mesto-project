@@ -5,7 +5,7 @@ export default class Popup {
   }
 
   // Содержит публичные методы open и close, которые отвечают за открытие и закрытие попапа.
-  open = () => {
+  open() {
     this._popup.classList.add("popup_opened");
     document.addEventListener("keydown", this._handleEscClose);
   }

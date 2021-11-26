@@ -1,4 +1,5 @@
 import Popup from "./Popup";
+import {API} from "../pages";
 
 // Создайте класс PopupWithForm, который наследуется от Popup
 export default class PopupWithForm extends Popup {
@@ -33,7 +34,9 @@ return formData;
       evt.preventDefault();
       const formData = this._getInputValues();
       console.log("функция колбек получает__________", formData);
-      this._editData(formData).then(res => this._initData(res));
+      this._editData(formData).then(res => {
+        API.addNewCard.bind(res);
+      });
 
     })
   }
