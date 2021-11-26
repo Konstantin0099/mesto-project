@@ -28,22 +28,19 @@ const profileInfo = new UserInfo(
   profileInfoVocation,
   profileAvatar
 );
-// console.log("index_____");
-const cardItem = new Card({}, "#elementsSection");
-// console.log("index__cardItem =___", cardItem);
-const sectionCards = new Section(
+
+let sectionCards = new Section(
   {
     items: {},
     renderer: function (card) {
-      cardItem.card = card;
       // console.log("renderer: function (cardItem) =___", cardItem);
       // console.log("renderer: function (cardItem.card) =___", cardItem.card);
-      sectionCards.addItem(cardItem.generate());
+      sectionCards.addItem(new Card(card, "#elementsSection").generate());
     },
   },
   ".elements"
   );
-  
+
   // console.log("index__sectionCards =___", sectionCards);
 
 const popupUpdateAvatar = new PopupWithForm(

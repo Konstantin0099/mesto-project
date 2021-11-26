@@ -26,7 +26,7 @@ export default class Card {
     // console.log("+++++++_checkMyLikesInit()+this.card++++", this.card);
     // console.log("+++++++_checkMyLikesInit()+this._likes++++", this.card.likes);
     return this.card.likes.some((card) => {
-      return this.card._id === window.userId;
+      return card._id === window.userId;
     });
   }
 
@@ -64,6 +64,7 @@ export default class Card {
   }
 
   _clickLike(likeItem, card) {
+    console.log(likeItem)
     if (this._checkLikes(likeItem)) {
       this._toggleLikeCard(API.deleteLikeCard.bind(API), card, likeItem);
     } else {
