@@ -1,6 +1,6 @@
 import "./index.css";
 
-import config from "../components/config";
+import config from "../utils/config";
 import {
   profileInfoName,
   profileInfoVocation,
@@ -9,8 +9,8 @@ import {
   profileAvatarClick,
   profileInfoEditButton,
   profileAddButton,
+  userAvatar, userName, userProfession
 } from "../utils/constants";
-import { addProfileInfo } from "../utils/utils";
 
 import Api from "../components/Api";
 import UserInfo from "../components/UserInfo";
@@ -29,40 +29,68 @@ const profileInfo = new UserInfo(
   profileAvatar
 );
 
-// console.log("index_____");
-const cardItem = new Card({}, "#elementsSection");// console.log("index__cardItem =___", cardItem);
-const sectionCards = new Section(
+// <<<<<<< HEAD
+// // console.log("index_____");
+// const cardItem = new Card({}, "#elementsSection");// console.log("index__cardItem =___", cardItem);
+// const sectionCards = new Section(
+//   {
+//     items: {},
+//     renderer: function (card) {
+//       cardItem.card = card;// console.log("renderer: function (cardItem) =___", cardItem);
+//       sectionCards.addItem(cardItem.generate()); // console.log("renderer: function (cardItem.card) =___", cardItem.card);
+//     },
+//   },
+//   ".elements"
+//   );
+  
+// const popupUpdateAvatar = new PopupWithForm(// попап изменения АВАВТАРА
+// =======
+let sectionCards = new Section(
   {
     items: {},
     renderer: function (card) {
-      cardItem.card = card;// console.log("renderer: function (cardItem) =___", cardItem);
-      sectionCards.addItem(cardItem.generate()); // console.log("renderer: function (cardItem.card) =___", cardItem.card);
+      // console.log("renderer: function (cardItem) =___", cardItem);
+      // console.log("renderer: function (cardItem.card) =___", cardItem.card);
+      sectionCards.addItem(new Card(card, "#elementsSection").generate());
     },
   },
   ".elements"
-  );
-  
-const popupUpdateAvatar = new PopupWithForm(// попап изменения АВАВТАРА
+);
+
+const popupUpdateAvatar = new PopupWithForm(
+
   ".popup_update-avatar",
   API.editAvatarProfile.bind(API),
   profileInfo.initUserAvatar.bind(profileInfo)
 );
-popupUpdateAvatar.setEventListeners();
+popupUpdateAvatar.setEventListeners(
+  data => {
+    userAvatar.src = data.avatar;
+  }
+);
 
 const popupProfile = new PopupWithForm(// попап изменения ФИО
   ".popup_profile-info",
   API.editDataProfile.bind(API),
   profileInfo.initUserInfo.bind(profileInfo)
 );
-popupProfile.setEventListeners();
+popupProfile.setEventListeners(
+  data => {
+    userName.textContent = data.name;
+    userProfession.textContent = data.about;
+  }
+);
 
 const popupCardAdd = new PopupWithForm(// попап добавдения карточки
   ".popup_card-add",
   API.addNewCard.bind(API),
-  sectionCards._renderer.bind(sectionCards)
-  // sectionCards.addItem.bind(sectionCards)
+  sectionCards.addItem.bind(sectionCards)
 ); // необходимо изменить колбек вынести sectionCards в зону видимости
-popupCardAdd.setEventListeners();
+popupCardAdd.setEventListeners(
+  data => {
+    sectionCards.addCard(new Card(data, "#elementsSection").generate());
+  }
+);
 
 const popupImage = new PopupWithImage('.popup_picture');
 popupImage.setEventListeners();
@@ -72,6 +100,8 @@ profileAvatarClick.addEventListener("click", () => {
   console.log(this)
 });
 profileInfoEditButton.addEventListener("click", () => {
+  document.querySelector('.input-container__item_name').value = userName.textContent;
+  document.querySelector('.input-container__item_profession').value = userProfession.textContent;
   popupProfile.open();
 });
 profileAddButton.addEventListener("click", () => {
@@ -83,19 +113,7 @@ Promise.all([API.getInitialProfile(), API.getInitialCards()])
     window.userId = user._id;
     profileInfo.initUserInfo(user);
     profileInfo.initUserAvatar(user);
-    // console.log("PromiseAll-user---", user);
-    console.log("PromiseAll-cards---", cards);
     sectionCards.items = cards;
-    // const sectionCards = new Section(
-    //   {
-    //     items: cards,
-    //     renderer: function (card) {
-    //       sectionCards.addItem(new Card(card, "#elementsSection").generate());
-    //     },
-    //   },
-    //   ".elements"
-    // );
-
     sectionCards.renderItems();
   })
   .catch((err) => {
@@ -105,4 +123,4 @@ Promise.all([API.getInitialProfile(), API.getInitialCards()])
 const valid = new FormValidator(dataValidation);
 valid._setEventListenerInput();
 
-export { API, popupImage }
+export {API, popupImage}
