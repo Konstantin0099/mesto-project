@@ -28,39 +28,35 @@ const profileInfo = new UserInfo(
   profileInfoVocation,
   profileAvatar
 );
+
 // console.log("index_____");
-const cardItem = new Card({}, "#elementsSection");
-// console.log("index__cardItem =___", cardItem);
+const cardItem = new Card({}, "#elementsSection");// console.log("index__cardItem =___", cardItem);
 const sectionCards = new Section(
   {
     items: {},
     renderer: function (card) {
-      cardItem.card = card;
-      // console.log("renderer: function (cardItem) =___", cardItem);
-      // console.log("renderer: function (cardItem.card) =___", cardItem.card);
-      sectionCards.addItem(cardItem.generate());
+      cardItem.card = card;// console.log("renderer: function (cardItem) =___", cardItem);
+      sectionCards.addItem(cardItem.generate()); // console.log("renderer: function (cardItem.card) =___", cardItem.card);
     },
   },
   ".elements"
   );
   
-  // console.log("index__sectionCards =___", sectionCards);
-
-const popupUpdateAvatar = new PopupWithForm(
+const popupUpdateAvatar = new PopupWithForm(// попап изменения АВАВТАРА
   ".popup_update-avatar",
   API.editAvatarProfile.bind(API),
   profileInfo.initUserAvatar.bind(profileInfo)
 );
 popupUpdateAvatar.setEventListeners();
 
-const popupProfile = new PopupWithForm(
+const popupProfile = new PopupWithForm(// попап изменения ФИО
   ".popup_profile-info",
   API.editDataProfile.bind(API),
   profileInfo.initUserInfo.bind(profileInfo)
 );
 popupProfile.setEventListeners();
 
-const popupCardAdd = new PopupWithForm(
+const popupCardAdd = new PopupWithForm(// попап добавдения карточки
   ".popup_card-add",
   API.addNewCard.bind(API),
   sectionCards._renderer.bind(sectionCards)
