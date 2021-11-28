@@ -4,6 +4,7 @@
   border-radius: 50%;
   background-color: transparent;
   display: flex;
+  cursor: pointer;
 }
 .profile__avatar-click:hover {
   background-color: rgba(0, 0, 0, 0.8);

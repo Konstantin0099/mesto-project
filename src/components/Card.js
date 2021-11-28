@@ -2,8 +2,7 @@ import {API} from "../pages";
 import {popupImage} from "../pages";
 
 export default class Card {
-  // { name, link, likes, _id, owner }
-  // constructor({ name = "1", link  = "1", likes  = [1] , _id  = "1" , owner  = "1"}, selectorTemplateElement) {
+  // { name = "1", link  = "1", likes  = [1] , _id  = "1" , owner  = "1"}
   constructor(card, selectorTemplateElement) {
     this.card = card;
     // this.name = card.name;
@@ -23,23 +22,20 @@ export default class Card {
   };
 
   _checkMyLikesInit() {
-    // console.log("+++++++_checkMyLikesInit()+this.card++++", this.card);
-    // console.log("+++++++_checkMyLikesInit()+this._likes++++", this.card.likes);
     return this.card.likes.some((card) => {
-      return this.card._id === window.userId;
+      return card._id === window.userId;
     });
   }
 
-  _handleCardClick(){
-    console.log(this);
+  _handleCardClick() {
     popupImage.open(this.card.link, this.card.name)
   };
+
   _setEventListeners() {
     this._element.addEventListener('click',
       this._clickCard
-     //this._handleCardClick()    // При клике на карточку эта функция должна открывать попап с картинкой.
+      //this._handleCardClick()    // При клике на карточку эта функция должна открывать попап с картинкой.
     );
-
   }
 
   _checkLikes(likeItem) {
@@ -55,11 +51,11 @@ export default class Card {
       .catch((err) => {
         console.log("ОШИБКА_Лайка__", err);
       })
-      .finally(() => { });
+      .finally(() => {
+      });
   }
 
   _countLikes(card, arrayLikes) {
-    // card.querySelector(".like__numbers").textContent = 111;
     card.querySelector(".like__numbers").textContent = arrayLikes.length;
   }
 
@@ -95,13 +91,11 @@ export default class Card {
   };
 
   generate() {
-    // console.log("+++++++this._nameMesto+++++", this._nameMesto);
     this._element = this._createElement();
     this._setEventListeners();
     this._element.querySelector('.element__img').src = this.card.link;
     this._element.querySelector('.element__figcaption').textContent = this.card.name;
     this._element.querySelector('.element__img').alt = this.card.name;
-    // this._element.querySelector(".like__numbers").textContent = 99;
     this._element.querySelector(".like__numbers").textContent = this.card.likes.length;
     this._element.id = this.card._id;
     if (this._checkMyLikesInit()) {
@@ -114,63 +108,3 @@ export default class Card {
     return this._element;
   }
 }
-
-
-///////////////////////////////
-
-
-
-
-
-
-// import { openPopupDeleteCard, openPopup, elements, ownerId } from "./Popup";
-// import { deleteCard, likeCard, deleteLikeCard, resOk } from "./Api";
-
-// function checkMyCard(card) {
-//   return card.owner._id === ownerId;
-// }
-
-// function clickImg(imgItem, card) {
-//   imgPopup.src = imgItem.src;
-//   imgPopup.alt = imgItem.alt;
-//   popupFigcaption.textContent = imgItem.alt;
-//   openPopup(popupPicture);
-
-// }
-//
-//
-// // function checkMyLikesInit(arrayLikes) {
-// //   return arrayLikes.some((card) => {
-// //     return card._id === ownerId;
-// //   });
-// // }
-//
-//
-//
-//
-//
-//
-// function createElementSection(card) {
-//
-//   // const newCard = elementSectionTemplate
-//   //   .querySelector(".element")
-//   //   .cloneNode(true);
-//   // const imgNewCard = newCard.querySelector(".element__img");
-//   // imgNewCard.src = card.link;
-//   // imgNewCard.alt = card.name;
-//   // newCard.id = card._id;
-//   // newCard.querySelector(".element__figcaption").textContent = card.name;
-//   // countLikes(newCard, card.likes);
-// //   if (checkMyLikesInit(card.likes)) {
-// //     toggleClassLike(newCard.querySelector(".like"));
-// //   }
-// //   if (checkMyCard(card)) {
-// //     newCard.querySelector(".trash").classList.add("trash_include");
-// //   }
-// //   newCard.addEventListener("click", clickCard);
-//
-// //   return newCard;
-// // }
-//
-//
-// export { createElementSection, initialCards };

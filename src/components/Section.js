@@ -11,13 +11,13 @@ export default class Section {
 
     this._container = document.querySelector(selector);
   }
-  
+
 // Содержит публичный метод, который отвечает за отрисовку всех элементов.
 // Отрисовка каждого отдельного элемента должна осуществляться функцией renderer.
-renderItems() {
-  console.log("class Section renderItems_____this_______", this);
-  console.log("class Section renderItems_____this._items_______", this.items);
-  this.items.forEach((item) => {this._renderer(item)});
+  renderItems() {
+    this.items.forEach((item) => {
+      this._renderer(item)
+    });
 
   }
 
@@ -25,6 +25,7 @@ renderItems() {
   addItem(element) {
     this._container.append(element);
   }
+
   addCard(element) {
     this._container.prepend(element);
   }
