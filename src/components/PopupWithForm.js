@@ -24,6 +24,24 @@ export default class PopupWithForm extends Popup {
 
   }
 
+  setEventListenersRemove(refreshInfo = () => {
+  }) {
+    super.setEventListeners();
+    // добавлять обработчик сабмита формы.
+    this._form.addEventListener('submit', evt => {
+      evt.preventDefault();
+      this._saveBtn.textContent = 'Удаление...';
+      const cardId = this._form.dataset.deleteCardId;
+      API.deleteCard(cardId).then(() => {
+        this.close();
+        this._saveBtn.textContent = 'Да';
+        document.querySelector(`[data-id="${cardId}"]`).remove();
+        // refreshInfo(res);
+      }
+    )
+  })
+}
+
 
   // Перезаписывает родительский метод setEventListeners.
   // Метод setEventListeners класса PopupWithForm должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
@@ -34,13 +52,13 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener('submit', evt => {
       evt.preventDefault();
       const formData = this._getInputValues();
-      this._saveBtn.textContent = 'Сохранение...';
-      this._editData(formData).then(res => {
-        API.addNewCard.bind(res);
-        this.close();
-        this._saveBtn.textContent = 'Сохранить';
-        refreshInfo(res);
-      });
+        this._saveBtn.textContent = 'Сохранение...';
+        this._editData(formData).then(res => {
+          API.addNewCard.bind(res);
+          this.close();
+          this._saveBtn.textContent = 'Сохранить';
+          refreshInfo(res);
+        });
     })
   }
 

@@ -2,6 +2,7 @@ import "./index.css";
 
 import config from "../utils/config";
 import {
+  popupCardDelete1,
   profileInfoName,
   profileInfoVocation,
   profileAvatar,
@@ -85,7 +86,7 @@ const popupCardAdd = new PopupWithForm(// попап добавдения кар
   ".popup_card-add",
   API.addNewCard.bind(API),
   sectionCards.addItem.bind(sectionCards)
-); // необходимо изменить колбек вынести sectionCards в зону видимости
+); 
 popupCardAdd.setEventListeners(
   data => {
     sectionCards.addCard(new Card(data, "#elementsSection").generate());
@@ -95,15 +96,29 @@ popupCardAdd.setEventListeners(
 const popupImage = new PopupWithImage('.popup_picture');
 popupImage.setEventListeners();
 
+// debugger;
+console.log("_______1_____popupCardDelete");
+const popupCardDelete = new PopupWithForm(// попап удаления карточки
+  ".popup_delete-card", '', ''
+// const popupCardDelete = document.querySelector(".popup_delete-card");
+// const buttonConfirmDelete = popupCardDelete.querySelector(
+//   `.input-container__submit-item`
+// );
+);
+console.log("____________popupCardDelete");
+popupCardDelete.setEventListenersRemove();
+
 profileAvatarClick.addEventListener("click", () => {
   popupUpdateAvatar.open();
   console.log(this)
 });
+
 profileInfoEditButton.addEventListener("click", () => {
   document.querySelector('.input-container__item_name').value = userName.textContent;
   document.querySelector('.input-container__item_profession').value = userProfession.textContent;
   popupProfile.open();
 });
+
 profileAddButton.addEventListener("click", () => {
   popupCardAdd.open();
 });
@@ -122,5 +137,7 @@ Promise.all([API.getInitialProfile(), API.getInitialCards()])
 
 const valid = new FormValidator(dataValidation);
 valid._setEventListenerInput();
+document.forms.inputContainerDeleteCard.querySelector(".input-container__submit-item").disabled = false;
+// console.log("popupCardDelete11____", document.forms.inputContainerDeleteCard);
 
-export {API, popupImage}
+export {API, popupImage, popupCardDelete}

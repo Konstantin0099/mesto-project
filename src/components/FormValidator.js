@@ -37,6 +37,7 @@ disableButton = (form) => { // функция, делает кнопку пер�
     form.buttonSubmit.disabled = true;
   };
 activateButton = (form) => {// функция, делает кнопку переданной формы активной
+  console.log("form____", form);
     form.buttonSubmit.disabled = false;
   };
   hasValidForm = (form) => { //  проверяет валидность всех полей формы

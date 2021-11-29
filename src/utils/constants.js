@@ -45,10 +45,11 @@ const popupCardAdd = document.querySelector(".popup_card-add");
 const inputContainerSubmitItem = popupCardAdd.querySelector(
   `.input-container__submit-item`
 );
-const popupCardDelete = document.querySelector(".popup_delete-card");
-const buttonConfirmDelete = popupCardDelete.querySelector(
+const popupCardDelete1 = document.querySelector(".popup_delete-card");
+const buttonConfirmDelete = popupCardDelete1.querySelector(
   `.input-container__submit-item`
 );
+
 const newCardPopup = popupCardAdd.querySelector(".popup__container");
 const inputSubmitItemElement = newCardPopup.querySelector(".input-container");
 const inputContainerItemNameMesto = newCardPopup.querySelector(
@@ -74,6 +75,6 @@ const profileAddButton = document.querySelector('.profile__add-button');
 export {
   dataValidation, userAvatar, userName, userProfession,
   elements, profile, profileInfoName, profileInfoVocation, profileAvatar,
-  profileAvatarClick, profileInfoEditButton, profileAddButton,
+  profileAvatarClick, profileInfoEditButton, profileAddButton, popupCardDelete1
 }
 

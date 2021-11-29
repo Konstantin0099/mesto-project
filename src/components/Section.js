@@ -30,4 +30,10 @@ export default class Section {
     this._container.prepend(element);
   }
 
+  deleteCard() {
+
+    console.log("deleteCard() ");
+        // this._element.remove();      
+  }
+
 }// конец class Section
