@@ -7,27 +7,11 @@
 // Для каждой проверяемой формы создавайте экземпляр класса FormValidator.
 
 export default class FormValidator {
-<<<<<<< HEAD
   constructor(dataValidation){
-=======
-  //   constructor({ baseUrl, headers }, itemValidator) { // config = {baseUrl, headers }
-  //     this.baseUrl = baseUrl;
-  //     this.headers = headers;
-  //   }
-  //   // имеет публичный метод enableValidation, который включает валидацию формы.
-  //   enableValidation(){
-  //   }
-  // }
-  constructor(dataValidation) {
->>>>>>> origin/feat/mesto-update
     this.dataValidation = dataValidation;
   }
 
-<<<<<<< HEAD
-addErrorInput = (form) => { // выполняется при не валидном инпуте 
-=======
   addErrorInput = (form) => { // выполняется при не валидном инпуте
->>>>>>> origin/feat/mesto-update
     form.form.classList.add(`${this.dataValidation.errorClass}`);// при ошибке стилизуеи инпуты
     form.error.classList.add(`${this.dataValidation.inputErrorClass}`);// при ошибке стилизуем поле Error
     form.error.textContent = form.messageError;// пишем причину невальдности
@@ -42,11 +26,7 @@ addErrorInput = (form) => { // выполняется при не валидно
   disableButton = (form) => { // функция, делает кнопку переданной формы неактивной
     form.buttonSubmit.disabled = true;
   };
-<<<<<<< HEAD
-activateButton = (form) => {// функция, делает кнопку переданной формы активной
-=======
   activateButton = (form) => {// функция, делает кнопку переданной формы активной
->>>>>>> origin/feat/mesto-update
     form.buttonSubmit.disabled = false;
   };
   hasValidForm = (form) => { //  проверяет валидность всех полей формы
