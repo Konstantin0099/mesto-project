@@ -10,7 +10,9 @@ import {
   profileAvatarClick,
   profileInfoEditButton,
   profileAddButton,
-  userAvatar, userName, userProfession
+  userAvatar,
+  userName,
+  userProfession,
 } from "../utils/constants";
 
 import Api from "../components/Api";
@@ -37,7 +39,14 @@ let sectionCards = new Section(
   {
     items: {},
     renderer: function (card) {
-      sectionCards.addItem(new Card(card, "#elementsSection").generate());
+      let img = document.createElement('img');
+      img.src = card.link;
+      img.onload = () => {
+        sectionCards.addItem(new Card(card, "#elementsSection").generate());
+      };
+      img.onerror = () => {
+        console.log("__такой картинки нет______", `${card.link}`);
+      };
     },
   },
   ".elements"
@@ -48,44 +57,35 @@ const popupUpdateAvatar = new PopupWithForm(
   API.editAvatarProfile.bind(API),
   profileInfo.initUserAvatar.bind(profileInfo)
 );
-popupUpdateAvatar.setEventListeners(
-  data => {
-    userAvatar.src = data.avatar;
-  }
-);
+popupUpdateAvatar.setEventListeners((data) => {
+  userAvatar.src = data.avatar;
+});
 
-const popupProfile = new PopupWithForm(// попап изменения ФИО
+const popupProfile = new PopupWithForm( // попап изменения ФИО
   ".popup_profile-info",
   API.editDataProfile.bind(API),
   profileInfo.initUserInfo.bind(profileInfo)
 );
-popupProfile.setEventListeners(
-  data => {
-    userName.textContent = data.name;
-    userProfession.textContent = data.about;
-  }
-);
+popupProfile.setEventListeners((data) => {
+  userName.textContent = data.name;
+  userProfession.textContent = data.about;
+});
 
-const popupCardAdd = new PopupWithForm(// попап добавдения карточки
+const popupCardAdd = new PopupWithForm( // попап добавдения карточки
   ".popup_card-add",
   API.addNewCard.bind(API),
   sectionCards.addItem.bind(sectionCards)
-); 
-popupCardAdd.setEventListeners(
-  data => {
-    sectionCards.addCard(new Card(data, "#elementsSection").generate());
-  }
 );
+popupCardAdd.setEventListeners((data) => {
+  sectionCards.addCard(new Card(data, "#elementsSection").generate());
+});
 
-const popupImage = new PopupWithImage('.popup_picture');
+const popupImage = new PopupWithImage(".popup_picture");
 popupImage.setEventListeners();
-
 
 // debugger;
 
-const popupCardDelete = new PopupWithForm(// попап удаления карточки
-  ".popup_delete-card", '', ''
-);
+const popupCardDelete = new PopupWithForm(".popup_delete-card", "", ""); // попап удаления карточки
 popupCardDelete.setEventListenersRemove();
 
 profileAvatarClick.addEventListener("click", () => {
@@ -93,8 +93,10 @@ profileAvatarClick.addEventListener("click", () => {
 });
 
 profileInfoEditButton.addEventListener("click", () => {
-  document.querySelector('.input-container__item_name').value = userName.textContent;
-  document.querySelector('.input-container__item_profession').value = userProfession.textContent;
+  document.querySelector(".input-container__item_name").value =
+    userName.textContent;
+  document.querySelector(".input-container__item_profession").value =
+    userProfession.textContent;
   popupProfile.open();
 });
 
@@ -114,5 +116,4 @@ Promise.all([API.getInitialProfile(), API.getInitialCards()])
     console.log("ошибка---InitialProfilePromiseAll----", err);
   });
 
-
-export {API, popupImage, popupCardDelete}
+export { API, popupImage, popupCardDelete };

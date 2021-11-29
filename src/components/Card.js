@@ -82,22 +82,24 @@ export default class Card {
   };
 
   generate() {
+    const img = new Image();
+    const item = (selector) => {
+      return this._element.querySelector(selector);
+    };
     this._element = this._createElement();
+    item(".element__img").src = this.card.link;
     this._setEventListeners();
-    this._element.querySelector(".element__img").src = this.card.link;
-    this._element.querySelector(".element__figcaption").textContent =
-      this.card.name;
-    this._element.querySelector(".element__img").alt = this.card.name;
-    this._element.querySelector(".like__numbers").textContent =
-      this.card.likes.length;
+    item(".element__figcaption").textContent = this.card.name;
+    item(".element__img").alt = this.card.name;
+    item(".like__numbers").textContent = this.card.likes.length;
     this._element.dataset.id = this.card._id;
     if (this._checkMyLikesInit()) {
-      this._element.querySelector(".like").classList.add("like_click");
+      item(".like").classList.add("like_click");
     }
     if (this.card.owner._id === window.userId) {
-      this._element.querySelector(".trash").classList.add("trash_include");
+      item(".trash").classList.add("trash_include");
     }
-    this._element.addEventListener("click", this._clickCard);
+    item("click", this._clickCard);
     return this._element;
   }
 }

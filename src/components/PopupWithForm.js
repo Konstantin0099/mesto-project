@@ -45,7 +45,7 @@ export default class PopupWithForm extends Popup {
     const formInputs = this._form.querySelectorAll('INPUT');
     if (formInputs.length > 0) {
       formInputs[0].focus();
-      console.log(formInputs)
+      // console.log(formInputs)
     } else {
       this._form.querySelector('.input-container__submit-item').focus();
     }
