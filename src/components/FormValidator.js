@@ -1,4 +1,3 @@
-
 // Создание класса FormValidator
 // Создайте класс FormValidator, который настраивает валидацию полей формы:
 // принимает в конструктор объект настроек с селекторами и классами формы;
@@ -8,20 +7,11 @@
 // Для каждой проверяемой формы создавайте экземпляр класса FormValidator.
 
 export default class FormValidator {
-  //   constructor({ baseUrl, headers }, itemValidator) { // config = {baseUrl, headers }
-  //     this.baseUrl = baseUrl;
-  //     this.headers = headers;
-  //   }
-  //   // имеет публичный метод enableValidation, который включает валидацию формы.
-  //   enableValidation(){
-  //   }
-  // }
   constructor(dataValidation){
     this.dataValidation = dataValidation;
 }
 
 addErrorInput = (form) => { // выполняется при не валидном инпуте 
-// console.log("addErrorInput>form_____", form);
     form.form.classList.add(`${this.dataValidation.errorClass}`);// при ошибке стилизуеи инпуты
     form.error.classList.add(`${this.dataValidation.inputErrorClass}`);// при ошибке стилизуем поле Error
     form.error.textContent = form.messageError;// пишем причину невальдности
@@ -37,7 +27,6 @@ disableButton = (form) => { // функция, делает кнопку пер�
     form.buttonSubmit.disabled = true;
   };
 activateButton = (form) => {// функция, делает кнопку переданной формы активной
-  console.log("form____", form);
     form.buttonSubmit.disabled = false;
   };
   hasValidForm = (form) => { //  проверяет валидность всех полей формы
@@ -86,9 +75,5 @@ _setEventListenerInput = () =>
     ).disabled = true;
     form.addEventListener("input", this.hasValid);
   });
-
 }
-
-
-
 }

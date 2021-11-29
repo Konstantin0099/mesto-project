@@ -3,14 +3,8 @@ import {popupImage} from "../pages";
 import {popupCardDelete} from "../pages";
 
 export default class Card {
-  // { name = "1", link  = "1", likes  = [1] , _id  = "1" , owner  = "1"}
   constructor(card, selectorTemplateElement) {
     this.card = card;
-    // this.name = card.name;
-    // this.imageUrl = card.link;
-    // this.likes = this.card.likes;
-    // this.id = card._id;
-    // this.ownerId = card.owner;
     this._selectorTemplateElement = selectorTemplateElement;
   }
 
@@ -35,7 +29,7 @@ export default class Card {
   _setEventListeners() {
     this._element.addEventListener('click',
       this._clickCard
-      //this._handleCardClick()    // При клике на карточку эта функция должна открывать попап с картинкой.
+// При клике на карточку эта функция должна открывать попап с картинкой.
     );
   }
 
@@ -68,40 +62,10 @@ export default class Card {
     }
   }
 
-  // const confirmDelete = () => {
-//   buttonSavingData(popupCardDelete, " Удаление....");
-//   deleteCard(cardDelete.id)
-//     .then(() => {
-//       cardDelete.closest(".element").remove();
-//       closePopup(popupCardDelete);
-//     })
-//     .catch((err) => {
-//       console.log("ОШИБКА___", err);
-//     })
-//     .finally(() => {
-//       buttonConfirmDelete.removeEventListener("click", confirmDelete);
-//       buttonSavingData(popupCardDelete, " Да ");
-//     });
-// };
-
-
-// const openPopupDeleteCard = (card) => {
-//   cardDelete = card;
-//   openPopup(popupCardDelete);
-//   buttonConfirmDelete.addEventListener("click", confirmDelete);
-// };
-
   _openPopupDeleteCard(card) {
-    console.log("____________popupCardDelete");
     popupCardDelete.open();
     popupCardDelete._form.dataset.deleteCardId = this.card._id;
-    
-    // API.deleteCard(this.card._id)
-    //   .then(res => {
-    //     this._element.remove();
-    //   });
 
-      
   }
 
   _clickCard = (evt) => {
@@ -119,9 +83,6 @@ export default class Card {
   };
 
   generate() {
-
-// console.log("ссылка на картинку__", this.card.link);
-// console.log("ссылка на картинку__", this.card.link);
 
     this._element = this._createElement();
     this._setEventListeners();

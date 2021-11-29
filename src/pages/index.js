@@ -100,21 +100,14 @@ popupCardAdd.setEventListeners(
 const popupImage = new PopupWithImage('.popup_picture');
 popupImage.setEventListeners();
 
-// debugger;
-console.log("_______1_____popupCardDelete");
+// debugger
 const popupCardDelete = new PopupWithForm(// попап удаления карточки
   ".popup_delete-card", '', ''
-// const popupCardDelete = document.querySelector(".popup_delete-card");
-// const buttonConfirmDelete = popupCardDelete.querySelector(
-//   `.input-container__submit-item`
-// );
 );
-console.log("____________popupCardDelete");
 popupCardDelete.setEventListenersRemove();
 
 profileAvatarClick.addEventListener("click", () => {
   popupUpdateAvatar.open();
-  console.log(this)
 });
 
 profileInfoEditButton.addEventListener("click", () => {

@@ -40,8 +40,6 @@ export default class PopupWithForm extends Popup {
     )
   })
 }
-
-
   // Перезаписывает родительский метод setEventListeners.
   // Метод setEventListeners класса PopupWithForm должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
   setEventListeners(refreshInfo = () => {
@@ -70,5 +68,3 @@ export default class PopupWithForm extends Popup {
 
 
 }//конец class PopupWithForm
-
-// Для каждого попапа создавайте свой экземпляр класса PopupWithForm.
