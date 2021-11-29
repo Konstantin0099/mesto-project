@@ -29,7 +29,8 @@ export default class Card {
   _setEventListeners() {
     this._element.addEventListener('click',
       this._clickCard
-// При клике на карточку эта функция должна открывать попап с картинкой.
+
+      // При клике на карточку эта функция должна открывать попап с картинкой.
     );
   }
 
@@ -65,7 +66,10 @@ export default class Card {
   _openPopupDeleteCard(card) {
     popupCardDelete.open();
     popupCardDelete._form.dataset.deleteCardId = this.card._id;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/feat/mesto-update
   }
 
   _clickCard = (evt) => {
@@ -83,7 +87,10 @@ export default class Card {
   };
 
   generate() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/feat/mesto-update
     this._element = this._createElement();
     this._setEventListeners();
     this._element.querySelector('.element__img').src = this.card.link;

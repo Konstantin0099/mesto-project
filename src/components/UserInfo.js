@@ -20,7 +20,6 @@ export default class UserInfo {
 
   // который принимает новые данные пользователя, отправляет их на сервер и добавляет их на страницу.
   setUserInfo(user) {
-
     this.initUserInfo(user)  // и добавляет их на страницу.
   }
 
@@ -33,7 +32,5 @@ export default class UserInfo {
     this._selectorAvatar.src = user.avatar;
     this._selectorAvatar.alt = user.name + ", " + user.about;
   }
-
-
 }
 /// конец class UserInfo

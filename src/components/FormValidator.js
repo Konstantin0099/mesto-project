@@ -7,26 +7,46 @@
 // Для каждой проверяемой формы создавайте экземпляр класса FormValidator.
 
 export default class FormValidator {
+<<<<<<< HEAD
   constructor(dataValidation){
+=======
+  //   constructor({ baseUrl, headers }, itemValidator) { // config = {baseUrl, headers }
+  //     this.baseUrl = baseUrl;
+  //     this.headers = headers;
+  //   }
+  //   // имеет публичный метод enableValidation, который включает валидацию формы.
+  //   enableValidation(){
+  //   }
+  // }
+  constructor(dataValidation) {
+>>>>>>> origin/feat/mesto-update
     this.dataValidation = dataValidation;
-}
+  }
 
+<<<<<<< HEAD
 addErrorInput = (form) => { // выполняется при не валидном инпуте 
+=======
+  addErrorInput = (form) => { // выполняется при не валидном инпуте
+>>>>>>> origin/feat/mesto-update
     form.form.classList.add(`${this.dataValidation.errorClass}`);// при ошибке стилизуеи инпуты
     form.error.classList.add(`${this.dataValidation.inputErrorClass}`);// при ошибке стилизуем поле Error
     form.error.textContent = form.messageError;// пишем причину невальдности
     form.buttonSubmit.classList.add(`${this.dataValidation.inactiveButtonClass}`); // стилизуем неактивную кнопку
     this.disableButton(form); // делаем кнпку неактивной
   };
-deleteErrorInput = (form) => {  // убираем стили ошибки поля Error и отчищаем
+  deleteErrorInput = (form) => {  // убираем стили ошибки поля Error и отчищаем
     form.error.classList.remove(`${this.dataValidation.inputErrorClass}`);
     form.error.textContent = "";
   };
-  
-disableButton = (form) => { // функция, делает кнопку переданной формы неактивной
+
+  disableButton = (form) => { // функция, делает кнопку переданной формы неактивной
     form.buttonSubmit.disabled = true;
   };
+<<<<<<< HEAD
 activateButton = (form) => {// функция, делает кнопку переданной формы активной
+=======
+  activateButton = (form) => {// функция, делает кнопку переданной формы активной
+>>>>>>> origin/feat/mesto-update
     form.buttonSubmit.disabled = false;
   };
   hasValidForm = (form) => { //  проверяет валидность всех полей формы
@@ -39,10 +59,10 @@ activateButton = (form) => {// функция, делает кнопку пер�
   };
   hasValidinput = (form) => {  //  проверяет валидность поля ввода
     if (!form.input.validity.valid) {
-        this.addErrorInput(form);
+      this.addErrorInput(form);
       return false;
     } else {
-        this.deleteErrorInput(form);
+      this.deleteErrorInput(form);
       return true;
     }
   };
@@ -63,17 +83,19 @@ activateButton = (form) => {// функция, делает кнопку пер�
         this.disableButton(form);
       }
     } else {
-        this.disableButton(form);
+      this.disableButton(form);
     }
   };
-_setEventListenerInput = () =>
-{// ищет все формы в документе и устаналиает обработчики на все формы на событие "input"
+  _setEventListenerInput = () => {// ищет все формы в документе и устаналиает обработчики на все формы на событие "input"
     const formList = Array.from(document.forms);
     formList.forEach((form) => {
-    form.querySelector(
-      `${this.dataValidation.submitButtonSelector}`
-    ).disabled = true;
-    form.addEventListener("input", this.hasValid);
-  });
-}
+
+      form.querySelector(
+        `${this.dataValidation.submitButtonSelector}`
+      ).disabled = true;
+      form.addEventListener("input", this.hasValid);
+    });
+
+  }
+
 }

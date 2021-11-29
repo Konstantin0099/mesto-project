@@ -21,7 +21,6 @@ export default class PopupWithForm extends Popup {
       }
     })
     return formData;
-
   }
 
   setEventListenersRemove() {
@@ -33,13 +32,30 @@ export default class PopupWithForm extends Popup {
       this._saveBtn.textContent = 'Удаление...';
       const cardId = this._form.dataset.deleteCardId;
       API.deleteCard(cardId).then(() => {
-        this.close();
-        this._saveBtn.textContent = 'Да';
-        document.querySelector(`[data-id="${cardId}"]`).remove();
-      }
-    )
-  })
-}
+
+          this.close();
+          this._saveBtn.textContent = 'Да';
+          document.querySelector(`[data-id="${cardId}"]`).remove();
+        }
+      )
+    })
+  }
+
+  _setFirstElementFocus() {
+    const formInputs = this._form.querySelectorAll('INPUT');
+    if (formInputs.length > 0) {
+      formInputs[0].focus();
+      console.log(formInputs)
+    } else {
+      this._form.querySelector('.input-container__submit-item').focus();
+    }
+  }
+
+  open() {
+    super.open()
+    this._setFirstElementFocus();
+  }
+
   // Перезаписывает родительский метод setEventListeners.
   // Метод setEventListeners класса PopupWithForm должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
   setEventListeners(refreshInfo = () => {
@@ -49,13 +65,13 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener('submit', evt => {
       evt.preventDefault();
       const formData = this._getInputValues();
-        this._saveBtn.textContent = 'Сохранение...';
-        this._editData(formData).then(res => {
-          API.addNewCard.bind(res);
-          this.close();
-          this._saveBtn.textContent = 'Сохранить';
-          refreshInfo(res);
-        });
+      this._saveBtn.textContent = 'Сохранение...';
+      this._editData(formData).then(res => {
+        API.addNewCard.bind(res);
+        this.close();
+        this._saveBtn.textContent = 'Сохранить';
+        refreshInfo(res);
+      });
     })
   }
 

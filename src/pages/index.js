@@ -27,35 +27,16 @@ const API = new Api(config);
 const valid = new FormValidator(dataValidation);
 valid._setEventListenerInput();
 
-
 const profileInfo = new UserInfo(
   profileInfoName,
   profileInfoVocation,
   profileAvatar
 );
 
-// <<<<<<< HEAD
-// // console.log("index_____");
-// const cardItem = new Card({}, "#elementsSection");// console.log("index__cardItem =___", cardItem);
-// const sectionCards = new Section(
-//   {
-//     items: {},
-//     renderer: function (card) {
-//       cardItem.card = card;// console.log("renderer: function (cardItem) =___", cardItem);
-//       sectionCards.addItem(cardItem.generate()); // console.log("renderer: function (cardItem.card) =___", cardItem.card);
-//     },
-//   },
-//   ".elements"
-//   );
-  
-// const popupUpdateAvatar = new PopupWithForm(// попап изменения АВАВТАРА
-// =======
 let sectionCards = new Section(
   {
     items: {},
     renderer: function (card) {
-      // console.log("renderer: function (cardItem) =___", cardItem);
-      // console.log("renderer: function (cardItem.card) =___", cardItem.card);
       sectionCards.addItem(new Card(card, "#elementsSection").generate());
     },
   },
@@ -63,7 +44,6 @@ let sectionCards = new Section(
 );
 
 const popupUpdateAvatar = new PopupWithForm(
-
   ".popup_update-avatar",
   API.editAvatarProfile.bind(API),
   profileInfo.initUserAvatar.bind(profileInfo)
@@ -100,7 +80,9 @@ popupCardAdd.setEventListeners(
 const popupImage = new PopupWithImage('.popup_picture');
 popupImage.setEventListeners();
 
-// debugger
+
+// debugger;
+
 const popupCardDelete = new PopupWithForm(// попап удаления карточки
   ".popup_delete-card", '', ''
 );
