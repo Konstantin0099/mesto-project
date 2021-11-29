@@ -8,7 +8,6 @@ export default class Section {
     this.items = items;
     // Свойство renderer — это функция, которая отвечает за создание и отрисовку данных на странице.
     this._renderer = renderer;
-
     this._container = document.querySelector(selector);
   }
 
@@ -18,7 +17,6 @@ export default class Section {
     this.items.forEach((item) => {
       this._renderer(item)
     });
-
   }
 
 // Содержит публичный метод addItem, который принимает DOM-элемент и добавляет его в контейнер.
@@ -29,11 +27,4 @@ export default class Section {
   addCard(element) {
     this._container.prepend(element);
   }
-
-  deleteCard() {
-
-    console.log("deleteCard() ");
-        // this._element.remove();      
-  }
-
 }// конец class Section
