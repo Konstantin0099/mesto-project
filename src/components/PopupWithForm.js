@@ -24,8 +24,8 @@ export default class PopupWithForm extends Popup {
 
   }
 
-  setEventListenersRemove(refreshInfo = () => {
-  }) {
+  setEventListenersRemove() {
+    this._form.querySelector(".input-container__submit-item").disabled = false;
     super.setEventListeners();
     // добавлять обработчик сабмита формы.
     this._form.addEventListener('submit', evt => {
@@ -36,7 +36,6 @@ export default class PopupWithForm extends Popup {
         this.close();
         this._saveBtn.textContent = 'Да';
         document.querySelector(`[data-id="${cardId}"]`).remove();
-        // refreshInfo(res);
       }
     )
   })

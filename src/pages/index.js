@@ -24,6 +24,10 @@ import PopupWithImage from "../components/PopupWithImage";
 window.userId = undefined;
 const API = new Api(config);
 
+const valid = new FormValidator(dataValidation);
+valid._setEventListenerInput();
+
+
 const profileInfo = new UserInfo(
   profileInfoName,
   profileInfoVocation,
@@ -135,9 +139,5 @@ Promise.all([API.getInitialProfile(), API.getInitialCards()])
     console.log("ошибка---InitialProfilePromiseAll----", err);
   });
 
-const valid = new FormValidator(dataValidation);
-valid._setEventListenerInput();
-document.forms.inputContainerDeleteCard.querySelector(".input-container__submit-item").disabled = false;
-// console.log("popupCardDelete11____", document.forms.inputContainerDeleteCard);
 
 export {API, popupImage, popupCardDelete}
