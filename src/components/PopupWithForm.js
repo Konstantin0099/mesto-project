@@ -1,9 +1,9 @@
 import Popup from "./Popup";
-import {API} from "../pages";
+import {api} from "../pages";
 
 // Создайте класс PopupWithForm, который наследуется от Popup
 export default class PopupWithForm extends Popup {
-  // Кроме селектора попапа принимает в конструктор колбэк сабмита формы. В этом колбэке содержится метод класса Api.
+  // Кроме селектора попапа принимает в конструктор колбэк сабмита формы. В этом колбэке содержится метод класса api.
   constructor(selector, editData, initData) {
     super(selector);
     this._editData = editData;
@@ -31,7 +31,7 @@ export default class PopupWithForm extends Popup {
       evt.preventDefault();
       this._saveBtn.textContent = 'Удаление...';
       const cardId = this._form.dataset.deleteCardId;
-      API.deleteCard(cardId).then(() => {
+      api.deleteCard(cardId).then(() => {
 
           this.close();
           this._saveBtn.textContent = 'Да';
@@ -67,7 +67,7 @@ export default class PopupWithForm extends Popup {
       const formData = this._getInputValues();
       this._saveBtn.textContent = 'Сохранение...';
       this._editData(formData).then(res => {
-        API.addNewCard.bind(res);
+        api.addNewCard.bind(res);
         this.close();
         this._saveBtn.textContent = 'Сохранить';
         refreshInfo(res);

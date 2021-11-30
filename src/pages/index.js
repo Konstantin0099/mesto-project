@@ -2,6 +2,8 @@ import "./index.css";
 
 import config from "../utils/config";
 import {
+  namePopupProfileInfo,
+  professionPopupProfileInfo,
   popupCardDelete1,
   profileInfoName,
   profileInfoVocation,
@@ -15,7 +17,7 @@ import {
   userProfession,
 } from "../utils/constants";
 
-import Api from "../components/Api";
+import api from "../components/api";
 import UserInfo from "../components/UserInfo";
 import FormValidator from "../components/FormValidator";
 import Section from "../components/Section";
@@ -24,7 +26,7 @@ import PopupWithForm from "../components/PopupWithForm";
 import PopupWithImage from "../components/PopupWithImage";
 
 window.userId = undefined;
-const API = new Api(config);
+const api = new api(config);
 
 const valid = new FormValidator(dataValidation);
 valid._setEventListenerInput();
@@ -35,15 +37,15 @@ const profileInfo = new UserInfo(
   profileAvatar
 );
 
-let sectionCards = new Section(
+const sectionCards = new Section(
   {
     items: {},
     renderer: function (card) {
-      let img = document.createElement('img');
-      img.src = card.link;
-      img.onload = () => {
-        sectionCards.addItem(new Card(card, "#elementsSection").generate());
-      };
+      // let img = document.createElement('img');
+      // img.src = card.link;
+      // img.onload = () => {
+      sectionCards.addItem(new Card(card, "#elementsSection").generate());
+      // };
       img.onerror = () => {
         console.log("__такой картинки нет______", `${card.link}`);
       };
@@ -54,7 +56,7 @@ let sectionCards = new Section(
 
 const popupUpdateAvatar = new PopupWithForm(
   ".popup_update-avatar",
-  API.editAvatarProfile.bind(API),
+  api.editAvatarProfile.bind(api),
   profileInfo.initUserAvatar.bind(profileInfo)
 );
 popupUpdateAvatar.setEventListeners((data) => {
@@ -63,7 +65,7 @@ popupUpdateAvatar.setEventListeners((data) => {
 
 const popupProfile = new PopupWithForm( // попап изменения ФИО
   ".popup_profile-info",
-  API.editDataProfile.bind(API),
+  api.editDataProfile.bind(api),
   profileInfo.initUserInfo.bind(profileInfo)
 );
 popupProfile.setEventListeners((data) => {
@@ -73,7 +75,7 @@ popupProfile.setEventListeners((data) => {
 
 const popupCardAdd = new PopupWithForm( // попап добавдения карточки
   ".popup_card-add",
-  API.addNewCard.bind(API),
+  api.addNewCard.bind(api),
   sectionCards.addItem.bind(sectionCards)
 );
 popupCardAdd.setEventListeners((data) => {
@@ -93,10 +95,8 @@ profileAvatarClick.addEventListener("click", () => {
 });
 
 profileInfoEditButton.addEventListener("click", () => {
-  document.querySelector(".input-container__item_name").value =
-    userName.textContent;
-  document.querySelector(".input-container__item_profession").value =
-    userProfession.textContent;
+  namePopupProfileInfo.value = userName.textContent;
+  professionPopupProfileInfo.value = userProfession.textContent;
   popupProfile.open();
 });
 
@@ -104,7 +104,7 @@ profileAddButton.addEventListener("click", () => {
   popupCardAdd.open();
 });
 
-Promise.all([API.getInitialProfile(), API.getInitialCards()])
+Promise.all([api.getInitialProfile(), api.getInitialCards()])
   .then(([user, cards]) => {
     window.userId = user._id;
     profileInfo.initUserInfo(user);
@@ -116,4 +116,4 @@ Promise.all([API.getInitialProfile(), API.getInitialCards()])
     console.log("ошибка---InitialProfilePromiseAll----", err);
   });
 
-export { API, popupImage, popupCardDelete };
+export { api, popupImage, popupCardDelete };

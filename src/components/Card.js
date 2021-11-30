@@ -1,4 +1,4 @@
-import { API } from "../pages";
+import { api } from "../pages";
 import { popupImage } from "../pages";
 import { popupCardDelete } from "../pages";
 
@@ -56,9 +56,9 @@ export default class Card {
 
   _clickLike(likeItem, card) {
     if (this._checkLikes(likeItem)) {
-      this._toggleLikeCard(API.deleteLikeCard.bind(API), card, likeItem);
+      this._toggleLikeCard(api.deleteLikeCard.bind(api), card, likeItem);
     } else {
-      this._toggleLikeCard(API.likeCard.bind(API), card, likeItem);
+      this._toggleLikeCard(api.likeCard.bind(api), card, likeItem);
     }
   }
 

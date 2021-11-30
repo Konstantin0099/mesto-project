@@ -9,6 +9,7 @@
 export default class FormValidator {
   constructor(dataValidation){
     this.dataValidation = dataValidation;
+    this._form = form;
   }
 
   addErrorInput = (form) => { // выполняется при не валидном инпуте

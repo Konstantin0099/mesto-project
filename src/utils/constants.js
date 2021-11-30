@@ -73,6 +73,7 @@ const profileInfoEditButton = document.querySelector('.profile-info__edit-button
 const profileAddButton = document.querySelector('.profile__add-button');
 
 export {
+  namePopupProfileInfo, professionPopupProfileInfo,
   dataValidation, userAvatar, userName, userProfession,
   elements, profile, profileInfoName, profileInfoVocation, profileAvatar,
   profileAvatarClick, profileInfoEditButton, profileAddButton, popupCardDelete1
