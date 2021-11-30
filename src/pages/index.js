@@ -16,8 +16,7 @@ import {
   userName,
   userProfession,
 } from "../utils/constants";
-
-import api from "../components/api";
+import Api from "../components/Api";
 import UserInfo from "../components/UserInfo";
 import FormValidator from "../components/FormValidator";
 import Section from "../components/Section";
@@ -25,11 +24,11 @@ import Card from "../components/Card";
 import PopupWithForm from "../components/PopupWithForm";
 import PopupWithImage from "../components/PopupWithImage";
 
-window.userId = undefined;
-const api = new api(config);
+let userId;
+const api = new Api(config);
 
-const valid = new FormValidator(dataValidation);
-valid._setEventListenerInput();
+// const valid = new FormValidator(dataValidation);
+// valid._setEventListenerInput();
 
 const profileInfo = new UserInfo(
   profileInfoName,
@@ -37,18 +36,70 @@ const profileInfo = new UserInfo(
   profileAvatar
 );
 
+/**
+ * Функция создает и возвращает заполненный элемент карточки, готовый к вставке в DOM
+ * @param data    - Данные, которыми будет наполняться карточка
+ * @param userId  - ID текущего пользователя
+ * @returns       -> HTML-Element
+ */
+function createCard(data, userId) {
+  const cardElement = new Card(
+    data,
+    userId,
+    function () {
+      popupImage.open(this._card.link, this._card.name);
+    },
+    function (likeElement, card) {
+
+      function countLikes(card, arrayLikes) {
+        card.querySelector(".like__numbers").textContent = arrayLikes.length;
+      }
+
+      function checkLikes(likeElement) {
+        return likeElement.classList.contains("like_click");
+      }
+
+      function toggleLikeCard(func, card, likeItem) {
+        func(card.dataset.id)
+          .then((res) => {
+            countLikes(card, res.likes);
+            likeItem.classList.toggle("like_click");
+          })
+          .catch((err) => {
+            console.log("ОШИБКА_Лайка__", err);
+          })
+          .finally(() => {
+          });
+      }
+
+      if (checkLikes(likeElement)) {
+        toggleLikeCard(api.deleteLikeCard.bind(api), card, likeElement)
+      } else {
+        toggleLikeCard(api.likeCard.bind(api), card, likeElement)
+      }
+    },
+    function () {
+      popupCardDelete.open();
+      popupCardDelete._form.dataset.deleteCardId = this._card._id;
+    },
+    "#elementsSection");
+
+  return cardElement.generate();
+}
+
 const sectionCards = new Section(
   {
     items: {},
-    renderer: function (card) {
+    renderer: function (data) {
       // let img = document.createElement('img');
       // img.src = card.link;
       // img.onload = () => {
-      sectionCards.addItem(new Card(card, "#elementsSection").generate());
+
+      sectionCards.appendElement(createCard(data, userId))
       // };
-      img.onerror = () => {
-        console.log("__такой картинки нет______", `${card.link}`);
-      };
+      // img.onerror = () => {
+      //   console.log("__такой картинки нет______", `${card.link}`);
+      // };
     },
   },
   ".elements"
@@ -76,10 +127,10 @@ popupProfile.setEventListeners((data) => {
 const popupCardAdd = new PopupWithForm( // попап добавдения карточки
   ".popup_card-add",
   api.addNewCard.bind(api),
-  sectionCards.addItem.bind(sectionCards)
+  sectionCards.prependElement.bind(sectionCards)
 );
-popupCardAdd.setEventListeners((data) => {
-  sectionCards.addCard(new Card(data, "#elementsSection").generate());
+popupCardAdd.setEventListeners(data => {
+  sectionCards.prependElement(createCard(data, userId));
 });
 
 const popupImage = new PopupWithImage(".popup_picture");
@@ -106,7 +157,7 @@ profileAddButton.addEventListener("click", () => {
 
 Promise.all([api.getInitialProfile(), api.getInitialCards()])
   .then(([user, cards]) => {
-    window.userId = user._id;
+    userId = user._id;
     profileInfo.initUserInfo(user);
     profileInfo.initUserAvatar(user);
     sectionCards.items = cards;
@@ -116,4 +167,4 @@ Promise.all([api.getInitialProfile(), api.getInitialCards()])
     console.log("ошибка---InitialProfilePromiseAll----", err);
   });
 
-export { api, popupImage, popupCardDelete };
+export {api, popupImage, popupCardDelete};
