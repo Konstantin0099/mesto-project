@@ -7,16 +7,9 @@
 // Для каждой проверяемой формы создавайте экземпляр класса FormValidator.
 
 export default class FormValidator {
-  //   constructor({ baseUrl, headers }, itemValidator) { // config = {baseUrl, headers }
-  //     this.baseUrl = baseUrl;
-  //     this.headers = headers;
-  //   }
-  //   // имеет публичный метод enableValidation, который включает валидацию формы.
-  //   enableValidation(){
-  //   }
-  // }
-  constructor(dataValidation) {
+  constructor(dataValidation){
     this.dataValidation = dataValidation;
+    this._form = form;
   }
 
   addErrorInput = (form) => { // выполняется при не валидном инпуте
@@ -77,6 +70,7 @@ export default class FormValidator {
   _setEventListenerInput = () => {// ищет все формы в документе и устаналиает обработчики на все формы на событие "input"
     const formList = Array.from(document.forms);
     formList.forEach((form) => {
+
       form.querySelector(
         `${this.dataValidation.submitButtonSelector}`
       ).disabled = true;
@@ -84,6 +78,5 @@ export default class FormValidator {
     });
 
   }
-
 
 }
