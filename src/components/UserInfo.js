@@ -1,5 +1,5 @@
 export default class UserInfo {
-  constructor(selectorUserName, selectorUserProfession, selectorUserAvatar) { // card = { nameMesto, imageUrl, likes, _id,}
+  constructor(selectorUserName, selectorUserProfession, selectorUserAvatar) {
     this._userNameElement = document.querySelector(selectorUserName);
     this._userProfessionElement = document.querySelector(selectorUserProfession);
     this._userAvatarElement = document.querySelector(selectorUserAvatar);
@@ -7,9 +7,9 @@ export default class UserInfo {
 
   getUserInfo() {
     return {
-      'name': this._userNameElement.textContent,
-      'about': this._userProfessionElement.textContent,
-      'avatar': this._userAvatarElement.src
+      name: this._userNameElement.textContent,
+      about: this._userProfessionElement.textContent,
+      avatar: this._userAvatarElement.src
     }
   }
 
