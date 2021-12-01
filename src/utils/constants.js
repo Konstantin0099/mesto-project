@@ -6,26 +6,16 @@ const dataValidation = {
   inputErrorClass: "input-container__item_error",
   errorClass: "popup__error_visible",
 }
-const profile = document.querySelector(".profile");
-const profileInfoName = profile.querySelector(".profile-info__name");
-const profileInfoVocation = profile.querySelector(".profile-info__vocation");
-const profileAvatar = profile.querySelector(".profile__avatar");
+
+const profileInfoName =".profile-info__name";
+const profileInfoVocation = ".profile-info__vocation";
+const profileAvatar = ".profile__avatar";
 
 const elements = document.querySelector(".elements");
 
-const userAvatar = document.querySelector('.profile__avatar');
-const userName = document.querySelector('.profile-info__name');
-const userProfession = document.querySelector('.profile-info__vocation');
-
-const popupUpdateAvatar = document.querySelector(".popup_update-avatar");
-const inputSubmitUpdateAvatar =
-  popupUpdateAvatar.querySelector(".input-container");
-const urlUpdateAvatar = popupUpdateAvatar.querySelector(
-  ".input-container__item_avatar"
-);
-const inputSubmitButtonUpdateAvatar = popupUpdateAvatar.querySelector(
-  ".input-container__submit-item"
-);
+const userAvatar = document.querySelector(".profile__avatar");
+const userName = document.querySelector(".profile-info__name");
+const userProfession = document.querySelector(".profile-info__vocation");
 
 const popupProfile = document.querySelector(".popup_profile-info");
 const popupProfileInfo = popupProfile.querySelector(".popup__container");
@@ -35,47 +25,18 @@ const namePopupProfileInfo = popupProfileInfo.querySelector(
 const professionPopupProfileInfo = popupProfileInfo.querySelector(
   ".input-container__item_profession"
 );
-const inputSubmitItemProfileInfo =
-  popupProfileInfo.querySelector(".input-container");
-const inputSubmitButtonItemProfileInfo = popupProfileInfo.querySelector(
-  ".input-container__submit-item"
-);
 
-const popupCardAdd = document.querySelector(".popup_card-add");
-const inputContainerSubmitItem = popupCardAdd.querySelector(
-  `.input-container__submit-item`
-);
 const popupCardDelete1 = document.querySelector(".popup_delete-card");
-const buttonConfirmDelete = popupCardDelete1.querySelector(
-  `.input-container__submit-item`
-);
-
-const newCardPopup = popupCardAdd.querySelector(".popup__container");
-const inputSubmitItemElement = newCardPopup.querySelector(".input-container");
-const inputContainerItemNameMesto = newCardPopup.querySelector(
-  ".input-container__item_nameMesto"
-);
-const inputContainerItemUrl = newCardPopup.querySelector(
-  ".input-container__item_url"
-);
-
-const popupPicture = document.querySelector(".popup_picture");
-const popupImg = popupPicture.querySelector(".popup-img");
-const imgPopup = popupImg.querySelector(".img-popup");
-const popupFigcaption = popupImg.querySelector(".popup-figcaption");
-const elementSectionTemplate =
-  document.querySelector("#elementsSection").content;
-
 
 /// /////////////
-const profileAvatarClick = document.querySelector('.profile__avatar-click');
-const profileInfoEditButton = document.querySelector('.profile-info__edit-button');
-const profileAddButton = document.querySelector('.profile__add-button');
+const profileAvatarClick = document.querySelector(".profile__avatar-click");
+const profileInfoEditButton = document.querySelector(".profile-info__edit-button");
+const profileAddButton = document.querySelector(".profile__add-button");
 
 export {
   namePopupProfileInfo, professionPopupProfileInfo,
   dataValidation, userAvatar, userName, userProfession,
-  elements, profile, profileInfoName, profileInfoVocation, profileAvatar,
+  elements, profileInfoName, profileInfoVocation, profileAvatar,
   profileAvatarClick, profileInfoEditButton, profileAddButton, popupCardDelete1
 }
 

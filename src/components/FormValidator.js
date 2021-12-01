@@ -14,55 +14,43 @@
 //     errorClass: "popup__error_visible",
 //   }
 export default class FormValidator {
-  constructor(dataValidation, itemForm) {
+  constructor(dataValidation, formInstance) {
     this.dataValidation = dataValidation;
-    this._itemForm = itemForm;
+    this._validatedForm = formInstance._form;
+    this._buttonSubmit = formInstance._saveBtn;
   }
-
-  enableValidation(name) {
-    this.forma = document.forms[name];
-    console.log("   document.forms[name] -------", this.forma);
-    console.log("   this._itemForm -------", this._itemForm);
-    // console.log("   document.forms[name] -------", this.forma);
-    // console.log("   document.forms[name] -------", this.forma);
-    // console.log("   document.forms[name] -------", this.forma);
-
-
+  enableValidation() {
     this.inputList = Array.from(
-      this.forma.querySelectorAll(`${this.dataValidation.inputSelector}`)
+      this._validatedForm.querySelectorAll(`${this.dataValidation.inputSelector}`)
     );
     this.inputList.forEach((inputItem) => {
-      this._inputItem = inputItem;
-      this._inputItem.addEventListener("input", this.hasValid);
+      inputItem.addEventListener("input", this.hasValid);
     });
-    this.forma.querySelector(
-      `${this.dataValidation.submitButtonSelector}`
-    ).disabled = true;
   }///
   addErrorInput = () => {
-    this.form.form.classList.add(`${this.dataValidation.errorClass}`); // при ошибке стилизуеи инпуты
-    this.form.error.classList.add(`${this.dataValidation.inputErrorClass}`); // при ошибке стилизуем поле Error
-    this.form.error.textContent = this.form.messageError; // пишем причину невальдности
-    this.form.buttonSubmit.classList.add(
+      this._validatedForm.classList.add(`${this.dataValidation.errorClass}`); // при ошибке стилизуеи инпуты
+    this._error.classList.add(`${this.dataValidation.inputErrorClass}`); // при ошибке стилизуем поле Error
+    this._error.textContent = this._messageError; // пишем причину невальдности
+    this._buttonSubmit.classList.add(
       `${this.dataValidation.inactiveButtonClass}`
     ); // стилизуем неактивную кнопку
     this.disableButton(); // делаем кнпку неактивной
   };///
   deleteErrorInput = () => {
     // убираем стили ошибки поля Error и отчищаем
-    this.form.error.classList.remove(`${this.dataValidation.inputErrorClass}`);
-    this.form.error.textContent = "";
+    this._error.classList.remove(`${this.dataValidation.inputErrorClass}`);
+    this._error.textContent = "";
   };///
-
   disableButton = () => {
     // функция, делает кнопку переданной формы неактивной
-    this.form.buttonSubmit.disabled = true;
+    this._buttonSubmit.disabled = true;
   };
   activateButton = () => {
     // функция, делает кнопку переданной формы активной
-    this.form.buttonSubmit.disabled = false;
+    this._buttonSubmit.disabled = false;
   };
   hasValidForm = () => {
+    
     //  проверяет валидность всех полей формы
     return this.inputList.every((input) => {
       return input.validity.valid;
@@ -70,7 +58,7 @@ export default class FormValidator {
   };
   hasValidinput = () => {
     //  проверяет валидность поля ввода
-    if (!this._inputItem.validity.valid) {
+    if (!this._input.validity.valid) {
       this.addErrorInput();
       return false;
     } else {
@@ -79,17 +67,10 @@ export default class FormValidator {
     }
   };
   hasValid = (evt) => {
-    // проверяет на валидность форму, на которой произошло событие "input"
-    // debugger;
-    this.form = {
-      form: this.forma,
-      input: evt.target,
-      error: this.forma.querySelector(`.${evt.target.id}-error`),
-      messageError: evt.target.validationMessage,
-      buttonSubmit: this.forma.querySelector(
-        `${this.dataValidation.submitButtonSelector}`
-      ),
-    };
+    // Запускаем проверку на валидность формы, на которой произошло событие "input"
+      this._input = evt.target;
+      this._error = this._validatedForm.querySelector(`.${evt.target.id}-error`);
+      this._messageError = evt.target.validationMessage;
     if (this.hasValidinput()) {
       if (this.hasValidForm()) {
         this.activateButton();
