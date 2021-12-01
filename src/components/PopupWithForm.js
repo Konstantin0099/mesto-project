@@ -24,7 +24,7 @@ export default class PopupWithForm extends Popup {
   }
 
   setEventListenersRemove() {
-    this._form.querySelector(".input-container__submit-item").disabled = false;
+    // this._form.querySelector(".input-container__submit-item").disabled = false;
     super.setEventListeners();
     // добавлять обработчик сабмита формы.
     this._form.addEventListener('submit', evt => {
