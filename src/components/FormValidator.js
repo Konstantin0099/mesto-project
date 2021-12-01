@@ -21,6 +21,13 @@ export default class FormValidator {
 
   enableValidation(name) {
     this.forma = document.forms[name];
+    console.log("   document.forms[name] -------", this.forma);
+    console.log("   this._itemForm -------", this._itemForm);
+    // console.log("   document.forms[name] -------", this.forma);
+    // console.log("   document.forms[name] -------", this.forma);
+    // console.log("   document.forms[name] -------", this.forma);
+
+
     this.inputList = Array.from(
       this.forma.querySelectorAll(`${this.dataValidation.inputSelector}`)
     );
