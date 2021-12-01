@@ -1,36 +1,22 @@
-// Класс UserInfo
-// отвечает за управление информацией о пользователе на странице. Этот класс:
-// * 		Принимает в конструктор объект с селекторами двух элементов: элемента имени пользователя и элемента информации о себе.
-// * 		Содержит публичный метод getUserInfo, который возвращает объект с данными пользователя.
-//          Данные для этого метода нужно получать от методов класса api — подумайте над тем, как внедрить метод класса api в getUserInfo.
-//          Когда данные пользователя нужно будет подставить в форму при открытии — метод вам пригодится.
-// * 		Содержит публичный метод setUserInfo, который принимает новые данные пользователя, отправляет их на сервер и добавляет их на страницу.
-
 export default class UserInfo {
-  constructor(selectorName, selectorProfession, selectorAvatar) { // card = { nameMesto, imageUrl, likes, _id,}
-    this._selectorName = selectorName;
-    this._selectorProfession = selectorProfession;
-    this._selectorAvatar = selectorAvatar;
+  constructor(selectorUserName, selectorUserProfession, selectorUserAvatar) { // card = { nameMesto, imageUrl, likes, _id,}
+    this._userNameElement = document.querySelector(selectorUserName);
+    this._userProfessionElement = document.querySelector(selectorUserProfession);
+    this._userAvatarElement = document.querySelector(selectorUserAvatar);
   }
 
-  // Содержит публичный метод getUserInfo, который возвращает объект с данными пользователя.
   getUserInfo() {
-    return UserInfo
+    return {
+      'name': this._userNameElement.textContent,
+      'about': this._userProfessionElement.textContent,
+      'avatar': this._userAvatarElement.src
+    }
   }
 
-  // который принимает новые данные пользователя, отправляет их на сервер и добавляет их на страницу.
-  setUserInfo(user) {
-    this.initUserInfo(user)  // и добавляет их на страницу.
-  }
-
-  initUserInfo(user) {
-    this._selectorName.textContent = user.name;
-    this._selectorProfession.textContent = user.about;
-  }
-
-  initUserAvatar(user) {
-    this._selectorAvatar.src = user.avatar;
-    this._selectorAvatar.alt = user.name + ", " + user.about;
+  setUserInfo({name, about, avatar}) {
+    this._userNameElement.textContent = name;
+    this._userProfessionElement.textContent = about;
+    this._userAvatarElement.src = avatar;
+    this._userAvatarElement.alt = name + ", " + about;
   }
 }
-/// конец class UserInfo

@@ -1,6 +1,3 @@
-import { popupImage } from "../pages";
-import { popupCardDelete } from "../pages";
-
 export default class Card {
   constructor(
     card,
