@@ -126,7 +126,7 @@ const popupUpdateAvatar = new PopupWithForm(
 popupUpdateAvatar.setEventListeners();
 /////////////////AvatarValidator
 const popupUpdateAvatarValidator = new FormValidator(dataValidation, popupUpdateAvatar);
-popupUpdateAvatarValidator.enableValidation("input-container-avatar");
+popupUpdateAvatarValidator.enableValidation();
 
 const popupProfile = new PopupWithForm(
   ".popup_profile-info",
@@ -147,7 +147,7 @@ const popupProfile = new PopupWithForm(
 popupProfile.setEventListeners();
 //////////ProfileValidator
 const popupProfileValidator = new FormValidator(dataValidation, popupProfile);
-popupProfileValidator.enableValidation("input-profile-info");
+popupProfileValidator.enableValidation();
 
 const popupCardAdd = new PopupWithForm(
   ".popup_card-add",
@@ -168,6 +168,9 @@ const popupCardAdd = new PopupWithForm(
 popupCardAdd.setEventListeners();
 ///////////CardAddValidator
 const popupCardAddValidator = new FormValidator(dataValidation, popupCardAdd);
+popupCardAddValidator.enableValidation();
+
+
 
 const popupCardDelete = new PopupWithForm(
   ".popup_delete-card",
@@ -186,7 +189,9 @@ const popupCardDelete = new PopupWithForm(
   });
 popupCardDelete.setEventListenersRemove();
 
-popupCardAddValidator.enableValidation("input-card-add");
+
+
+
 const popupImage = new PopupWithImage(".popup_picture");
 
 popupImage.setEventListeners();
