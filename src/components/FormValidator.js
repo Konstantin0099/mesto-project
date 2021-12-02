@@ -16,8 +16,8 @@
 export default class FormValidator {
   constructor(dataValidation, formInstance) {
     this.dataValidation = dataValidation;
-    this._validatedForm = formInstance._form;
-    this._buttonSubmit = formInstance._saveBtn;
+    this._validatedForm = formInstance;
+    this._buttonSubmit = this._validatedForm.querySelector(this.dataValidation.submitButtonSelector);
   }
   enableValidation() {
     this.inputList = Array.from(
@@ -28,7 +28,7 @@ export default class FormValidator {
     });
   }///
   addErrorInput = () => {
-      this._validatedForm.classList.add(`${this.dataValidation.errorClass}`); // при ошибке стилизуеи инпуты
+    this._input.classList.add(`${this.dataValidation.errorClass}`); // при ошибке стилизуеи инпуты
     this._error.classList.add(`${this.dataValidation.inputErrorClass}`); // при ошибке стилизуем поле Error
     this._error.textContent = this._messageError; // пишем причину невальдности
     this._buttonSubmit.classList.add(

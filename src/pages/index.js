@@ -107,67 +107,62 @@ const sectionCards = new Section(
   ".elements"
 );
 
+const processResponseProfileInfo = (res,  callBack, popup) => {
+  return res
+  .then(userInfo => {
+    callBack(userInfo)
+ })
+ .catch(err => {
+   console.log(`Ошибка: ${err}`);
+ })
+ .finally(() => {
+   popup.close();
+   popup._saveBtn.textContent = 'Сохранить';
+ });
+ }
+
 const popupUpdateAvatar = new PopupWithForm(
   ".popup_update-avatar",
   (data, popup) => {
-    api.editAvatarProfile(data)
-      .then(userInfo => {
-        profileInfo.setUserInfo(userInfo);
-      })
-      .catch(err => {
-        console.log(`Ошибка: ${err}`);
-      })
-      .finally(() => {
-        popup.close();
-        popup._saveBtn.textContent = 'Сохранить';
-      });
+    const callBack = (userInfo) => {
+        profileInfo.setUserInfo(userInfo);}
+    processResponseProfileInfo(api.editAvatarProfile(data),  callBack, popup)
   }
 );
 popupUpdateAvatar.setEventListeners();
 /////////////////AvatarValidator
-const popupUpdateAvatarValidator = new FormValidator(dataValidation, popupUpdateAvatar);
+const popupUpdateAvatarValidator = new FormValidator(dataValidation, popupUpdateAvatar._form);
 popupUpdateAvatarValidator.enableValidation();
+
+
 
 const popupProfile = new PopupWithForm(
   ".popup_profile-info",
   (data, popup) => {
-    api.editDataProfile(data)
-      .then(userInfo => {
-        profileInfo.setUserInfo(userInfo);
-      })
-      .catch(err => {
-        console.log(`Ошибка: ${err}`);
-      })
-      .finally(() => {
-        popup.close();
-        popup._saveBtn.textContent = 'Сохранить';
-      });
+    const callBack = (userInfo) => {
+      profileInfo.setUserInfo(userInfo);}
+  processResponseProfileInfo(api.editAvatarProfile(data),  callBack, popup)
   }
 );
 popupProfile.setEventListeners();
 //////////ProfileValidator
-const popupProfileValidator = new FormValidator(dataValidation, popupProfile);
+const popupProfileValidator = new FormValidator(dataValidation, popupProfile._form);
 popupProfileValidator.enableValidation();
+
+
+
 
 const popupCardAdd = new PopupWithForm(
   ".popup_card-add",
   (data, popup) => {
-    api.addNewCard(data)
-      .then(dataCard => {
-        sectionCards.prependElement(createCard(dataCard, userId));
-      })
-      .catch(err => {
-        console.log(`Ошибка: ${err}`);
-      })
-      .finally(() => {
-        popup.close();
-        popup._saveBtn.textContent = 'Сохранить';
-      });
+    const callBack = (dataCard) => {
+      sectionCards.prependElement(createCard(dataCard, userId));}
+  processResponseProfileInfo(api.addNewCard(data),  callBack, popup)
   }
 );
 popupCardAdd.setEventListeners();
 ///////////CardAddValidator
-const popupCardAddValidator = new FormValidator(dataValidation, popupCardAdd);
+const popupCardAddValidator = new FormValidator(dataValidation, popupCardAdd._form);
 popupCardAddValidator.enableValidation();
 
 

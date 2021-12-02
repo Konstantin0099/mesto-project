@@ -56,6 +56,7 @@ export default class Card {
     item(".like__numbers").textContent = this._card.likes.length;
 
     this._checkCurrentUserLike() ? item(".like").classList.add("like_click") : null;
+    
     this._card.owner._id === this._userId ? item(".trash").classList.add("trash_include") : null;
 
     this._setEventListeners();
