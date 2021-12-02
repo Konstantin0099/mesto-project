@@ -92,7 +92,6 @@ function createCard(data, userId) {
 const sectionCards = new Section(
   {
     items: {},
-
     renderer: function (data) {
       let img = document.createElement('img');
       img.src = data.link;
@@ -141,7 +140,7 @@ const popupProfile = new PopupWithForm(
   (data, popup) => {
     const callBack = (userInfo) => {
       profileInfo.setUserInfo(userInfo);}
-  processResponseProfileInfo(api.editAvatarProfile(data),  callBack, popup)
+  processResponseProfileInfo(api.editDataProfile(data),  callBack, popup)
   }
 );
 popupProfile.setEventListeners();
