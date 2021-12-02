@@ -164,8 +164,6 @@ popupCardAdd.setEventListeners();
 const popupCardAddValidator = new FormValidator(dataValidation, popupCardAdd._form);
 popupCardAddValidator.enableValidation();
 
-
-
 const popupCardDelete = new PopupWithForm(
   ".popup_delete-card",
   (cardId, popup) => {
@@ -182,8 +180,6 @@ const popupCardDelete = new PopupWithForm(
       });
   });
 popupCardDelete.setEventListenersRemove();
-
-
 
 
 const popupImage = new PopupWithImage(".popup_picture");
