@@ -28,6 +28,7 @@ import PopupWithForm from "../components/PopupWithForm";
 
 import PopupWithImage from "../components/PopupWithImage";
 import {logPlugin} from "@babel/preset-env/lib/debug";
+
 window.userId = undefined;
 const api = new Api(config);
 let userId;
@@ -52,7 +53,6 @@ function createCard(data, userId) {
       popupImage.open(this._card.link, this._card.name);
     },
     function (likeElement, card) {
-
       function countLikes(card, arrayLikes) {
         card.querySelector(".like__numbers").textContent = arrayLikes.length;
       }
@@ -106,26 +106,27 @@ const sectionCards = new Section(
   ".elements"
 );
 
-const processResponseProfileInfo = (res,  callBack, popup) => {
+const processResponseProfileInfo = (res, callBack, popup) => {
   return res
-  .then(userInfo => {
-    callBack(userInfo)
- })
- .catch(err => {
-   console.log(`Ошибка: ${err}`);
- })
- .finally(() => {
-   popup.close();
-   popup._saveBtn.textContent = 'Сохранить';
- });
- }
+    .then(userInfo => {
+      callBack(userInfo);
+      popup.close();
+    })
+    .catch(err => {
+      console.log(`Ошибка: ${err}`);
+    })
+    .finally(() => {
+      popup._saveBtn.textContent = 'Сохранить';
+    });
+}
 
 const popupUpdateAvatar = new PopupWithForm(
   ".popup_update-avatar",
   (data, popup) => {
     const callBack = (userInfo) => {
-        profileInfo.setUserInfo(userInfo);}
-    processResponseProfileInfo(api.editAvatarProfile(data),  callBack, popup)
+      profileInfo.setUserInfo(userInfo);
+    }
+    processResponseProfileInfo(api.editAvatarProfile(data), callBack, popup)
   }
 );
 popupUpdateAvatar.setEventListeners();
@@ -133,14 +134,13 @@ popupUpdateAvatar.setEventListeners();
 const popupUpdateAvatarValidator = new FormValidator(dataValidation, popupUpdateAvatar._form);
 popupUpdateAvatarValidator.enableValidation();
 
-
-
 const popupProfile = new PopupWithForm(
   ".popup_profile-info",
   (data, popup) => {
     const callBack = (userInfo) => {
-      profileInfo.setUserInfo(userInfo);}
-  processResponseProfileInfo(api.editDataProfile(data),  callBack, popup)
+      profileInfo.setUserInfo(userInfo);
+    }
+    processResponseProfileInfo(api.editDataProfile(data), callBack, popup)
   }
 );
 popupProfile.setEventListeners();
@@ -148,15 +148,13 @@ popupProfile.setEventListeners();
 const popupProfileValidator = new FormValidator(dataValidation, popupProfile._form);
 popupProfileValidator.enableValidation();
 
-
-
-
 const popupCardAdd = new PopupWithForm(
   ".popup_card-add",
   (data, popup) => {
     const callBack = (dataCard) => {
-      sectionCards.prependElement(createCard(dataCard, userId));}
-  processResponseProfileInfo(api.addNewCard(data),  callBack, popup)
+      sectionCards.prependElement(createCard(dataCard, userId));
+    }
+    processResponseProfileInfo(api.addNewCard(data), callBack, popup)
   }
 );
 popupCardAdd.setEventListeners();
@@ -180,7 +178,6 @@ const popupCardDelete = new PopupWithForm(
       });
   });
 popupCardDelete.setEventListenersRemove();
-
 
 const popupImage = new PopupWithImage(".popup_picture");
 
@@ -210,4 +207,4 @@ Promise.all([api.getInitialProfile(), api.getInitialCards()])
     console.log("ошибка---InitialProfilePromiseAll----", err);
   });
 
-export {api, popupImage, popupCardDelete};
+export {api};

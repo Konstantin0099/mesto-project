@@ -19,12 +19,13 @@ export default class FormValidator {
     this._validatedForm = formInstance;
     this._buttonSubmit = this._validatedForm.querySelector(this.dataValidation.submitButtonSelector);
   }
+
   enableValidation() {
     this._inputList = Array.from(
       this._validatedForm.querySelectorAll(`${this.dataValidation.inputSelector}`)
     );
     this._inputList.forEach((inputItem) => {
-      this._disableButton();  
+      this._disableButton();
       inputItem.addEventListener("input", this._hasValid);
     });
   }///
@@ -56,7 +57,7 @@ export default class FormValidator {
       return input.validity.valid;
     });
   };
-  _hasValidinput = () => {
+  _hasValidInput = () => {
     //  проверяет валидность поля ввода
     if (!this._input.validity.valid) {
       this._addErrorInput();
@@ -68,10 +69,10 @@ export default class FormValidator {
   };
   _hasValid = (evt) => {
     // Запускаем проверку на валидность формы, на которой произошло событие "input"
-      this._input = evt.target;
-      this._error = this._validatedForm.querySelector(`.${evt.target.id}-error`);
-      this._messageError = evt.target.validationMessage;
-    if (this._hasValidinput()) {
+    this._input = evt.target;
+    this._error = this._validatedForm.querySelector(`.${evt.target.id}-error`);
+    this._messageError = evt.target.validationMessage;
+    if (this._hasValidInput()) {
       if (this._hasValidForm()) {
         this._activateButton();
       } else {
