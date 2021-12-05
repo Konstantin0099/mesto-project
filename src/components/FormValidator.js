@@ -1,18 +1,3 @@
-// Создание класса FormValidator
-// Создайте класс FormValidator, который настраивает валидацию полей формы:
-// принимает в конструктор объект настроек с селекторами и классами формы;
-// принимает вторым параметром элемент той формы, которая валидируется;
-// имеет приватные методы, которые обрабатывают форму: проверяют валидность поля, изменяют состояние кнопки сабмита, устанавливают все обработчики;
-// имеет публичный метод enableValidation, который включает валидацию формы.
-// Для каждой проверяемой формы создавайте экземпляр класса FormValidator.
-// const dataValidation = {
-//     formSelector: ".input-container",
-//     inputSelector: ".input-container__item",
-//     submitButtonSelector: ".input-container__submit-item",
-//     inactiveButtonClass: "input-container__submit-item_disabled",
-//     inputErrorClass: "input-container__item_error",
-//     errorClass: "popup__error_visible",
-//   }
 export default class FormValidator {
   constructor(dataValidation, formInstance) {
     this.dataValidation = dataValidation;
@@ -28,7 +13,8 @@ export default class FormValidator {
       this._disableButton();
       inputItem.addEventListener("input", this._hasValid);
     });
-  }///
+  }
+
   _addErrorInput = () => {
     this._input.classList.add(`${this.dataValidation.errorClass}`); // при ошибке стилизуеи инпуты
     this._error.classList.add(`${this.dataValidation.inputErrorClass}`); // при ошибке стилизуем поле Error
@@ -37,26 +23,31 @@ export default class FormValidator {
       `${this.dataValidation.inactiveButtonClass}`
     ); // стилизуем неактивную кнопку
     this._disableButton(); // делаем кнпку неактивной
-  };///
+  };
+
   _deleteErrorInput = () => {
     // убираем стили ошибки поля Error и отчищаем
     this._error.classList.remove(`${this.dataValidation.inputErrorClass}`);
     this._error.textContent = "";
-  };///
+  };
+
   _disableButton = () => {
     // функция, делает кнопку переданной формы неактивной
     this._buttonSubmit.disabled = true;
   };
+
   _activateButton = () => {
     // функция, делает кнопку переданной формы активной
     this._buttonSubmit.disabled = false;
   };
+
   _hasValidForm = () => {
     //  проверяет валидность всех полей формы
     return this._inputList.every((input) => {
       return input.validity.valid;
     });
   };
+
   _hasValidInput = () => {
     //  проверяет валидность поля ввода
     if (!this._input.validity.valid) {
@@ -67,6 +58,7 @@ export default class FormValidator {
       return true;
     }
   };
+
   _hasValid = (evt) => {
     // Запускаем проверку на валидность формы, на которой произошло событие "input"
     this._input = evt.target;

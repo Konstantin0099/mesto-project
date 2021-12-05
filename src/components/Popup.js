@@ -1,10 +1,8 @@
 export default class Popup {
-  // Принимает в конструктор единственный параметр — селектор попапа.
   constructor(selector) {
     this._popup = document.querySelector(selector);
   }
 
-  // Содержит публичные методы open и close, которые отвечают за открытие и закрытие попапа.
   open() {
     this._popup.classList.add("popup_opened");
     document.addEventListener("keydown", this._handleEscClose);
@@ -15,7 +13,6 @@ export default class Popup {
     document.removeEventListener("keydown", this._handleEscClose);
   };
 
-  // Содержит приватный метод _handleEscClose, который содержит логику закрытия попапа клавишей Esc.
   _handleEscClose = (evt) => {
     if (evt.key === "Escape") {
       const openedPopup = document.querySelector(".popup_opened");
@@ -23,8 +20,6 @@ export default class Popup {
     }
   };
 
-  // Содержит публичный метод setEventListeners, который добавляет слушатель клика иконке закрытия попапа.
-  // Модальное окно также закрывается при клике на затемнённую область вокруг формы.
   setEventListeners() {
     this._popup.addEventListener("click", (evt) => {
       if (evt.target === evt.currentTarget
@@ -33,4 +28,4 @@ export default class Popup {
       }
     });
   }
-}// конец class Popup
+}
