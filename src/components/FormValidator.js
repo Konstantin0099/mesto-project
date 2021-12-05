@@ -56,7 +56,7 @@ export default class FormValidator {
       return input.validity.valid;
     });
   };
-  _hasValidinput = () => {
+  _hasValidInput = () => {
     //  проверяет валидность поля ввода
     if (!this._input.validity.valid) {
       this._addErrorInput();
@@ -71,7 +71,7 @@ export default class FormValidator {
       this._input = evt.target;
       this._error = this._validatedForm.querySelector(`.${evt.target.id}-error`);
       this._messageError = evt.target.validationMessage;
-    if (this._hasValidinput()) {
+    if (this._hasValidInput()) {
       if (this._hasValidForm()) {
         this._activateButton();
       } else {

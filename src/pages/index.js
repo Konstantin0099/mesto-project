@@ -93,7 +93,7 @@ const sectionCards = new Section(
   {
     items: {},
     renderer: function (data) {
-      let img = document.createElement('img');
+      const img = document.createElement('img');
       img.src = data.link;
       img.onload = () => {
         sectionCards.appendElement(createCard(data, userId))
