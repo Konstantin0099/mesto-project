@@ -27,22 +27,22 @@ export default class Card {
     return this._card.likes.some(card => card._id === this._userId);
   }
 
-  _clickCard = (evt) => {
-    const target = evt.target;
-    if (target.classList.contains("like")) {
-      const card = evt.currentTarget;
-      this._handleLikeClick(target, card);
-    }
-    if (target.classList.contains("trash")) {
-      this._handleDeleteIconClick();
-    }
-    if (target.classList.contains("element__img")) {
-      this._handleCardClick();
-    }
-  };
+  _countLikes(card, arrayLikes) {
+    card.querySelector(".like__numbers").textContent = arrayLikes.length;
+  }
+
+  _checkLikes(likeElement) {
+    return likeElement.classList.contains("like_click");
+  }
 
   _setEventListeners() {
-    this._element.addEventListener("click", this._clickCard);
+    const likeElement = this._element.querySelector('.like');
+    const trashElement = this._element.querySelector('.trash');
+    const imageElement = this._element.querySelector('.element__img');
+
+    likeElement.addEventListener('click', this._handleLikeClick.bind(this));
+    trashElement.addEventListener('click', this._handleDeleteIconClick.bind(this));
+    imageElement.addEventListener('click', this._handleCardClick.bind(this));
   }
 
   generate() {
