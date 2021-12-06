@@ -13,7 +13,6 @@ const profileAvatar = ".profile__avatar";
 
 const elements = document.querySelector(".elements");
 
-const userAvatar = document.querySelector(".profile__avatar");
 const userName = document.querySelector(".profile-info__name");
 const userProfession = document.querySelector(".profile-info__vocation");
 
@@ -26,7 +25,6 @@ const professionPopupProfileInfo = popupProfileInfo.querySelector(
   ".input-container__item_profession"
 );
 
-const popupCardDelete1 = document.querySelector(".popup_delete-card");
 
 /// /////////////
 const profileAvatarClick = document.querySelector(".profile__avatar-click");
@@ -35,8 +33,8 @@ const profileAddButton = document.querySelector(".profile__add-button");
 
 export {
   namePopupProfileInfo, professionPopupProfileInfo,
-  dataValidation, userAvatar, userName, userProfession,
+  dataValidation, userName, userProfession,
   elements, profileInfoName, profileInfoVocation, profileAvatar,
-  profileAvatarClick, profileInfoEditButton, profileAddButton, popupCardDelete1
+  profileAvatarClick, profileInfoEditButton, profileAddButton
 }
 

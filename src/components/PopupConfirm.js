@@ -1,22 +1,12 @@
 import Popup from "./Popup";
 import {renderLoading} from "../utils/utils";
 
-export default class PopupWithForm extends Popup {
+export default class PopupConfirm extends Popup {
   constructor(selector, callback) {
     super(selector);
     this._callback = callback;
     this.form = this._popup.querySelector("form");
     this.saveBtn = this.form.querySelector(".input-container__submit-item");
-  }
-
-  _getInputValues() {
-    const formData = {}
-    Array.from(this.form.elements).forEach(item => {
-      if (item.tagName === "INPUT") {
-        formData[item.name] = item.value;
-      }
-    })
-    return formData;
   }
 
   open() {
@@ -27,11 +17,11 @@ export default class PopupWithForm extends Popup {
   setEventListeners() {
     super.setEventListeners();
     this.form.addEventListener("submit", evt => {
-      const popup = this;
       evt.preventDefault();
-      const formData = this._getInputValues();
-      renderLoading(this.saveBtn, "Сохранение...");
-      this._callback(formData, popup);
+      const popup = this;
+      renderLoading(this.saveBtn, "Удаление...");
+      const cardId = this.form.dataset.deleteCardId;
+      this._callback(cardId, this);
     })
   }
 

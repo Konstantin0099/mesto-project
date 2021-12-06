@@ -7,7 +7,7 @@ export default class Card {
     handleDeleteIconClick,
     selectorTemplateElement
   ) {
-    this._card = card;
+    this.card = card;
     this._userId = userId;
     this._handleCardClick = handleCardClick;
     this._handleLikeClick = handleLikeClick;
@@ -24,43 +24,43 @@ export default class Card {
   }
 
   _checkCurrentUserLike() {
-    return this._card.likes.some(card => card._id === this._userId);
+    return this.card.likes.some(card => card._id === this._userId);
   }
 
-  _clickCard = (evt) => {
-    const target = evt.target;
-    if (target.classList.contains("like")) {
-      const card = evt.currentTarget;
-      this._handleLikeClick(target, card);
-    }
-    if (target.classList.contains("trash")) {
-      this._handleDeleteIconClick();
-    }
-    if (target.classList.contains("element__img")) {
-      this._handleCardClick();
-    }
-  };
+  countLikes(card, arrayLikes) {
+    card.querySelector(".like__numbers").textContent = arrayLikes.length;
+  }
+
+  checkLikes(likeElement) {
+    return likeElement.classList.contains("like_click");
+  }
 
   _setEventListeners() {
-    this._element.addEventListener("click", this._clickCard);
+    const likeElement = this.element.querySelector('.like');
+    const trashElement = this.element.querySelector('.trash');
+    const imageElement = this.element.querySelector('.element__img');
+
+    likeElement.addEventListener('click', this._handleLikeClick.bind(this));
+    trashElement.addEventListener('click', this._handleDeleteIconClick.bind(this));
+    imageElement.addEventListener('click', this._handleCardClick.bind(this));
   }
 
   generate() {
-    this._element = this._createElement();
-    this._element.dataset.id = this._card._id;
+    this.element = this._createElement();
+    this.element.dataset.id = this.card._id;
 
-    const item = (selector) => this._element.querySelector(selector);
-    item(".element__img").src = this._card.link;
-    item(".element__figcaption").textContent = this._card.name;
-    item(".element__img").alt = this._card.name;
-    item(".like__numbers").textContent = this._card.likes.length;
+    const item = (selector) => this.element.querySelector(selector);
+    item(".element__img").src = this.card.link;
+    item(".element__figcaption").textContent = this.card.name;
+    item(".element__img").alt = this.card.name;
+    item(".like__numbers").textContent = this.card.likes.length;
 
     this._checkCurrentUserLike() ? item(".like").classList.add("like_click") : null;
     
-    this._card.owner._id === this._userId ? item(".trash").classList.add("trash_include") : null;
+    this.card.owner._id === this._userId ? item(".trash").classList.add("trash_include") : null;
 
     this._setEventListeners();
 
-    return this._element;
+    return this.element;
   }
 }
