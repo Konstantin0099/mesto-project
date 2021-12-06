@@ -1,6 +1,7 @@
 import "./index.css";
 
 import config from "../utils/config";
+import {processResponseProfileInfo} from "../utils/utils";
 import {
   namePopupProfileInfo,
   professionPopupProfileInfo,
@@ -25,7 +26,7 @@ import PopupWithForm from "../components/PopupWithForm";
 import PopupWithImage from "../components/PopupWithImage";
 import PopupConfirm from "../components/PopupConfirm";
 
-window.userId = undefined;
+
 const api = new Api(config);
 let userId;
 
@@ -46,16 +47,16 @@ function createCard(data, userId) {
     data,
     userId,
     function () {
-      popupImage.open(this._card.link, this._card.name);
+      popupImage.open(this.card.link, this.card.name);
     },
     function () {
-      const card = this._element;
+      const card = this.element;
       const likeElement = card.querySelector('.like');
       const that = this;
       function toggleLikeCard(func, card, likeItem) {
         func(card.dataset.id)
           .then((res) => {
-            that._countLikes(card, res.likes);
+            that.countLikes(card, res.likes);
             likeItem.classList.toggle("like_click");
           })
           .catch((err) => {
@@ -65,15 +66,15 @@ function createCard(data, userId) {
           });
       }
 
-      if (this._checkLikes(likeElement)) {
+      if (this.checkLikes(likeElement)) {
         toggleLikeCard(api.deleteLikeCard.bind(api), card, likeElement)
       } else {
         toggleLikeCard(api.likeCard.bind(api), card, likeElement)
       }
     },
-    function (data) {
+    function () {
       popupCardDelete.open();
-      popupCardDelete._form.dataset.deleteCardId = this._card._id;
+      popupCardDelete.form.dataset.deleteCardId = this.card._id;
     },
     "#elementsSection");
 
@@ -84,7 +85,7 @@ const sectionCards = new Section(
   {
     items: {},
     renderer: function (data) {
-      let img = document.createElement('img');
+      const img = document.createElement('img');
       img.src = data.link;
       img.onload = () => {
         sectionCards.appendElement(createCard(data, userId))
@@ -95,20 +96,6 @@ const sectionCards = new Section(
   },
   ".elements"
 );
-
-const processResponseProfileInfo = (res, callBack, popup) => {
-  return res
-    .then(userInfo => {
-      callBack(userInfo);
-      popup.close();
-    })
-    .catch(err => {
-      console.log(`Ошибка: ${err}`);
-    })
-    .finally(() => {
-      popup._saveBtn.textContent = 'Сохранить';
-    });
-}
 
 const popupUpdateAvatar = new PopupWithForm(
   ".popup_update-avatar",
@@ -121,12 +108,12 @@ const popupUpdateAvatar = new PopupWithForm(
 );
 popupUpdateAvatar.setEventListeners();
 /////////////////AvatarValidator
-const popupUpdateAvatarValidator = new FormValidator(dataValidation, popupUpdateAvatar._form);
+const popupUpdateAvatarValidator = new FormValidator(dataValidation, popupUpdateAvatar.form);
 popupUpdateAvatarValidator.enableValidation();
 
 const popupProfile = new PopupWithForm(
   ".popup_profile-info",
-  (data, popup) => {
+  (data) => {
     const callBack = (userInfo) => {
       profileInfo.setUserInfo(userInfo);
     }
@@ -135,12 +122,12 @@ const popupProfile = new PopupWithForm(
 );
 popupProfile.setEventListeners();
 //////////ProfileValidator
-const popupProfileValidator = new FormValidator(dataValidation, popupProfile._form);
+const popupProfileValidator = new FormValidator(dataValidation, popupProfile.form);
 popupProfileValidator.enableValidation();
 
 const popupCardAdd = new PopupWithForm(
   ".popup_card-add",
-  (data, popup) => {
+  (data) => {
     const callBack = (dataCard) => {
       sectionCards.prependElement(createCard(dataCard, userId));
     }
@@ -149,7 +136,7 @@ const popupCardAdd = new PopupWithForm(
 );
 popupCardAdd.setEventListeners();
 ///////////CardAddValidator
-const popupCardAddValidator = new FormValidator(dataValidation, popupCardAdd._form);
+const popupCardAddValidator = new FormValidator(dataValidation, popupCardAdd.form);
 popupCardAddValidator.enableValidation();
 
 const popupCardDelete = new PopupConfirm(
@@ -164,7 +151,7 @@ const popupCardDelete = new PopupConfirm(
         console.log(`Ошибка: ${err}`);
       })
       .finally(() => {
-        popup._saveBtn.textContent = 'Да';
+        popup.saveBtn.textContent = 'Да';
       });
   });
 popupCardDelete.setEventListeners();
