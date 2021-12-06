@@ -4,7 +4,6 @@ import config from "../utils/config";
 import {
   namePopupProfileInfo,
   professionPopupProfileInfo,
-  popupCardDelete1,
   profileInfoName,
   profileInfoVocation,
   profileAvatar,
@@ -12,7 +11,6 @@ import {
   profileAvatarClick,
   profileInfoEditButton,
   profileAddButton,
-  userAvatar,
   userName,
   userProfession,
 } from "../utils/constants";
@@ -21,13 +19,11 @@ import UserInfo from "../components/UserInfo";
 
 import FormValidator from "../components/FormValidator";
 
-
 import Section from "../components/Section";
 import Card from "../components/Card";
 import PopupWithForm from "../components/PopupWithForm";
-
 import PopupWithImage from "../components/PopupWithImage";
-import {logPlugin} from "@babel/preset-env/lib/debug";
+import PopupConfirm from "../components/PopupConfirm";
 
 window.userId = undefined;
 const api = new Api(config);
@@ -52,19 +48,14 @@ function createCard(data, userId) {
     function () {
       popupImage.open(this._card.link, this._card.name);
     },
-    function (likeElement, card) {
-      function countLikes(card, arrayLikes) {
-        card.querySelector(".like__numbers").textContent = arrayLikes.length;
-      }
-
-      function checkLikes(likeElement) {
-        return likeElement.classList.contains("like_click");
-      }
-
+    function () {
+      const card = this._element;
+      const likeElement = card.querySelector('.like');
+      const that = this;
       function toggleLikeCard(func, card, likeItem) {
         func(card.dataset.id)
           .then((res) => {
-            countLikes(card, res.likes);
+            that._countLikes(card, res.likes);
             likeItem.classList.toggle("like_click");
           })
           .catch((err) => {
@@ -74,7 +65,7 @@ function createCard(data, userId) {
           });
       }
 
-      if (checkLikes(likeElement)) {
+      if (this._checkLikes(likeElement)) {
         toggleLikeCard(api.deleteLikeCard.bind(api), card, likeElement)
       } else {
         toggleLikeCard(api.likeCard.bind(api), card, likeElement)
@@ -99,7 +90,6 @@ const sectionCards = new Section(
         sectionCards.appendElement(createCard(data, userId))
       };
       img.onerror = () => {
-        console.log("__такой картинки нет______", `${data.name}`, `${data.link}`);
       };
     },
   },
@@ -122,11 +112,11 @@ const processResponseProfileInfo = (res, callBack, popup) => {
 
 const popupUpdateAvatar = new PopupWithForm(
   ".popup_update-avatar",
-  (data, popup) => {
+  (data) => {
     const callBack = (userInfo) => {
       profileInfo.setUserInfo(userInfo);
     }
-    processResponseProfileInfo(api.editAvatarProfile(data), callBack, popup)
+    processResponseProfileInfo(api.editAvatarProfile(data), callBack, popupUpdateAvatar)
   }
 );
 popupUpdateAvatar.setEventListeners();
@@ -140,7 +130,7 @@ const popupProfile = new PopupWithForm(
     const callBack = (userInfo) => {
       profileInfo.setUserInfo(userInfo);
     }
-    processResponseProfileInfo(api.editDataProfile(data), callBack, popup)
+    processResponseProfileInfo(api.editDataProfile(data), callBack, popupProfile)
   }
 );
 popupProfile.setEventListeners();
@@ -154,7 +144,7 @@ const popupCardAdd = new PopupWithForm(
     const callBack = (dataCard) => {
       sectionCards.prependElement(createCard(dataCard, userId));
     }
-    processResponseProfileInfo(api.addNewCard(data), callBack, popup)
+    processResponseProfileInfo(api.addNewCard(data), callBack, popupCardAdd)
   }
 );
 popupCardAdd.setEventListeners();
@@ -162,22 +152,22 @@ popupCardAdd.setEventListeners();
 const popupCardAddValidator = new FormValidator(dataValidation, popupCardAdd._form);
 popupCardAddValidator.enableValidation();
 
-const popupCardDelete = new PopupWithForm(
+const popupCardDelete = new PopupConfirm(
   ".popup_delete-card",
   (cardId, popup) => {
     api.deleteCard(cardId)
       .then(() => {
         document.querySelector(`[data-id="${cardId}"]`).remove();
+        popup.close();
       })
       .catch(err => {
         console.log(`Ошибка: ${err}`);
       })
       .finally(() => {
-        popup.close();
         popup._saveBtn.textContent = 'Да';
       });
   });
-popupCardDelete.setEventListenersRemove();
+popupCardDelete.setEventListeners();
 
 const popupImage = new PopupWithImage(".popup_picture");
 

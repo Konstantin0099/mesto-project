@@ -1,13 +1,13 @@
 export default class FormValidator {
   constructor(dataValidation, formInstance) {
-    this.dataValidation = dataValidation;
+    this._dataValidation = dataValidation;
     this._validatedForm = formInstance;
-    this._buttonSubmit = this._validatedForm.querySelector(this.dataValidation.submitButtonSelector);
+    this._buttonSubmit = this._validatedForm.querySelector(this._dataValidation.submitButtonSelector);
   }
 
   enableValidation() {
     this._inputList = Array.from(
-      this._validatedForm.querySelectorAll(`${this.dataValidation.inputSelector}`)
+      this._validatedForm.querySelectorAll(`${this._dataValidation.inputSelector}`)
     );
     this._inputList.forEach((inputItem) => {
       this._disableButton();
@@ -16,18 +16,18 @@ export default class FormValidator {
   }
 
   _addErrorInput = () => {
-    this._input.classList.add(`${this.dataValidation.errorClass}`); // при ошибке стилизуеи инпуты
-    this._error.classList.add(`${this.dataValidation.inputErrorClass}`); // при ошибке стилизуем поле Error
-    this._error.textContent = this._messageError; // пишем причину невальдности
+    this._input.classList.add(`${this._dataValidation.errorClass}`); // при ошибке стилизуеи инпуты
+    this._error.classList.add(`${this._dataValidation.inputErrorClass}`); // при ошибке стилизуем поле Error
+    this._error.textContent = this._messageError; // пишем причину невалидности
     this._buttonSubmit.classList.add(
-      `${this.dataValidation.inactiveButtonClass}`
+      `${this._dataValidation.inactiveButtonClass}`
     ); // стилизуем неактивную кнопку
-    this._disableButton(); // делаем кнпку неактивной
+    this._disableButton(); // делаем кнопку неактивной
   };
 
   _deleteErrorInput = () => {
     // убираем стили ошибки поля Error и отчищаем
-    this._error.classList.remove(`${this.dataValidation.inputErrorClass}`);
+    this._error.classList.remove(`${this._dataValidation.inputErrorClass}`);
     this._error.textContent = "";
   };
 
