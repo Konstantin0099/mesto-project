@@ -1,12 +1,11 @@
 import Popup from "./Popup";
-import {renderLoading} from "../utils/utils";
 
 export default class PopupWithForm extends Popup {
   constructor(selector, callback) {
     super(selector);
     this._callback = callback;
     this.form = this._popup.querySelector("form");
-    this.saveBtn = this.form.querySelector(".input-container__submit-item");
+    this._saveBtn = this.form.querySelector(".input-container__submit-item");
   }
 
   _getInputValues() {
@@ -21,8 +20,14 @@ export default class PopupWithForm extends Popup {
 
   open() {
     super.open();
-    this.saveBtn.focus();
+    this._saveBtn.focus();
   }
+
+
+  renderLoading(text) {
+    this._saveBtn.textContent = text;
+  }
+
 
   setEventListeners() {
     super.setEventListeners();
@@ -30,8 +35,8 @@ export default class PopupWithForm extends Popup {
       const popup = this;
       evt.preventDefault();
       const formData = this._getInputValues();
-      renderLoading(this.saveBtn, "Сохранение...");
-      this._callback(formData, popup);
+      this.renderLoading("Сохранение...");
+      this._callback(formData, popup)
     })
   }
 

@@ -25,6 +25,7 @@ import Card from "../components/Card";
 import PopupWithForm from "../components/PopupWithForm";
 import PopupWithImage from "../components/PopupWithImage";
 import PopupConfirm from "../components/PopupConfirm";
+import Popup from "../components/Popup";
 
 
 const api = new Api(config);
@@ -47,29 +48,27 @@ function createCard(data, userId) {
     data,
     userId,
     function () {
-      popupImage.open(this.card.link, this.card.name);
+      popupImage.open(data.link, data.name);
     },
-    function () {
-      const card = this.element;
-      const likeElement = card.querySelector('.like');
-      const that = this;
-      function toggleLikeCard(func, card, likeItem) {
-        func(card.dataset.id)
+    function (toggleLikeFunction, card) {
+      function toggleLikeCard(func) {
+        func(data._id)
           .then((res) => {
-            that.countLikes(card, res.likes);
-            likeItem.classList.toggle("like_click");
+            toggleLikeFunction(res, card);
           })
           .catch((err) => {
-            console.log("ОШИБКА_Лайка__", err);
+            console.log("ОШИБКА_Лайка_err_", err);
           })
           .finally(() => {
           });
       }
 
-      if (this.checkLikes(likeElement)) {
-        toggleLikeCard(api.deleteLikeCard.bind(api), card, likeElement)
+      if (this.checkLikes(card)) {
+            console.log("if___true+++___", card);
+        toggleLikeCard(api.deleteLikeCard.bind(api))
       } else {
-        toggleLikeCard(api.likeCard.bind(api), card, likeElement)
+        console.log("else___false+++___", card);
+        toggleLikeCard(api.likeCard.bind(api))
       }
     },
     function () {
@@ -151,7 +150,7 @@ const popupCardDelete = new PopupConfirm(
         console.log(`Ошибка: ${err}`);
       })
       .finally(() => {
-        popup.saveBtn.textContent = 'Да';
+        popup.renderLoading('Да');
       });
   });
 popupCardDelete.setEventListeners();
