@@ -21,7 +21,6 @@ export default class PopupConfirm extends Popup {
     super.setEventListeners();
     this.form.addEventListener("submit", evt => {
       evt.preventDefault();
-      const popup = this;
       this.renderLoading("Удаление...");
       const cardId = this.form.dataset.deleteCardId;
       this._callback(cardId, this);

@@ -21,6 +21,7 @@ export default class PopupWithForm extends Popup {
   open() {
     super.open();
     this._saveBtn.focus();
+    this._saveBtn.disabled = true;
   }
 
 

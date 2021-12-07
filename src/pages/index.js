@@ -70,7 +70,7 @@ function createCard(data, userId) {
     },
     function () {
       popupCardDelete.open();
-      popupCardDelete.form.dataset.deleteCardId = this.card._id;
+      popupCardDelete.form.dataset.deleteCardId = data._id;
     },
     "#elementsSection");
 
