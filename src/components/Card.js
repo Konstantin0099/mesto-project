@@ -27,24 +27,14 @@ export default class Card {
     return this.card.likes.some(card => card._id === this._userId);
   }
 
-  // _countLikes(card, arrayLikes) {
-  //   console.log("функция_countLikes  arrayLikes.length ____", card, arrayLikes);
-  //   // card.querySelector(".like__numbers").textContent = arrayLikes.length;
-  // }
-
-
-  // _likeItem(card){
-  //   return card.querySelector('.like');
-  // }
-
   checkLikes(card) {
-    // console.log("функцияcheckLikes(card) ++++ card____", card);
-    // return this._likeItem(card).classList.contains("like_click");
     return card.querySelector('.like').classList.contains("like_click");
   }
 
-  _toggleLikeFunction(res, card){
+  _toggleLikeFunction(res, card) {
     card.querySelector(".like__numbers").textContent = res.likes.length;
+    card.querySelector('.like').classList.toggle("like_click");
+
   }
 
   _item(selector){ return this.element.querySelector(selector);}
@@ -70,7 +60,6 @@ export default class Card {
     this.element = this._createElement();
     this.element.dataset.id = this.card._id;
 
-    // const item = (selector) => this.element.querySelector(selector);
     this._item(".element__img").src = this.card.link;
     this._item(".element__figcaption").textContent = this.card.name;
     this._item(".element__img").alt = this.card.name;

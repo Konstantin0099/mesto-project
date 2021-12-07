@@ -62,12 +62,9 @@ function createCard(data, userId) {
           .finally(() => {
           });
       }
-
       if (this.checkLikes(card)) {
-            console.log("if___true+++___", card);
         toggleLikeCard(api.deleteLikeCard.bind(api))
       } else {
-        console.log("else___false+++___", card);
         toggleLikeCard(api.likeCard.bind(api))
       }
     },
