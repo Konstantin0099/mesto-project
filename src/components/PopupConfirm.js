@@ -4,7 +4,7 @@ export default class PopupConfirm extends Popup {
   constructor(selector, callback) {
     super(selector);
     this._callback = callback;
-    this.form = this._popup.querySelector("form");
+    this.form = this._popup.querySelector("form");// используется в index.js
     this._saveBtn = this.form.querySelector(".input-container__submit-item");
   }
 
