@@ -6,16 +6,14 @@ export default class Section {
   }
 
   renderItems() {
+    this._domElements = new DocumentFragment();
     this.items.forEach((item) => {
-      this._renderer(item)
+      this._domElements.append(this._renderer(item))
     });
+    this.addItem(this._domElements)
   }
 
-  appendElement(element) {
-    this._container.append(element);
-  }
-
-  prependElement(element) {
+  addItem(element) {
     this._container.prepend(element);
   }
 }

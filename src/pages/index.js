@@ -81,17 +81,12 @@ const sectionCards = new Section(
   {
     items: {},
     renderer: function (data) {
-      const img = document.createElement('img');
-      img.src = data.link;
-      img.onload = () => {
-        sectionCards.appendElement(createCard(data, userId))
-      };
-      img.onerror = () => {
-      };
-    },
+         return createCard(data, userId)
+      }
   },
   ".elements"
 );
+
 
 const popupUpdateAvatar = new PopupWithForm(
   ".popup_update-avatar",
@@ -125,7 +120,7 @@ const popupCardAdd = new PopupWithForm(
   ".popup_card-add",
   (data) => {
     const callBack = (dataCard) => {
-      sectionCards.prependElement(createCard(dataCard, userId));
+      sectionCards.addItem(createCard(dataCard, userId));
     }
     processResponseProfileInfo(api.addNewCard(data), callBack, popupCardAdd)
   }
