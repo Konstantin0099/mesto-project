@@ -25,8 +25,6 @@ import Card from "../components/Card";
 import PopupWithForm from "../components/PopupWithForm";
 import PopupWithImage from "../components/PopupWithImage";
 import PopupConfirm from "../components/PopupConfirm";
-import Popup from "../components/Popup";
-
 
 const api = new Api(config);
 let userId;
@@ -62,6 +60,7 @@ function createCard(data, userId) {
           .finally(() => {
           });
       }
+
       if (this.checkLikes(card)) {
         toggleLikeCard(api.deleteLikeCard.bind(api))
       } else {
@@ -81,8 +80,8 @@ const sectionCards = new Section(
   {
     items: {},
     renderer: function (data) {
-         return createCard(data, userId)
-      }
+      return createCard(data, userId)
+    }
   },
   ".elements"
 );

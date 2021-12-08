@@ -1,7 +1,3 @@
-// export function renderLoading(element, text) {
-//   element.textContent = text;
-// }
-
 export function processResponseProfileInfo(res, callBack, popup) {
   return res
     .then(userInfo => {
