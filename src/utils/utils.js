@@ -1,6 +1,6 @@
-export function renderLoading(element, text) {
-  element.textContent = text;
-}
+// export function renderLoading(element, text) {
+//   element.textContent = text;
+// }
 
 export function processResponseProfileInfo(res, callBack, popup) {
   return res
@@ -12,7 +12,7 @@ export function processResponseProfileInfo(res, callBack, popup) {
       console.log(`Ошибка: ${err}`);
     })
     .finally(() => {
-      popup.saveBtn.textContent = 'Сохранить';
+      popup.renderLoading('Сохранить');
     });
 }
 

@@ -27,21 +27,32 @@ export default class Card {
     return this.card.likes.some(card => card._id === this._userId);
   }
 
-  countLikes(card, arrayLikes) {
-    card.querySelector(".like__numbers").textContent = arrayLikes.length;
+  checkLikes(card) {
+    return card.querySelector('.like').classList.contains("like_click");
   }
 
-  checkLikes(likeElement) {
-    return likeElement.classList.contains("like_click");
+  _toggleLikeFunction(res, card) {
+    card.querySelector(".like__numbers").textContent = res.likes.length;
+    card.querySelector('.like').classList.toggle("like_click");
+
   }
+
+  _item(selector){ return this.element.querySelector(selector);}
 
   _setEventListeners() {
-    const likeElement = this.element.querySelector('.like');
-    const trashElement = this.element.querySelector('.trash');
-    const imageElement = this.element.querySelector('.element__img');
+    const likeElement = this._item('.like');
+    const trashElement = this._item('.trash');
+    const imageElement = this._item('.element__img');
 
-    likeElement.addEventListener('click', this._handleLikeClick.bind(this));
-    trashElement.addEventListener('click', this._handleDeleteIconClick.bind(this));
+    likeElement.addEventListener('click', this._handleLikeClick.bind(
+      this,
+      this._toggleLikeFunction,
+      this.element
+      )
+    );
+    trashElement.addEventListener('click', this._handleDeleteIconClick.bind(
+      this
+      ));
     imageElement.addEventListener('click', this._handleCardClick.bind(this));
   }
 
@@ -49,15 +60,14 @@ export default class Card {
     this.element = this._createElement();
     this.element.dataset.id = this.card._id;
 
-    const item = (selector) => this.element.querySelector(selector);
-    item(".element__img").src = this.card.link;
-    item(".element__figcaption").textContent = this.card.name;
-    item(".element__img").alt = this.card.name;
-    item(".like__numbers").textContent = this.card.likes.length;
+    this._item(".element__img").src = this.card.link;
+    this._item(".element__figcaption").textContent = this.card.name;
+    this._item(".element__img").alt = this.card.name;
+    this._item(".like__numbers").textContent = this.card.likes.length;
 
-    this._checkCurrentUserLike() ? item(".like").classList.add("like_click") : null;
+    this._checkCurrentUserLike() ? this._item(".like").classList.add("like_click") : null;
     
-    this.card.owner._id === this._userId ? item(".trash").classList.add("trash_include") : null;
+    this.card.owner._id === this._userId ? this._item(".trash").classList.add("trash_include") : null;
 
     this._setEventListeners();
 

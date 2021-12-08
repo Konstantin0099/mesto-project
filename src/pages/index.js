@@ -25,6 +25,7 @@ import Card from "../components/Card";
 import PopupWithForm from "../components/PopupWithForm";
 import PopupWithImage from "../components/PopupWithImage";
 import PopupConfirm from "../components/PopupConfirm";
+import Popup from "../components/Popup";
 
 
 const api = new Api(config);
@@ -47,34 +48,29 @@ function createCard(data, userId) {
     data,
     userId,
     function () {
-      popupImage.open(this.card.link, this.card.name);
+      popupImage.open(data.link, data.name);
     },
-    function () {
-      const card = this.element;
-      const likeElement = card.querySelector('.like');
-      const that = this;
-      function toggleLikeCard(func, card, likeItem) {
-        func(card.dataset.id)
+    function (toggleLikeFunction, card) {
+      function toggleLikeCard(func) {
+        func(data._id)
           .then((res) => {
-            that.countLikes(card, res.likes);
-            likeItem.classList.toggle("like_click");
+            toggleLikeFunction(res, card);
           })
           .catch((err) => {
-            console.log("ОШИБКА_Лайка__", err);
+            console.log("ОШИБКА_Лайка_err_", err);
           })
           .finally(() => {
           });
       }
-
-      if (this.checkLikes(likeElement)) {
-        toggleLikeCard(api.deleteLikeCard.bind(api), card, likeElement)
+      if (this.checkLikes(card)) {
+        toggleLikeCard(api.deleteLikeCard.bind(api))
       } else {
-        toggleLikeCard(api.likeCard.bind(api), card, likeElement)
+        toggleLikeCard(api.likeCard.bind(api))
       }
     },
     function () {
       popupCardDelete.open();
-      popupCardDelete.form.dataset.deleteCardId = this.card._id;
+      popupCardDelete.form.dataset.deleteCardId = data._id;
     },
     "#elementsSection");
 
@@ -85,17 +81,12 @@ const sectionCards = new Section(
   {
     items: {},
     renderer: function (data) {
-      const img = document.createElement('img');
-      img.src = data.link;
-      img.onload = () => {
-        sectionCards.appendElement(createCard(data, userId))
-      };
-      img.onerror = () => {
-      };
-    },
+         return createCard(data, userId)
+      }
   },
   ".elements"
 );
+
 
 const popupUpdateAvatar = new PopupWithForm(
   ".popup_update-avatar",
@@ -129,7 +120,7 @@ const popupCardAdd = new PopupWithForm(
   ".popup_card-add",
   (data) => {
     const callBack = (dataCard) => {
-      sectionCards.prependElement(createCard(dataCard, userId));
+      sectionCards.addItem(createCard(dataCard, userId));
     }
     processResponseProfileInfo(api.addNewCard(data), callBack, popupCardAdd)
   }
@@ -151,7 +142,7 @@ const popupCardDelete = new PopupConfirm(
         console.log(`Ошибка: ${err}`);
       })
       .finally(() => {
-        popup.saveBtn.textContent = 'Да';
+        popup.renderLoading('Да');
       });
   });
 popupCardDelete.setEventListeners();
