@@ -52,9 +52,7 @@ export default class Card {
         this.element
       )
     );
-    trashElement.addEventListener('click', this._handleDeleteIconClick.bind(
-      this
-    ));
+    trashElement.addEventListener('click', this._handleDeleteIconClick.bind(this));
     imageElement.addEventListener('click', this._handleCardClick.bind(this));
   }
 
@@ -68,11 +66,8 @@ export default class Card {
     this._item(".like__numbers").textContent = this.card.likes.length;
 
     this._checkCurrentUserLike() ? this._item(".like").classList.add("like_click") : null;
-
     this.card.owner._id === this._userId ? this._item(".trash").classList.add("trash_include") : null;
-
     this._setEventListeners();
-
     return this.element;
   }
 }

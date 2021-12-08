@@ -6,9 +6,7 @@ export default class FormValidator {
   }
 
   enableValidation() {
-    this._inputList = Array.from(
-      this._validatedForm.querySelectorAll(`${this._dataValidation.inputSelector}`)
-    );
+    this._inputList = Array.from(this._validatedForm.querySelectorAll(`${this._dataValidation.inputSelector}`));
     this._inputList.forEach((inputItem) => {
       this._disableButton();
       inputItem.addEventListener("input", this._hasValid);

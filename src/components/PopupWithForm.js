@@ -29,7 +29,6 @@ export default class PopupWithForm extends Popup {
     this._saveBtn.textContent = text;
   }
 
-
   setEventListeners() {
     super.setEventListeners();
     this.form.addEventListener("submit", evt => {
@@ -40,7 +39,6 @@ export default class PopupWithForm extends Popup {
       this._callback(formData, popup)
     })
   }
-
 
   close() {
     super.close();

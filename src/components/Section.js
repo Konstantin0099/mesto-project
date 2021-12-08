@@ -8,9 +8,9 @@ export default class Section {
   renderItems() {
     this._domElements = new DocumentFragment();
     this.items.forEach((item) => {
-      this._domElements.append(this._renderer(item))
+      this._domElements.append(this._renderer(item));
     });
-    this.addItem(this._domElements)
+    this.addItem(this._domElements);
   }
 
   addItem(element) {
