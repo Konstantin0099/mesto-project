@@ -6,6 +6,7 @@ export default class PopupConfirm extends Popup {
     this._callback = callback;
     this._form = this._popup.querySelector("form");
     this._saveBtn = this._form.querySelector(".input-container__submit-item");
+
   }
 
   open(cardId) {
