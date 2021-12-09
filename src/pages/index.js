@@ -58,8 +58,7 @@ function createCard(data, userId) {
             console.log("ОШИБКА_Лайка_err_", err);
           })
       }
-
-      if (this.checkLikes()) {
+      if (cardElement.checkLikes()) {
         toggleLikeCard(api.deleteLikeCard.bind(api))
       } else {
         toggleLikeCard(api.likeCard.bind(api))
@@ -67,10 +66,9 @@ function createCard(data, userId) {
     },
     function () {
       popupCardDelete.open(data._id);
-      // popupCardDelete.form.dataset.deleteCardId = data._id;
+
     },
     "#elementsSection");
-
   return cardElement.generate();
 }
 
@@ -87,7 +85,7 @@ const sectionCards = new Section(
 
 const popupUpdateAvatar = new PopupWithForm(
   ".popup_update-avatar",
-  (data) => {
+  data => {
     const callBack = (userInfo) => {
       profileInfo.setUserInfo(userInfo);
     }
@@ -101,7 +99,7 @@ popupUpdateAvatarValidator.enableValidation();
 
 const popupProfile = new PopupWithForm(
   ".popup_profile-info",
-  (data) => {
+  data => {
     const callBack = (userInfo) => {
       profileInfo.setUserInfo(userInfo);
     }
@@ -115,7 +113,7 @@ popupProfileValidator.enableValidation();
 
 const popupCardAdd = new PopupWithForm(
   ".popup_card-add",
-  (data) => {
+  data => {
     const callBack = (dataCard) => {
       sectionCards.addItem(createCard(dataCard, userId));
     }
@@ -129,7 +127,7 @@ popupCardAddValidator.enableValidation();
 
 const popupCardDelete = new PopupConfirm(
   ".popup_delete-card",
-  (cardId) => {
+  cardId => {
     api.deleteCard(cardId)
       .then(() => {
         document.querySelector(`[data-id="${cardId}"]`).remove();
@@ -171,4 +169,3 @@ Promise.all([api.getInitialProfile(), api.getInitialCards()])
   .catch((err) => {
     console.log("ошибка---InitialProfilePromiseAll----", err);
   });
-
