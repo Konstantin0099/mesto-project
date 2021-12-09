@@ -48,31 +48,27 @@ function createCard(data, userId) {
     function () {
       popupImage.open(data.link, data.name);
     },
-    function (toggleLikeFunction, card) {
+    function (toggleLikeFunction) {
       function toggleLikeCard(func) {
         func(data._id)
           .then((res) => {
-            toggleLikeFunction(res, card);
+            toggleLikeFunction(res);
           })
           .catch((err) => {
             console.log("ОШИБКА_Лайка_err_", err);
           })
-          .finally(() => {
-          });
       }
 
-      if (this.checkLikes(card)) {
+      if (cardElement.checkLikes()) {
         toggleLikeCard(api.deleteLikeCard.bind(api))
       } else {
         toggleLikeCard(api.likeCard.bind(api))
       }
     },
     function () {
-      popupCardDelete.open();
-      popupCardDelete.form.dataset.deleteCardId = data._id;
+      popupCardDelete.open(data._id);
     },
     "#elementsSection");
-
   return cardElement.generate();
 }
 
@@ -89,7 +85,7 @@ const sectionCards = new Section(
 
 const popupUpdateAvatar = new PopupWithForm(
   ".popup_update-avatar",
-  (data) => {
+  data => {
     const callBack = (userInfo) => {
       profileInfo.setUserInfo(userInfo);
     }
@@ -103,7 +99,7 @@ popupUpdateAvatarValidator.enableValidation();
 
 const popupProfile = new PopupWithForm(
   ".popup_profile-info",
-  (data) => {
+  data => {
     const callBack = (userInfo) => {
       profileInfo.setUserInfo(userInfo);
     }
@@ -117,7 +113,7 @@ popupProfileValidator.enableValidation();
 
 const popupCardAdd = new PopupWithForm(
   ".popup_card-add",
-  (data) => {
+  data => {
     const callBack = (dataCard) => {
       sectionCards.addItem(createCard(dataCard, userId));
     }
@@ -131,17 +127,17 @@ popupCardAddValidator.enableValidation();
 
 const popupCardDelete = new PopupConfirm(
   ".popup_delete-card",
-  (cardId, popup) => {
+  cardId => {
     api.deleteCard(cardId)
       .then(() => {
         document.querySelector(`[data-id="${cardId}"]`).remove();
-        popup.close();
+        popupCardDelete.close();
       })
       .catch(err => {
         console.log(`Ошибка: ${err}`);
       })
       .finally(() => {
-        popup.renderLoading('Да');
+        popupCardDelete.renderLoading('Да');
       });
   });
 popupCardDelete.setEventListeners();
@@ -173,5 +169,3 @@ Promise.all([api.getInitialProfile(), api.getInitialCards()])
   .catch((err) => {
     console.log("ошибка---InitialProfilePromiseAll----", err);
   });
-
-export {api};

@@ -4,13 +4,14 @@ export default class PopupConfirm extends Popup {
   constructor(selector, callback) {
     super(selector);
     this._callback = callback;
-    this.form = this._popup.querySelector("form");
-    this._saveBtn = this.form.querySelector(".input-container__submit-item");
+    this._form = this._popup.querySelector("form");
+    this._saveBtn = this._form.querySelector(".input-container__submit-item");
   }
 
-  open() {
+  open(cardId) {
     super.open();
     this._saveBtn.focus();
+    this._cardId = cardId;
   }
 
   renderLoading(text) {
@@ -19,14 +20,12 @@ export default class PopupConfirm extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this.form.addEventListener("submit", evt => {
+    this._form.addEventListener("submit", evt => {
       evt.preventDefault();
       this.renderLoading("Удаление...");
-      const cardId = this.form.dataset.deleteCardId;
-      this._callback(cardId, this);
+      this._callback(this._cardId);
     })
   }
-
 
   close() {
     super.close();
