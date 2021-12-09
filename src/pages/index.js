@@ -48,28 +48,26 @@ function createCard(data, userId) {
     function () {
       popupImage.open(data.link, data.name);
     },
-    function (toggleLikeFunction, card) {
+    function (toggleLikeFunction) {
       function toggleLikeCard(func) {
         func(data._id)
           .then((res) => {
-            toggleLikeFunction(res, card);
+            toggleLikeFunction(res);
           })
           .catch((err) => {
             console.log("ОШИБКА_Лайка_err_", err);
           })
-          .finally(() => {
-          });
       }
 
-      if (this.checkLikes(card)) {
+      if (this.checkLikes()) {
         toggleLikeCard(api.deleteLikeCard.bind(api))
       } else {
         toggleLikeCard(api.likeCard.bind(api))
       }
     },
     function () {
-      popupCardDelete.open();
-      popupCardDelete.form.dataset.deleteCardId = data._id;
+      popupCardDelete.open(data._id);
+      // popupCardDelete.form.dataset.deleteCardId = data._id;
     },
     "#elementsSection");
 
@@ -131,17 +129,17 @@ popupCardAddValidator.enableValidation();
 
 const popupCardDelete = new PopupConfirm(
   ".popup_delete-card",
-  (cardId, popup) => {
+  (cardId) => {
     api.deleteCard(cardId)
       .then(() => {
         document.querySelector(`[data-id="${cardId}"]`).remove();
-        popup.close();
+        popupCardDelete.close();
       })
       .catch(err => {
         console.log(`Ошибка: ${err}`);
       })
       .finally(() => {
-        popup.renderLoading('Да');
+        popupCardDelete.renderLoading('Да');
       });
   });
 popupCardDelete.setEventListeners();
@@ -174,4 +172,3 @@ Promise.all([api.getInitialProfile(), api.getInitialCards()])
     console.log("ошибка---InitialProfilePromiseAll----", err);
   });
 
-export {api};

@@ -21,7 +21,7 @@ export default class PopupWithForm extends Popup {
   open() {
     super.open();
     this._saveBtn.focus();
-    this._saveBtn.disabled = true;
+    // this._saveBtn.disabled = true;
   }
 
 
@@ -32,11 +32,12 @@ export default class PopupWithForm extends Popup {
   setEventListeners() {
     super.setEventListeners();
     this.form.addEventListener("submit", evt => {
-      const popup = this;
+      // const popup = this;
       evt.preventDefault();
       const formData = this._getInputValues();
       this.renderLoading("Сохранение...");
-      this._callback(formData, popup)
+      this._callback(formData)
+      // this._callback(formData, popup)
     })
   }
 

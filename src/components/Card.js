@@ -27,29 +27,29 @@ export default class Card {
     return this.card.likes.some(card => card._id === this._userId);
   }
 
-  checkLikes(card) {
-    return card.querySelector('.like').classList.contains("like_click");
+  checkLikes() {
+    return this._element.querySelector('.like').classList.contains("like_click");
   }
 
-  _toggleLikeFunction(res, card) {
-    card.querySelector(".like__numbers").textContent = res.likes.length;
-    card.querySelector('.like').classList.toggle("like_click");
+  _toggleLikeFunction = (res) => {
+
+    this._element.querySelector(".like__numbers").textContent = res.likes.length;
+    this._element.querySelector('.like').classList.toggle("like_click");
 
   }
 
-  _item(selector) {
-    return this.element.querySelector(selector);
+  _getItem(selector) {
+    return this._element.querySelector(selector);
   }
 
   _setEventListeners() {
-    const likeElement = this._item('.like');
-    const trashElement = this._item('.trash');
-    const imageElement = this._item('.element__img');
+    const likeElement = this._getItem('.like');
+    const trashElement = this._getItem('.trash');
+    const imageElement = this._getItem('.element__img');
 
     likeElement.addEventListener('click', this._handleLikeClick.bind(
         this,
-        this._toggleLikeFunction,
-        this.element
+        this._toggleLikeFunction
       )
     );
     trashElement.addEventListener('click', this._handleDeleteIconClick.bind(this));
@@ -57,17 +57,17 @@ export default class Card {
   }
 
   generate() {
-    this.element = this._createElement();
-    this.element.dataset.id = this.card._id;
+    this._element = this._createElement();
+    this._element.dataset.id = this.card._id;
 
-    this._item(".element__img").src = this.card.link;
-    this._item(".element__figcaption").textContent = this.card.name;
-    this._item(".element__img").alt = this.card.name;
-    this._item(".like__numbers").textContent = this.card.likes.length;
+    this._getItem(".element__img").src = this.card.link;
+    this._getItem(".element__figcaption").textContent = this.card.name;
+    this._getItem(".element__img").alt = this.card.name;
+    this._getItem(".like__numbers").textContent = this.card.likes.length;
 
-    this._checkCurrentUserLike() ? this._item(".like").classList.add("like_click") : null;
-    this.card.owner._id === this._userId ? this._item(".trash").classList.add("trash_include") : null;
+    this._checkCurrentUserLike() ? this._getItem(".like").classList.add("like_click") : null;
+    this.card.owner._id === this._userId ? this._getItem(".trash").classList.add("trash_include") : null;
     this._setEventListeners();
-    return this.element;
+    return this._element;
   }
 }
