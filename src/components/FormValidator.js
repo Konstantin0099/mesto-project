@@ -57,19 +57,23 @@ export default class FormValidator {
     }
   };
 
-  _hasValid = (evt) => {
-    // Запускаем проверку на валидность формы, на которой произошло событие "input"
-    this._input = evt.target;
-    this._error = this._validatedForm.querySelector(`.${evt.target.id}-error`);
-    this._messageError = evt.target.validationMessage;
-    if (this._hasValidInput()) {
+  toggleButtonState = () => {
       if (this._hasValidForm()) {
         this._activateButton();
       } else {
         this._disableButton();
       }
-    } else {
-      this._disableButton();
-    }
+  }
+
+  _hasValid = (evt) => {
+    // Запускаем проверку на валидность формы, на которой произошло событие "input"
+    this._input = evt.target;
+    this._error = this._validatedForm.querySelector(`.${this._input.id}-error`);
+    this._messageError = this._input.validationMessage;
+    if (this._hasValidInput()) {
+    this.toggleButtonState();
+         } else {
+    this._disableButton();
+         }
   };
 }

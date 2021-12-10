@@ -22,11 +22,9 @@ export default class PopupWithForm extends Popup {
     super.open();
     this._saveBtn.focus();
   }
-
   renderLoading(text) {
     this._saveBtn.textContent = text;
   }
-
   setEventListeners() {
     super.setEventListeners();
     this.form.addEventListener("submit", evt => {

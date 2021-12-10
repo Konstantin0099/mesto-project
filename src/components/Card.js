@@ -57,15 +57,12 @@ export default class Card {
   generate() {
     this._element = this._createElement();
     this._element.dataset.id = this.card._id;
-
     this._getItem(".element__img").src = this.card.link;
     this._getItem(".element__figcaption").textContent = this.card.name;
     this._getItem(".element__img").alt = this.card.name;
     this._getItem(".like__numbers").textContent = this.card.likes.length;
-
     this._checkCurrentUserLike() && this._getItem(".like").classList.add("like_click");
     this.card.owner._id === this._userId && this._getItem(".trash").classList.add("trash_include");
-
     this._setEventListeners();
     return this._element;
   }
