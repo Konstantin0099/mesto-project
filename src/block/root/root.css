@@ -1,6 +1,6 @@
 .root {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   background-color: black;
   width: 100%;
   font-family: "inter", "Arial", sans-serif;

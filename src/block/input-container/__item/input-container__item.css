@@ -25,7 +25,6 @@
   color: #C4C4C4;
 }
 .input-container__item:focus:invalid{
-
   border-bottom: solid #FF0000 1px;
 } 
 .input-container__item:focus {
