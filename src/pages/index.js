@@ -97,6 +97,8 @@ popupUpdateAvatar.setEventListeners();
 const popupUpdateAvatarValidator = new FormValidator(dataValidation, popupUpdateAvatar.form);
 popupUpdateAvatarValidator.enableValidation();
 
+
+
 const popupProfile = new PopupWithForm(
   ".popup_profile-info",
   data => {
@@ -111,6 +113,8 @@ popupProfile.setEventListeners();
 const popupProfileValidator = new FormValidator(dataValidation, popupProfile.form);
 popupProfileValidator.enableValidation();
 
+
+
 const popupCardAdd = new PopupWithForm(
   ".popup_card-add",
   data => {
@@ -124,6 +128,8 @@ popupCardAdd.setEventListeners();
 ///////////CardAddValidator
 const popupCardAddValidator = new FormValidator(dataValidation, popupCardAdd.form);
 popupCardAddValidator.enableValidation();
+
+
 
 const popupCardDelete = new PopupConfirm(
   ".popup_delete-card",
@@ -142,23 +148,34 @@ const popupCardDelete = new PopupConfirm(
   });
 popupCardDelete.setEventListeners();
 
-const popupImage = new PopupWithImage(".popup_picture");
 
+
+const popupImage = new PopupWithImage(".popup_picture");
 popupImage.setEventListeners();
 
+
+
 profileAvatarClick.addEventListener("click", () => {
+  popupUpdateAvatarValidator.toggleButtonState();
   popupUpdateAvatar.open();
 });
 
 profileInfoEditButton.addEventListener("click", () => {
   namePopupProfileInfo.value = userName.textContent;
   professionPopupProfileInfo.value = userProfession.textContent;
+  popupProfileValidator.toggleButtonState();
   popupProfile.open();
 });
 
 profileAddButton.addEventListener("click", () => {
+  popupCardAddValidator.toggleButtonState();
   popupCardAdd.open();
 });
+
+
+
+
+
 Promise.all([api.getInitialProfile(), api.getInitialCards()])
   .then(([user, cards]) => {
     userId = user._id;
